@@ -6,7 +6,7 @@ class SearchResult extends React.Component {
   render() {
     return (
       <div className="search-result">
-        <h3>{this.props.value}</h3>
+        <h3>{this.props.service_name}</h3>
         <p>details of the groooovy service you're loooking for</p>
       </div>
     );
@@ -28,7 +28,11 @@ class FamilyServicesSearch extends React.Component {
     event.preventDefault();
   }
   renderSearchResults() {
-    return <SearchResult value={"cool service"} />;
+    const results = ['plunket', 'addiction services', 'kfc', 'community garden', 'kai'];
+    const searchResults = results.map((service_name) =>
+      <SearchResult service_name={service_name} />
+    );
+    return searchResults;
   }
   renderSearchForm() {
     return(
