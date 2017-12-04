@@ -30,7 +30,7 @@ class FamilyServicesSearch extends React.Component {
     event.preventDefault();
   }
   fetchResults(keyword) {
-    axios.get('https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=jones')
+    axios.get(`https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.state.value}`)
       .then(res => {
         this.setState({ results: res.data.result.records });
       });
