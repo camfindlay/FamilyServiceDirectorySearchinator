@@ -7,8 +7,8 @@ class SearchResult extends React.Component {
   render() {
     return (
       <div className="search-result">
-        <h3>{this.props.record.name}</h3>
-        <p>details of the groooovy service you're loooking for</p>
+        <h3>{this.props.record.SERVICE_NAME}</h3>
+        <p>{this.props.record.ORGANISATION_PURPOSE}</p>
       </div>
     );
   }
@@ -37,7 +37,7 @@ class FamilyServicesSearch extends React.Component {
   }
   renderSearchResults() {
     return this.state.results.map((record) =>
-      <SearchResult record={{'name': record.SERVICE_NAME}} />
+      <SearchResult record={record} />
     );
   }
   renderSearchForm() {
