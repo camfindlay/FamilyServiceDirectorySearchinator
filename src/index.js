@@ -47,8 +47,6 @@ class FamilyServicesSearch extends React.Component {
   }
 
   render() {
-    const query = 'query'
-
     return (
       <div>
         <h1>Whānau Services Search</h1>
