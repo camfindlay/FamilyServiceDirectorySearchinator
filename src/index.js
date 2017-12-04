@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import './index.css';
 
 class SearchResult extends React.Component {
   render() {
     return (
       <div className="search-result">
-        <h3>{this.props.service_name}</h3>
+        <h3>{this.props.record.name}</h3>
         <p>details of the groooovy service you're loooking for</p>
       </div>
     );
   }
 }
 
+
 class FamilyServicesSearch extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {value: '', results: []};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,15 +26,19 @@ class FamilyServicesSearch extends React.Component {
     this.setState({value: event.target.value});
   }
   handleSubmit(event) {
-    alert('kei whakataki koe i : ' + this.state.value);
+    this.fetchResults(this.state.value);
     event.preventDefault();
   }
+  fetchResults(keyword) {
+    axios.get('https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=jones')
+      .then(res => {
+        this.setState({ results: res.data.result.records });
+      });
+  }
   renderSearchResults() {
-    const results = ['plunket', 'addiction services', 'kfc', 'community garden', 'kai'];
-    const searchResults = results.map((service_name) =>
-      <SearchResult service_name={service_name} />
+    return this.state.results.map((record) =>
+      <SearchResult record={{'name': record.SERVICE_NAME}} />
     );
-    return searchResults;
   }
   renderSearchForm() {
     return(
