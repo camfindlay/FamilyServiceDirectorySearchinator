@@ -1,8 +1,17 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/ServiceInnovationLab/FamilyServiceDirectorySearchinator.png?columns=all)](https://waffle.io/ServiceInnovationLab/FamilyServiceDirectorySearchinator?utm_source=badge)
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+This runs [on github pages](https://serviceinnovationlab.github.io/FamilyServiceDirectorySearchinator/)
+
+
+## Deployment
+
+To deploy to github pages, checkout the branch you want to deploy and then run
+```
+npm run deploy
+```
+
+## Development
 
 ## Table of Contents
 
