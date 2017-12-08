@@ -7,7 +7,7 @@ class SearchResult extends React.Component {
   render() {
     return (
       <div className="search-result">
-        <h3>{this.props.record.SERVICE_NAME}</h3>
+        <h3>{this.props.record.PROVIDER_NAME}</h3>
         <p>{this.props.record.PHYSICAL_REGION}</p>
         <p>{this.props.record.LATITUDE} {this.props.record.LONGITUDE}</p>
         <p>{this.props.record.ORGANISATION_PURPOSE}</p>
