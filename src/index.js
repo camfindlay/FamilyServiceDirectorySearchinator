@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link } from 'react-router-dom'
+import { BrowserRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
 
@@ -22,10 +22,10 @@ class CategoryLink extends React.Component {
     return (
       <li className="category-link">
         <Link to="whare" onClick={this.handleCategorySelection}>
-        {this.props.record.name}
+          {this.props.record.name}
         </Link>
       </li>
-      );
+    );
   }
 }
 
@@ -38,12 +38,12 @@ class Categories extends React.Component {
     this.fetchCategories();
   }
   fetchCategories() {
-    let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY')
+    let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY name');
     let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
     axios.get(url)
       .then(res => {
         this.setState({ categories: res.data.result.records });
-    });
+      });
   }
   render() {
     return this.state.categories.map((record) =>
@@ -63,13 +63,13 @@ class App extends React.Component {
     this.setState({value: event.target.value});
   }
   handleSubmit(event) {
-    this.fetchResults(this.state.value);
+    this.fetchResults();
     event.preventDefault();
   }
   handleCategorySelection(event) {
-    // debugger;
+    event.preventDefault();
   }
-  fetchResults(keyword) {
+  fetchResults() {
     axios.get(`https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.state.value}`)
       .then(res => {
         this.setState({ results: res.data.result.records });
@@ -89,7 +89,7 @@ class App extends React.Component {
         </label>
         <input type="submit" value="haere" />
       </form>
-      );
+    );
   }
   render() {
     return (
@@ -108,4 +108,4 @@ ReactDOM.render((
   <BrowserRouter>
     <App/>
   </BrowserRouter>
-), document.getElementById('root'))
+), document.getElementById('root'));
