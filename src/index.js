@@ -38,7 +38,7 @@ class Categories extends React.Component {
     this.fetchCategories();
   }
   fetchCategories() {
-    let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY name')
+    let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY')
     let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
     axios.get(url)
       .then(res => {
