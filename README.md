@@ -13,6 +13,18 @@ npm run deploy
 
 ## Development
 
+
+to install dependencies, cd into folder and run
+```
+npm install
+```
+
+to run a development server:
+```
+npm start
+```
+
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
