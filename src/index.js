@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
 import Categories from './category.jsx';
+import SearchResults from './search.jsx';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -32,31 +33,6 @@ class SearchForm extends React.Component {
   }
 }
 
-class SearchResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: '', results: []};
-  }
-  render() {
-    return this.props.results.map((record) =>
-      <SearchResult record={record} />
-    );
-  }
-}
-
-class SearchResult extends React.Component {
-  render() {
-    return (
-      <div className="search-result">
-        <h3>{this.props.record.PROVIDER_NAME}</h3>
-        <p>{this.props.record.PHYSICAL_REGION}</p>
-        <p>{this.props.record.LATITUDE} {this.props.record.LONGITUDE}</p>
-        <p>{this.props.record.ORGANISATION_PURPOSE}</p>
-      </div>
-    );
-  }
-}
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -75,7 +51,7 @@ class App extends React.Component {
       <div>
         <h1>Whānau Services Search</h1>
         <SearchForm value={this.state.value} handler={this.handleSearch} />
-        <Categories />
+        Categories: <Categories />
         <SearchResults results={this.state.results} />
       </div>
     );
