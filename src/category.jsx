@@ -41,7 +41,7 @@ class Categories extends React.Component {
   renderCategories() {
     return this.state.categories.map((record) =>
       <li>
-      <CategoryLink record={record} />
+        <CategoryLink record={record} />
       </li>
     );
   }
