@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
 import Categories from './category.jsx';
-import SearchResults from './search.jsx';
+import SearchResults from './searchresult.jsx';
 
 class SearchForm extends React.Component {
   constructor(props) {
