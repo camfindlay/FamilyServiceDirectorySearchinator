@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
+import 'foundation-sites/dist/css/foundation.min.css';
 import Categories from './category.jsx';
 import SearchResults from './searchresult.jsx';
 
