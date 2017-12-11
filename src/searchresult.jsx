@@ -8,13 +8,13 @@ class SearchResult extends React.Component {
         <Row>
           <h3>{this.props.record.PROVIDER_NAME}</h3>
           <Column>
-          <Breadcrumbs>
-            <BreadcrumbItem>{this.props.record.LEVEL_1_CATEGORY}</BreadcrumbItem>
-            <BreadcrumbItem>{this.props.record.LEVEL_2_CATEGORY}</BreadcrumbItem>
-          </Breadcrumbs>
+            <Breadcrumbs>
+              <BreadcrumbItem>{this.props.record.LEVEL_1_CATEGORY}</BreadcrumbItem>
+              <BreadcrumbItem>{this.props.record.LEVEL_2_CATEGORY}</BreadcrumbItem>
+            </Breadcrumbs>
           </Column>
           <Column>
-          <Link to={this.props.record.PROVIDER_WEBSITE_1}>Website</Link>
+            <Link to={this.props.record.PROVIDER_WEBSITE_1}>Website</Link>
           </Column>
         </Row>
         <Row>
