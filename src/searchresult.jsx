@@ -10,7 +10,7 @@ class SearchResult extends React.Component {
         </Link>
         <sub>{this.props.record.PROVIDER_WEBSITE_1}</sub>
         <p>{this.props.record.PHYSICAL_REGION}</p>
-        <p>{this.props.record.LATITUDE} {this.props.record.LONGITUDE}</p>
+        <p>{this.props.record.LATITUDE} / {this.props.record.LONGITUDE}</p>
         <p>{this.props.record.ORGANISATION_PURPOSE}</p>
       </div>
     );
