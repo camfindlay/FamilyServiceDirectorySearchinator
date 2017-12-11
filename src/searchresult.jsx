@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumbs, BreadcrumbItem, Grid, Column, Row, Link, Callout} from 'react-foundation';
+import { Breadcrumbs, BreadcrumbItem, Link, Callout} from 'react-foundation';
 
 class SearchResult extends React.Component {
   render() {
