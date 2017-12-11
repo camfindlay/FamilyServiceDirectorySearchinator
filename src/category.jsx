@@ -47,7 +47,7 @@ class Categories extends React.Component {
   }
   render() {
     return (
-      <ResponsiveNavigation titleBarTitle="Test">
+      <ResponsiveNavigation titleBarTitle="Categories">
         <TopBarLeft>
           <Menu>
             <MenuText>Categories</MenuText>
