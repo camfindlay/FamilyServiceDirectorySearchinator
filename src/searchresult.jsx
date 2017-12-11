@@ -14,7 +14,9 @@ class SearchResult extends React.Component {
             </Breadcrumbs>
           </Column>
           <Column>
-            <Link to={this.props.record.PROVIDER_WEBSITE_1}>Website</Link>
+            <Link href={this.props.record.PROVIDER_WEBSITE_1}>
+              Website
+            </Link>
           </Column>
         </Row>
         <Row>
