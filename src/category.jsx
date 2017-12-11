@@ -1,14 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { ButtonGroup } from 'react-foundation';
+import { Alignments, Badge, Button, ButtonGroup, Colors, Link, Menu, MenuText, MenuItem, TopBarLeft, ResponsiveNavigation, Row, Sizes } from 'react-foundation';
 
 class CategoryLink extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isActive: false};
+    this.handleCategorySelection = this.handleCategorySelection.bind(this);
+  }
+  handleCategorySelection(event) {
+    this.setState({isActive: true})
+  }
   render() {
     return (
-      <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
-        {this.props.record.name}
-      </Link>
+      <MenuItem size={Sizes.TINY} onClick={this.handleCategorySelection}>
+        <a>
+          {this.props.record.name}
+          ({this.props.record.num})
+        </a>
+      </MenuItem>
     );
   }
 }
@@ -20,21 +30,31 @@ class Categories extends React.Component {
     this.fetchCategories();
   }
   fetchCategories() {
-    let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY name');
+    // let sql = encodeURI('SELECT DISTINCT "LEVEL_1_CATEGORY" as name FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" ORDER BY name');
+    let sql = encodeURI('SELECT "LEVEL_1_CATEGORY" as name, COUNT(*) as num FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" GROUP BY name ORDER BY name');
     let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
     axios.get(url)
       .then(res => {
         this.setState({ categories: res.data.result.records });
       });
   }
-  render() {
-    let categories = this.state.categories.map((record) =>
+  renderCategories() {
+    return this.state.categories.map((record) =>
+      <li>
       <CategoryLink record={record} />
+      </li>
     );
+  }
+  render() {
     return (
-      <ButtonGroup>
-        {categories}
-      </ButtonGroup>
+    <ResponsiveNavigation titleBarTitle="Test">
+      <TopBarLeft>
+        <Menu>
+          <MenuText>Categories</MenuText>
+          {this.renderCategories()}
+          </Menu>
+      </TopBarLeft>
+    </ResponsiveNavigation>
     );
   }
 }

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import './index.css';
-import 'foundation-sites/dist/css/foundation.min.css';
+import 'foundation-sites/dist/css/foundation.css';
 import Categories from './category.jsx';
 import SearchResults from './searchresult.jsx';
-
+import { Button, Sizes, Label, Row } from 'react-foundation';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
@@ -23,13 +23,15 @@ class SearchForm extends React.Component {
   }
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          ngā kupu:
+      <Row>
+        <form onSubmit={this.handleSubmit}>
+          <Label>
+            ngā kupu:
+          </Label>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="haere" onSubmit={this.handleSubmit} />
-      </form>
+          <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>haere</Button>
+        </form>
+      </Row>
     );
   }
 }
@@ -51,8 +53,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Whānau Services Search</h1>
+        <Categories />
+        <h3>keyword search</h3>
         <SearchForm value={this.state.value} handler={this.handleSearch} />
-        Categories: <Categories />
         <SearchResults results={this.state.results} />
       </div>
     );

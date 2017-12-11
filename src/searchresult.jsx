@@ -1,18 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Breadcrumbs, BreadcrumbItem, Column, Row, Link, Callout} from 'react-foundation';
 
 class SearchResult extends React.Component {
   render() {
     return (
-      <div className="search-result">
-        <Link to={this.props.record.FSD_ID}>
+      <Callout>
+        <Row>
           <h3>{this.props.record.PROVIDER_NAME}</h3>
-        </Link>
-        <sub>{this.props.record.PROVIDER_WEBSITE_1}</sub>
-        <p>{this.props.record.PHYSICAL_REGION}</p>
-        <p>{this.props.record.LATITUDE} / {this.props.record.LONGITUDE}</p>
-        <p>{this.props.record.ORGANISATION_PURPOSE}</p>
-      </div>
+          <Column>
+          <Breadcrumbs>
+            <BreadcrumbItem>{this.props.record.LEVEL_1_CATEGORY}</BreadcrumbItem>
+            <BreadcrumbItem>{this.props.record.LEVEL_2_CATEGORY}</BreadcrumbItem>
+          </Breadcrumbs>
+          </Column>
+          <Column>
+          <Link to={this.props.record.PROVIDER_WEBSITE_1}>Website</Link>
+          </Column>
+        </Row>
+        <Row>
+          <Column>{this.props.record.PHYSICAL_REGION}</Column>
+          <Column>{this.props.record.LATITUDE} / {this.props.record.LONGITUDE}</Column>
+          <Column>{this.props.record.ORGANISATION_PURPOSE}</Column>
+        </Row>
+      </Callout>
     );
   }
 }
