@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { ButtonGroup } from 'react-foundation';
 
 class CategoryLink extends React.Component {
   render() {
@@ -27,8 +28,13 @@ class Categories extends React.Component {
       });
   }
   render() {
-    return this.state.categories.map((record) =>
+    let categories = this.state.categories.map((record) =>
       <CategoryLink record={record} />
+    );
+    return (
+      <ButtonGroup>
+        {categories}
+      </ButtonGroup>
     );
   }
 }
