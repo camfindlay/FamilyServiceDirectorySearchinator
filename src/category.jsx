@@ -51,7 +51,7 @@ class Categories extends React.Component {
       <TopBarLeft>
         <Menu>
           <MenuText>Categories</MenuText>
-          {this.renderCategories()}
+            {this.renderCategories()}
           </Menu>
       </TopBarLeft>
     </ResponsiveNavigation>
