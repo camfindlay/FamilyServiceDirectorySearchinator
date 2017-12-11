@@ -5,11 +5,9 @@ import axios from 'axios';
 class CategoryLink extends React.Component {
   render() {
     return (
-      <li className="category-link">
-        <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
-          {this.props.record.name}
-        </Link>
-      </li>
+      <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
+        {this.props.record.name}
+      </Link>
     );
   }
 }
