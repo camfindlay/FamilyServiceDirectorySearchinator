@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Menu, MenuText, MenuItem, TopBarLeft, ResponsiveNavigation, Sizes } from 'react-foundation';
+import { Menu, MenuText, MenuItem, TopBarRight, ResponsiveNavigation, Sizes } from 'react-foundation';
+import { Link } from 'react-router-dom';
 
 class CategoryLink extends React.Component {
   constructor(props) {
@@ -14,10 +15,10 @@ class CategoryLink extends React.Component {
   render() {
     return (
       <MenuItem size={Sizes.TINY} onClick={this.handleCategorySelection}>
-        <a>
+        <Link to={this.props.record.name}>
           {this.props.record.name}
           ({this.props.record.num})
-        </a>
+        </Link>
       </MenuItem>
     );
   }
@@ -48,12 +49,12 @@ class Categories extends React.Component {
   render() {
     return (
       <ResponsiveNavigation titleBarTitle="Categories">
-        <TopBarLeft>
+        <TopBarRight>
           <Menu>
             <MenuText>Categories</MenuText>
             {this.renderCategories()}
           </Menu>
-        </TopBarLeft>
+        </TopBarRight>
       </ResponsiveNavigation>
     );
   }
