@@ -9,7 +9,7 @@ class CategoryLink extends React.Component {
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
   }
   handleCategorySelection() {
-    this.setState({isActive: true})
+    this.setState({isActive: true});
   }
   render() {
     return (
