@@ -47,14 +47,14 @@ class Categories extends React.Component {
   }
   render() {
     return (
-    <ResponsiveNavigation titleBarTitle="Test">
-      <TopBarLeft>
-        <Menu>
-          <MenuText>Categories</MenuText>
-            {this.renderCategories()}
-          </Menu>
-      </TopBarLeft>
-    </ResponsiveNavigation>
+      <ResponsiveNavigation titleBarTitle="Test">
+        <TopBarLeft>
+          <Menu>
+            <MenuText>Categories</MenuText>
+              {this.renderCategories()}
+            </Menu>
+        </TopBarLeft>
+      </ResponsiveNavigation>
     );
   }
 }
