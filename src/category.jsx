@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Alignments, Badge, Button, ButtonGroup, Colors, Link, Menu, MenuText, MenuItem, TopBarLeft, ResponsiveNavigation, Row, Sizes } from 'react-foundation';
+import { Menu, MenuText, MenuItem, TopBarLeft, ResponsiveNavigation, Sizes } from 'react-foundation';
 
 class CategoryLink extends React.Component {
   constructor(props) {
