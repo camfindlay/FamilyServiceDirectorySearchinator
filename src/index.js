@@ -54,7 +54,6 @@ class App extends React.Component {
       <div>
         <h1>Whānau Services Search</h1>
         <Categories />
-        <h3>keyword search</h3>
         <SearchForm value={this.state.value} handler={this.handleSearch} />
         <SearchResults results={this.state.results} />
       </div>
