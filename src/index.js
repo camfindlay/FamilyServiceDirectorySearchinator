@@ -26,10 +26,10 @@ class SearchForm extends React.Component {
       <Row>
         <form onSubmit={this.handleSubmit}>
           <Label>
-            ngā kupu:
+            keywords:
           </Label>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>haere</Button>
+          <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>search</Button>
         </form>
       </Row>
     );
