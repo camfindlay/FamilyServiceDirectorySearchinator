@@ -11,9 +11,8 @@ class SearchResult extends React.Component {
           <BreadcrumbItem>{this.props.record.LEVEL_2_CATEGORY}</BreadcrumbItem>
           <BreadcrumbItem>{this.props.record.PHYSICAL_REGION}</BreadcrumbItem>
         </Breadcrumbs>
-        <a href={this.props.record.PROVIDER_WEBSITE_1}>
-          Website
-        </a>
+        <Link href={this.props.record.PROVIDER_WEBSITE_1}>Website</Link>
+        <Link href={this.props.record.PUBLISHED_PHONE_1}>Phone: {this.props.record.PUBLISHED_PHONE_1}</Link>
         <p>{this.props.record.ORGANISATION_PURPOSE}</p>
       </Callout>
     );
