@@ -4,6 +4,8 @@ This runs [on github pages](https://serviceinnovationlab.github.io/FamilyService
 
 ## Deployment
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ServiceInnovationLab/FamilyServiceDirectorySearchinator.svg)](https://greenkeeper.io/)
+
 To deploy to github pages, checkout the branch you want to deploy and then run
 ```
 npm run deploy
