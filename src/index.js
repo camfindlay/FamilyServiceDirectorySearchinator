@@ -7,19 +7,18 @@ import 'foundation-sites/dist/css/foundation.css';
 import Categories from './category.jsx';
 import SearchResults from './searchresult.jsx';
 import { Button, Sizes, Label, Row } from 'react-foundation';
-
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {keyword: '', results: []};
+    this.state = {value: '', results: []};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
-    this.setState({keyword: event.target.keyword});
+    this.setState({value: event.target.value});
   }
   handleSubmit(event) {
-    this.props.handler(this.state.keyword);
+    this.props.handler(this.state.value);
     event.preventDefault();
   }
   render() {
@@ -29,7 +28,7 @@ class SearchForm extends React.Component {
           <Label>
             keywords:
           </Label>
-          <input type="text" keyword={this.state.keyword} onChange={this.handleChange} />
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
           <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>search</Button>
         </form>
       </Row>
@@ -40,7 +39,7 @@ class SearchForm extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {keyword: '', category: '', results: []};
+    this.state = {value: '', results: []};
     this.handleSearch = this.handleSearch.bind(this);
   }
   handleSearch(keyword) {
@@ -53,9 +52,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Categories category={this.state.category} />
         <h1>Whānau Services Search</h1>
-        <SearchForm keyword={this.state.keyword} handler={this.handleSearch} />
+        <Categories />
+        <SearchForm value={this.state.value} handler={this.handleSearch} />
         <SearchResults results={this.state.results} />
       </div>
     );
