@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumbs, BreadcrumbItem, Callout} from 'react-foundation';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class SearchResult extends React.Component {
   render() {
@@ -47,15 +48,44 @@ class SearchResult extends React.Component {
 class SearchResults extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '', results: []};
+    this.state = {results: []};
+    this.doKeywordSearch = this.doKeywordSearch.bind(this);
+    this.doFacetedSearch = this.doFacetedSearch.bind(this);
+  }
+  doFacetedSearch() {
+    let sql = encodeURI(`SELECT * FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" WHERE "LEVEL_1_CATEGORY"='${this.props.category}'`);
+    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
+    axios.get(url)
+      .then(res => {
+        this.setState({ results: res.data.result.records });
+      });
+  }
+  doKeywordSearch() {
+    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.props.keyword}`;
+    axios.get(url)
+      .then(res => {
+        this.setState({ results: res.data.result.records });
+      });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    // only update if data has changed
+    if (prevProps !== this.props) {
+      this.doFacetedSearch();
+    }
   }
   renderSearchResults() {
-    return this.props.results.map((record) =>
+    return this.state.results.map((record) =>
       <SearchResult record={record} />
     );
   }
   render() {
-    return this.renderSearchResults()
+    return (
+      <div id="search-results">
+        <p>keyword: {this.props.keyword}</p>
+        <p>category: {this.props.category}</p>
+        {this.renderSearchResults()}
+      </div>
+      );
   }
 }
 
