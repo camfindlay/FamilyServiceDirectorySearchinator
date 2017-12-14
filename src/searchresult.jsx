@@ -49,19 +49,17 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {results: []};
-    this.doKeywordSearch = this.doKeywordSearch.bind(this);
-    this.doFacetedSearch = this.doFacetedSearch.bind(this);
+    this.fetchResults = this.fetchResults.bind(this);
   }
-  doFacetedSearch() {
-    let sql = encodeURI(`SELECT * FROM "35de6bf8-b254-4025-89f5-da9eb6adf9a0" WHERE "LEVEL_1_CATEGORY"='${this.props.category}'`);
-    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
-    axios.get(url)
-      .then(res => {
-        this.setState({ results: res.data.result.records });
-      });
+  filters() {
+    let filters = {};
+    if(this.props.category) {
+      filters['LEVEL_1_CATEGORY'] = this.props.category
+    }
+    return JSON.stringify(filters)
   }
-  doKeywordSearch() {
-    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.props.keyword}`;
+  fetchResults() {
+    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.props.keyword}&filters=${this.filters()}`;
     axios.get(url)
       .then(res => {
         this.setState({ results: res.data.result.records });
@@ -70,7 +68,7 @@ class SearchResults extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // only update if data has changed
     if (prevProps !== this.props) {
-      this.doFacetedSearch();
+      this.fetchResults();
     }
   }
   renderSearchResults() {
@@ -78,11 +76,21 @@ class SearchResults extends React.Component {
       <SearchResult record={record} />
     );
   }
+  searchDescription() {
+    if (this.props.keyword && this.props.category) {
+      return `Searching for "${this.props.keyword}" in "${this.props.category}"`
+    }
+    else if (this.props.keyword) {
+      return `Searching for "${this.props.keyword}"`
+    }
+    else if (this.props.category) {
+      return `Searching in "${this.props.category}"`
+    }
+  }
   render() {
     return (
       <div id="search-results">
-        <p>keyword: {this.props.keyword}</p>
-        <p>category: {this.props.category}</p>
+        <p>{this.searchDescription()}</p>
         {this.renderSearchResults()}
       </div>
       );

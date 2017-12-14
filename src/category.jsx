@@ -14,12 +14,10 @@ class CategoryLink extends React.Component {
   }
   render() {
     return (
-      <MenuItem size={Sizes.TINY} onClick={this.handleCategorySelection}>
-        <Link to={this.props.record.name}>
-          {this.props.record.name}
-          ({this.props.record.num})
-        </Link>
-      </MenuItem>
+      <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
+        {this.props.record.name}
+        ({this.props.record.num})
+      </Link>
     );
   }
 }
@@ -40,22 +38,11 @@ class Categories extends React.Component {
   }
   renderCategories() {
     return this.state.categories.map((record) =>
-      <li>
-        <CategoryLink record={record} handler={this.props.handler} />
-      </li>
+      <CategoryLink record={record} handler={this.props.handler} />
     );
   }
   render() {
-    return (
-      <ResponsiveNavigation titleBarTitle="Categories">
-        <TopBarRight>
-          <Menu>
-            <MenuText>Categories</MenuText>
-            {this.renderCategories()}
-          </Menu>
-        </TopBarRight>
-      </ResponsiveNavigation>
-    );
+    return this.renderCategories()
   }
 }
 
