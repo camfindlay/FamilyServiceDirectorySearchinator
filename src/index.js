@@ -11,10 +11,15 @@ import SearchResults from './searchresult.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '', results: []};
-    this.handleSearch = this.handleSearch.bind(this);
+    this.state = {keyword: '', category: '', results: []};
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
-  handleSearch(keyword) {
+  handleCategoryChange(category){
+    this.setState({category: category});
+  }
+  handleKeywordChange(keyword) {
+    this.setState({keyword: keyword});
     let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${keyword}`;
     axios.get(url)
       .then(res => {
@@ -25,8 +30,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Whānau Services Search</h1>
-        <Categories />
-        <SearchForm value={this.state.value} handler={this.handleSearch} />
+        <Categories handler={this.handleCategoryChange} />
+        <SearchForm value={this.state.value} handler={this.handleKeywordChange} />
+        <p>keyword: {this.state.keyword}</p>
+        <p>category: {this.state.category}</p>
         <SearchResults results={this.state.results} />
       </div>
     );

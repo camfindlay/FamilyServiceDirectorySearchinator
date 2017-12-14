@@ -10,7 +10,7 @@ class CategoryLink extends React.Component {
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
   }
   handleCategorySelection() {
-    this.setState({isActive: true});
+    this.props.handler(this.props.record.name);
   }
   render() {
     return (
@@ -41,7 +41,7 @@ class Categories extends React.Component {
   renderCategories() {
     return this.state.categories.map((record) =>
       <li>
-        <CategoryLink record={record} />
+        <CategoryLink record={record} handler={this.props.handler} />
       </li>
     );
   }
