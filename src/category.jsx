@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Menu, MenuText, MenuItem, TopBarRight, ResponsiveNavigation, Sizes } from 'react-foundation';
 import { Link } from 'react-router-dom';
 
 class CategoryLink extends React.Component {
@@ -42,7 +41,7 @@ class Categories extends React.Component {
     );
   }
   render() {
-    return this.renderCategories()
+    return this.renderCategories();
   }
 }
 
