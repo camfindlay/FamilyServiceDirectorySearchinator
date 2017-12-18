@@ -1,28 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Menu, MenuItem, Label } from 'react-foundation';
-class CategoryLink extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleCategorySelection = this.handleCategorySelection.bind(this);
-  }
-  handleCategorySelection() {
-    this.props.handler(this.props.record.name);
-  }
-  render() {
-    return (
-      <MenuItem isActive={this.props.selected}>
-        {this.props.selected}
-        <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
-          {this.props.record.name}
-          <sub>({this.props.record.num})</sub>
-        </Link>
-      </MenuItem>
-    );
-  }
-}
+import { Label, Button, ButtonGroup } from 'react-foundation';
+import FilterButton from './filterbuttons.jsx'
 
 class Categories extends React.Component {
   constructor(props) {
@@ -41,16 +21,16 @@ class Categories extends React.Component {
   }
   renderCategories() {
     return this.state.categories.map((record) =>
-      <CategoryLink record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
+      <FilterButton record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
     );
   }
   render() {
     return (
       <div>
         <Label>Category</Label>
-        <Menu>
+        <ButtonGroup>
           {this.renderCategories()}
-        </Menu>
+        </ButtonGroup>
       </div>
     );
   }

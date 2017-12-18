@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class SearchResult extends React.Component {
+  dialAddress() {
+    return `tel:${this.props.record.PUBLISHED_PHONE_1}`;
+  }
   render() {
     return (
       <Callout>
@@ -22,16 +25,22 @@ class SearchResult extends React.Component {
           </dd>
           <dt>Phone</dt>
           <dd>
-            {this.props.record.PROVIDER_CONTACT_AVAILABILITY}
-            {this.props.record.PUBLISHED_PHONE_1}
+            <a href={this.dialAddress()}>
+              {this.props.record.PUBLISHED_PHONE_1}
+            </a>
+            <p>({this.props.record.PROVIDER_CONTACT_AVAILABILITY})</p>
           </dd>
           <dt>Organisation purpose</dt>
           <dd>{this.props.record.ORGANISATION_PURPOSE}</dd>
-          <dt>Physical_address</dt>
-          <dd>{this.props.record.PHYSICAL_ADDRESS}</dd>
-          <dt>Service_name</dt>
+          <dt>Physical address</dt>
+          <dd>
+            <addr>
+              {this.props.record.PHYSICAL_ADDRESS}
+            </addr>
+          </dd>
+          <dt>Service name</dt>
           <dd>{this.props.record.SERVICE_NAME}</dd>
-          <dt>Service_detail</dt>
+          <dt>Service detail</dt>
           <dd>{this.props.record.SERVICE_DETAIL}</dd>
           <dt>Delivery methods</dt>
           <dd>{this.props.record.DELIVERY_METHODS}</dd>
