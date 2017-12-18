@@ -52,7 +52,7 @@ class Categories extends React.Component {
           {this.renderCategories()}
         </Menu>
       </div>
-      );
+    );
   }
 }
 
