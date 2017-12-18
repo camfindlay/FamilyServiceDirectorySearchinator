@@ -14,11 +14,11 @@ class CategoryLink extends React.Component {
   render() {
     return (
       <MenuItem isActive={this.props.selected}>
-      {this.props.selected}
-      <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
-        {this.props.record.name}
-        <sub>({this.props.record.num})</sub>
-      </Link>
+        {this.props.selected}
+        <Link to={this.props.record.name} onClick={this.handleCategorySelection}>
+          {this.props.record.name}
+          <sub>({this.props.record.num})</sub>
+        </Link>
       </MenuItem>
     );
   }
