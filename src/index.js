@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import 'foundation-sites/dist/css/foundation.css';
 import Categories from './category.jsx';
+import Regions from './regions.jsx';
 import SearchForm from './searchform.jsx';
 import SearchResults from './searchresult.jsx';
 
@@ -14,6 +15,10 @@ class App extends React.Component {
     this.state = {keyword: '', category: ''};
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleRegionChange = this.handleRegionChange.bind(this);
+  }
+  handleRegionChange(region){
+    this.setState({region: region});
   }
   handleCategoryChange(category){
     this.setState({category: category});
@@ -25,9 +30,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>Whānau Services Search</h1>
-        <Categories handler={this.handleCategoryChange} />
+        <Categories selected={this.state.category} handler={this.handleCategoryChange} />
+        <Regions selected={this.state.region} handler={this.handleRegionChange} />
         <SearchForm handler={this.handleKeywordChange} />
-        <SearchResults category={this.state.category} keyword={this.state.keyword} />
+        <SearchResults category={this.state.category} keyword={this.state.keyword} region={this.state.region} />
       </div>
     );
   }
