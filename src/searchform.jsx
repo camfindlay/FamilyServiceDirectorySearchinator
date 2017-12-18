@@ -19,7 +19,7 @@ class SearchForm extends React.Component {
     return(
       <Row>
         <form onSubmit={this.handleSubmit}>
-          <Label>keywords:</Label>
+          <Label>Keywords</Label>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
           <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>search</Button>
         </form>

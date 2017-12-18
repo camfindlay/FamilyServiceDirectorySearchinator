@@ -1,28 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Label, Menu, MenuItem } from 'react-foundation';
-class RegionLink extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleRegionSelection = this.handleRegionSelection.bind(this);
-  }
-  handleRegionSelection() {
-    this.props.handler(this.props.record.name);
-  }
-  render() {
-    return (
-      <MenuItem isActive={this.props.selected}>
-        {this.props.selected}
-        <Link to={this.props.record.name} onClick={this.handleRegionSelection}>
-          {this.props.record.name}
-          <sub>({this.props.record.num})</sub>
-        </Link>
-      </MenuItem>
-    );
-  }
-}
+import { Label, ButtonGroup } from 'react-foundation';
+import FilterButton from './filterbuttons.jsx';
 
 class Regions extends React.Component {
   constructor(props) {
@@ -41,16 +20,16 @@ class Regions extends React.Component {
   }
   renderRegions() {
     return this.state.categories.map((record) =>
-      <RegionLink record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
+      <FilterButton record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
     );
   }
   render() {
     return (
       <div>
-        <Label>Regions</Label>
-        <Menu>
+        <Label>Region</Label>
+        <ButtonGroup>
           {this.renderRegions()}
-        </Menu>
+        </ButtonGroup>
       </div>
     );
   }
