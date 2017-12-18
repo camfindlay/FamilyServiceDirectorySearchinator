@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, Button } from 'react-foundation';
+import { Button } from 'react-foundation';
 
 class FilterButton extends React.Component {
   constructor(props) {
@@ -13,8 +13,8 @@ class FilterButton extends React.Component {
   render() {
     return (
       <Button isHollow={! this.props.selected} onClick={this.handleSelection}>
-          {this.props.record.name}
-          <sub>({this.props.record.num})</sub>
+        {this.props.record.name}
+        <sub>({this.props.record.num})</sub>
       </Button>
     );
   }

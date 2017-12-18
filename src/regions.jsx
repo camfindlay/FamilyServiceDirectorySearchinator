@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Label, Button, ButtonGroup } from 'react-foundation';
-import FilterButton from './filterbuttons.jsx'
+import { Label, ButtonGroup } from 'react-foundation';
+import FilterButton from './filterbuttons.jsx';
 
 class Regions extends React.Component {
   constructor(props) {
