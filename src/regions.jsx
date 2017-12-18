@@ -52,7 +52,7 @@ class Regions extends React.Component {
           {this.renderRegions()}
         </Menu>
       </div>
-      );
+    );
   }
 }
 
