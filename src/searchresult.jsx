@@ -63,7 +63,7 @@ class SearchResults extends React.Component {
   }
   fetchResults() {
     let resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
-    let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?'
+    let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
     let query = `resource_id=${resourceId}&q=${this.props.keyword}&filters=${this.filters()}`;
     axios.get(`${url}${query}`)
       .then(res => {
