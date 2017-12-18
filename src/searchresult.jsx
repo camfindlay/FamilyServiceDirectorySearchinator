@@ -56,11 +56,16 @@ class SearchResults extends React.Component {
     if(this.props.category) {
       filters['LEVEL_1_CATEGORY'] = this.props.category;
     }
+    if(this.props.region) {
+      filters['PHYSICAL_REGION'] = this.props.region;
+    }
     return JSON.stringify(filters);
   }
   fetchResults() {
-    let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=35de6bf8-b254-4025-89f5-da9eb6adf9a0&q=${this.props.keyword}&filters=${this.filters()}`;
-    axios.get(url)
+    let resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
+    let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
+    let query = `resource_id=${resourceId}&q=${this.props.keyword}&filters=${this.filters()}`;
+    axios.get(`${url}${query}`)
       .then(res => {
         this.setState({ results: res.data.result.records });
       });
@@ -76,21 +81,9 @@ class SearchResults extends React.Component {
       <SearchResult record={record} />
     );
   }
-  searchDescription() {
-    if (this.props.keyword && this.props.category) {
-      return `Searching for "${this.props.keyword}" in "${this.props.category}"`;
-    }
-    else if (this.props.keyword) {
-      return `Searching for "${this.props.keyword}"`;
-    }
-    else if (this.props.category) {
-      return `Searching in "${this.props.category}"`;
-    }
-  }
   render() {
     return (
       <div id="search-results">
-        <p>{this.searchDescription()}</p>
         {this.renderSearchResults()}
       </div>
     );
