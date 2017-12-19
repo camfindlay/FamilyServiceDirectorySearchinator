@@ -9,6 +9,9 @@ class SearchResults extends React.Component {
     this.state = {results: []};
     this.fetchResults = this.fetchResults.bind(this);
   }
+  fields() {
+    return "FSD_ID,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS"
+  }
   filters() {
     let filters = {};
     if(this.props.category) {
@@ -21,7 +24,7 @@ class SearchResults extends React.Component {
   }
   fetchResults() {
     let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
-    let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&limit=100&distinct=true&fields=FSD_ID&filters=${this.filters()}`;
+    let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
     axios.get(`${url}${query}`)
       .then(res => {
         this.setState({ results: res.data.result.records });
