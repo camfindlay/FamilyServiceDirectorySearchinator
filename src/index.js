@@ -12,7 +12,7 @@ import SearchResults from './searchresult.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {keyword: '', category: ''};
+    this.state = {keyword: '', category: '', region: ''};
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleRegionChange = this.handleRegionChange.bind(this);
