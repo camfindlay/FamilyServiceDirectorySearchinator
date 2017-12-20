@@ -1,7 +1,6 @@
 import React from 'react';
-import { Row, Column, Callout} from 'react-foundation';
+import { Callout} from 'react-foundation';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class Service extends React.Component {
   dialAddress() {
@@ -18,7 +17,6 @@ class Service extends React.Component {
         <dl>
           <dt>Organisation purpose</dt>
           <dd>{this.props.record.ORGANISATION_PURPOSE}</dd>
-
           <dt>Email</dt>
           <dd>{this.props.record.PUBLISHED_CONTACT_EMAIL_1}</dd>
           <dt>Phone</dt>
