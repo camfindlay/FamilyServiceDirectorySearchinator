@@ -37,8 +37,8 @@ class SearchResults extends React.Component {
     }
   }
   render() {
-    return this.state.results.map((record) =>
-      <Service key={record.FSD_ID} record={record} />
+    return this.state.results.map((record, i) =>
+      <Service key={'serv'+i} record={record} />
     );
   }
 }
