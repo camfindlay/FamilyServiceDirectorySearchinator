@@ -4,11 +4,7 @@ import {  Map, TileLayer, Marker, Popup } from 'react-leaflet';
 class ServiceMapMarker extends React.Component {
   constructor() {
     super();
-    this.state = {
-      lat: -41.0,
-      lng: 174.0,
-      // zoom: 13,
-    };
+    this.state = {};
   }
   render() {
     if (this.props.record.LATITUDE && this.props.record.LONGITUDE) {
@@ -34,11 +30,20 @@ class ServiceMapMarker extends React.Component {
 class MapResults extends React.Component {
   constructor() {
     super();
-    this.state = {
-      lat: -41.0,
-      lng: 174.0,
-      zoom: 6,
-    };
+    this.state = { zoom: 6 };
+  }
+  centre() {
+
+    if(this.props.results.length > 0) {
+      if (this.props.results[0].LATITUDE && this.props.results[0].LONGITUDE) {
+        return [this.props.results[0].LATITUDE, this.props.results[0].LONGITUDE];
+      }
+    }
+    return this.defaultCentre();
+  }
+  defaultCentre() {
+    // roughly the centre of aotearoa
+    return [-41.0, 174.0];
   }
   renderMarkers() {
     return this.props.results.map((record, i) =>
@@ -46,15 +51,8 @@ class MapResults extends React.Component {
     );
   }
   render() {
-    let centre
-    if (this.props.results.length > 0) {
-      centre = [this.props.results[0].LATITUDE, this.props.results[0].LONGITUDE];
-    } else {
-      centre = [this.state.lat, this.state.lng];
-    }
-
     return (
-      <Map center={centre} zoom={this.state.zoom}>
+      <Map center={this.centre()} zoom={this.state.zoom}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
