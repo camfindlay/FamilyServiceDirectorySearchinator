@@ -20,7 +20,7 @@ class Regions extends React.Component {
   }
   renderRegions() {
     return this.state.categories.map((record) =>
-      <FilterButton record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
+      <FilterButton key={record.name} record={record} handler={this.props.handler} selected={this.props.selected === record.name}/>
     );
   }
   render() {
