@@ -1,9 +1,5 @@
 import React from 'react';
-// import { render } from 'react-dom';
 import {  Map, TileLayer, Marker, Popup } from 'react-leaflet';
-
-// const React = window.React;
-// const { Map, TileLayer, Marker, Popup } = window.ReactLeaflet;
 
 class ServiceMapMarker extends React.Component {
   constructor() {
@@ -20,7 +16,12 @@ class ServiceMapMarker extends React.Component {
       return (
         <Marker position={position}>
           <Popup>
-            <span>{this.props.record.PROVIDER_NAME}</span>
+            <span>
+              <h5>{this.props.record.PROVIDER_NAME}</h5>
+              <h6>{this.props.record.SERVICE_NAME}</h6>
+              <p>{this.props.record.SERVICE_DETAIL}</p>
+              <p>{this.props.record.PHYSICAL_ADDRESS}</p>
+            </span>
           </Popup>
         </Marker>
       );
@@ -36,7 +37,7 @@ class MapResults extends React.Component {
     this.state = {
       lat: -41.0,
       lng: 174.0,
-      zoom: 7,
+      zoom: 6,
     };
   }
   renderMarkers() {
