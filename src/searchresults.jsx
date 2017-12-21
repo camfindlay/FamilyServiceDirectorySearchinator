@@ -11,7 +11,7 @@ class SearchResults extends React.Component {
     this.fetchResults = this.fetchResults.bind(this);
   }
   fields() {
-    return 'FSD_ID,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
+    return 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
   }
   filters() {
     let filters = {};
@@ -46,6 +46,7 @@ class SearchResults extends React.Component {
     return (
       <div>
         <MapResults results={this.state.results} />
+        {this.renderServices()}
       </div>
     );
   }
