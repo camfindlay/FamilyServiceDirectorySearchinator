@@ -46,7 +46,13 @@ class MapResults extends React.Component {
     );
   }
   render() {
-    let centre = [this.state.lat, this.state.lng];
+    let centre
+    if (this.props.results.length > 0) {
+      centre = [this.props.results[0].LATITUDE, this.props.results[0].LONGITUDE];
+    } else {
+      centre = [this.state.lat, this.state.lng];
+    }
+
     return (
       <Map center={centre} zoom={this.state.zoom}>
         <TileLayer
