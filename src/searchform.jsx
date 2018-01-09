@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Sizes, Label, Row } from 'react-foundation';
+import { Button, Sizes, Label } from 'react-foundation';
 
 class SearchForm extends React.Component {
   constructor(props) {
