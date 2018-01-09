@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Service from './service.jsx';
 import MapResults from './maps.jsx';
+import { Grid, Column, Row } from 'react-foundation';
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -24,12 +25,17 @@ class SearchResults extends React.Component {
     return JSON.stringify(filters);
   }
   fetchResults() {
-    let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
-    let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
-    axios.get(`${url}${query}`)
-      .then(res => {
-        this.setState({ results: res.data.result.records });
-      });
+    if (this.props.category || this.props.keyword || this.props.region) {
+      let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
+      let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
+      axios.get(`${url}${query}`)
+        .then(res => {
+          this.setState({ results: res.data.result.records });
+        });
+    }
+    else {
+      this.setState({results: []});
+    }
   }
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
