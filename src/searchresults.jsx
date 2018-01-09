@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Service from './service.jsx';
 import MapResults from './maps.jsx';
-import { Grid, Column, Row } from 'react-foundation';
 
 class SearchResults extends React.Component {
   constructor(props) {
