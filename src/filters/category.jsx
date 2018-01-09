@@ -1,6 +1,6 @@
-import Filters from './filters.jsx';
+import SearchFilters from './base.jsx';
 
-class Categories extends Filters {
+class Categories extends SearchFilters {
   constructor(props) {
     super(props);
     this.state = {records: [], label: 'Category'};
