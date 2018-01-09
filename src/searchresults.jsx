@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Service from './service.jsx';
+import MapResults from './maps.jsx';
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class SearchResults extends React.Component {
     this.fetchResults = this.fetchResults.bind(this);
   }
   fields() {
-    return "FSD_ID,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS";
+    return 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
   }
   filters() {
     let filters = {};
@@ -23,12 +24,17 @@ class SearchResults extends React.Component {
     return JSON.stringify(filters);
   }
   fetchResults() {
-    let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
-    let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
-    axios.get(`${url}${query}`)
-      .then(res => {
-        this.setState({ results: res.data.result.records });
-      });
+    if (this.props.category || this.props.keyword || this.props.region) {
+      let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
+      let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
+      axios.get(`${url}${query}`)
+        .then(res => {
+          this.setState({ results: res.data.result.records });
+        });
+    }
+    else {
+      this.setState({results: []});
+    }
   }
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
@@ -36,9 +42,17 @@ class SearchResults extends React.Component {
       this.fetchResults();
     }
   }
-  render() {
+  renderServices() {
     return this.state.results.map((record, i) =>
       <Service key={'serv'+i} record={record} />
+    );
+  }
+  render() {
+    return (
+      <div>
+        <MapResults results={this.state.results} />
+        {this.renderServices()}
+      </div>
     );
   }
 }

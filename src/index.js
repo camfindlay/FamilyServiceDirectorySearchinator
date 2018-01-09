@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import 'foundation-sites/dist/css/foundation.css';
-import Categories from './category.jsx';
-import Regions from './regions.jsx';
+import Categories from './filters/category.jsx';
+import Regions from './filters/regions.jsx';
 import SearchForm from './searchform.jsx';
-import SearchResults from './searchresult.jsx';
+import SearchResults from './searchresults.jsx';
 
 class App extends React.Component {
   constructor(props) {
