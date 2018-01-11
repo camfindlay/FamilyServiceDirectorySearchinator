@@ -22,7 +22,7 @@ class SearchForm extends React.Component {
     event.preventDefault();
   }
   className() {
-    return styles.big-search;
+    return styles.big;
   }
   render() {
     return(
