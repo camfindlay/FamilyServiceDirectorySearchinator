@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Service from './service.jsx';
 import MapResults from './maps.jsx';
-import { Label, ButtonGroup, Button, Alert } from 'react-bootstrap';
+import { Button, Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
 class SearchResults extends React.Component {
@@ -30,7 +30,7 @@ class SearchResults extends React.Component {
     return JSON.stringify(filters);
   }
   queryEntered() {
-    return this.props.category || this.props.keyword || this.props.region || this.props.location
+    return this.props.category || this.props.keyword || this.props.region || this.props.location;
   }
   fetchResults() {
     if (this.queryEntered()) {
@@ -76,7 +76,7 @@ class SearchResults extends React.Component {
             </Button>
             <MapResults results={this.state.results} />
           </div>
-          );
+        );
       }
       else {
         return (

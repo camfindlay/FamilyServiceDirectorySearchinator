@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Label, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import AddressPicker from './addresspicker.jsx'
 import styles from './searchform.css';
 
 class SearchForm extends React.Component {
@@ -23,7 +22,7 @@ class SearchForm extends React.Component {
     event.preventDefault();
   }
   className() {
-    return 'big-search';
+    return styles.big-search;
   }
   render() {
     return(
