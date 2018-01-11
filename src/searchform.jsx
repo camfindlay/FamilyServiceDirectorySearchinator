@@ -1,27 +1,59 @@
 import React from 'react';
-import { Button, Sizes, Label } from 'react-foundation';
+import { Button, Label, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
+import AddressPicker from './addresspicker.jsx'
+import styles from './searchform.css';
 
 class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: '', results: []};
-    this.handleChange = this.handleChange.bind(this);
+  constructor(...args) {
+    super(...args);
+    this.state = {keyword: '', results: []};
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleKeywordChange(event) {
+    this.setState({keyword: event.target.value});
+  }
+  handleLocationChange(event) {
+    this.setState({location: event.target.value});
   }
   handleSubmit(event) {
-    this.props.handler(this.state.value);
+    this.props.handler({keyword: this.state.keyword, location: this.state.location});
     event.preventDefault();
+  }
+  className() {
+    return 'big-search';
   }
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <Label>Keywords</Label>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
-        <Button isExpanded size={Sizes.LARGE} onSubmit={this.handleSubmit}>search</Button>
-      </form>
+      <div class={this.className()}>
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup>
+            <ControlLabel><FontAwesome name='search' /></ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.keyword}
+              placeholder="Enter topic or organisation"
+              onChange={this.handleKeywordChange}
+            />
+            <FormControl.Feedback />
+            <ControlLabel>
+              <FontAwesome name='location-arrow' />
+            </ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.location}
+              placeholder="Enter a Location"
+              onChange={this.handleLocationChange}
+            />
+            <FormControl.Feedback />
+          </FormGroup>
+          <Button bsSize="large" block bsStyle="primary" onClick={this.handleSubmit}>
+            search
+          </Button>
+        </form>
+      </div>
     );
   }
 }

@@ -30,15 +30,14 @@ class ServiceMapMarker extends React.Component {
 class MapResults extends React.Component {
   constructor() {
     super();
-    this.state = { zoom: 6 };
+    this.state = { zoom: 5 };
   }
   centre() {
-
-    if(this.props.results.length > 0) {
-      if (this.props.results[0].LATITUDE && this.props.results[0].LONGITUDE) {
-        return [this.props.results[0].LATITUDE, this.props.results[0].LONGITUDE];
-      }
-    }
+    // if(this.props.results.length > 0) {
+    //   if (this.props.results[0].LATITUDE && this.props.results[0].LONGITUDE) {
+    //     return [this.props.results[0].LATITUDE, this.props.results[0].LONGITUDE];
+    //   }
+    // }
     return this.defaultCentre();
   }
   defaultCentre() {

@@ -2,13 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import Service from './service.jsx';
 import MapResults from './maps.jsx';
+import { Label, ButtonGroup, Button, Alert } from 'react-bootstrap';
+import FontAwesome from 'react-fontawesome';
 
 class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
-    this.state = {results: []};
+    this.toggleShowMap = this.toggleShowMap.bind(this);
+    this.state = {results: [], show_map: false};
     this.fetchResults = this.fetchResults.bind(this);
+  }
+  toggleShowMap() {
+    this.setState({'show_map': !this.state.show_map});
   }
   fields() {
     return 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
@@ -23,13 +29,17 @@ class SearchResults extends React.Component {
     }
     return JSON.stringify(filters);
   }
+  queryEntered() {
+    return this.props.category || this.props.keyword || this.props.region || this.props.location
+  }
   fetchResults() {
-    if (this.props.category || this.props.keyword || this.props.region) {
+    if (this.queryEntered()) {
+      this.setState({loading: true});
       let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
       let query = `resource_id=${this.resourceId}&q=${this.props.keyword}&fields=${this.fields()}&distinct=true&filters=${this.filters()}`;
       axios.get(`${url}${query}`)
         .then(res => {
-          this.setState({ results: res.data.result.records });
+          this.setState({ results: res.data.result.records, loading: false });
         });
     }
     else {
@@ -48,12 +58,49 @@ class SearchResults extends React.Component {
     );
   }
   render() {
-    return (
-      <div>
-        <MapResults results={this.state.results} />
-        {this.renderServices()}
-      </div>
-    );
+    if(this.state.loading) {
+      return (
+        <div>
+          <FontAwesome name='spinner' size='5x' spin />
+          Fetching..
+        </div>
+      );
+    }
+    else if(this.state.results.length > 0 ) {
+      if (this.state.show_map) {
+        return (
+          <div>
+            <Button onClick={this.toggleShowMap}>
+              <FontAwesome name='list' />
+              List
+            </Button>
+            <MapResults results={this.state.results} />
+          </div>
+          );
+      }
+      else {
+        return (
+          <div>
+            <Button onClick={this.toggleShowMap}>
+              <FontAwesome name='map' />
+              Map
+            </Button>
+            {this.renderServices()}
+          </div>
+        );
+
+      }
+    }
+    else if (this.queryEntered()) {
+      return (
+        <Alert bsStyle="warning">
+          No results
+        </Alert>
+      );
+    }
+    else {
+      return '';
+    }
   }
 }
 
