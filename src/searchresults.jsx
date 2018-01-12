@@ -12,7 +12,6 @@ class SearchResults extends React.Component {
     this.toggleShowMap = this.toggleShowMap.bind(this);
     this.state = {results: [], show_map: false};
     this.fetchResults = this.fetchResults.bind(this);
-    this.fetchLocation = this.fetchLocation.bind(this);
   }
   toggleShowMap() {
     this.setState({'show_map': !this.state.show_map});
@@ -31,10 +30,7 @@ class SearchResults extends React.Component {
     return JSON.stringify(filters);
   }
   queryEntered() {
-    return this.props.category || this.props.keyword || this.props.region || this.props.location;
-  }
-  fetchLocation() {
-
+    return this.props.category || this.props.keyword || this.props.region || (this.props.longitude && this.props.latitude);
   }
   fetchResults() {
     if (this.queryEntered()) {
@@ -73,7 +69,9 @@ class SearchResults extends React.Component {
     return (
       <div>
         <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
-        <MapResults results={this.state.results} />
+        <MapResults results={this.state.results}
+          longitude={this.props.longitude}
+          latitude={this.props.latitude} />
       </div>
     );
   }

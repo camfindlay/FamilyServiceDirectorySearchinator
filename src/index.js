@@ -32,7 +32,8 @@ class App extends React.Component {
         <SearchResults
           keyword={this.state.keyword}
           address={this.state.address}
-          location={this.state.location}
+          longitude={this.state.longitude}
+          latitude={this.state.latitude}
           category={this.state.category}
           region={this.state.region} />
       </div>
