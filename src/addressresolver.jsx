@@ -13,7 +13,6 @@ class AddressResolver extends React.Component {
     this.handleAddressSelection = this.handleAddressSelection.bind(this);
   }
   handleAddressSelection(selected) {
-    debugger;
     this.setState({
       selected: true,
       longitude: selected.x,
