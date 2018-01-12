@@ -9,21 +9,21 @@ import SearchResults from './searchresults.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {keyword: '', category: '', region: '', showBigSearch: true};
-    this.handleSearch = this.handleSearch.bind(this);
+    this.state = {keyword: '', category: '', region: '', location: '', address: ''};
+    this.handleSearchParams = this.handleSearchParams.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
   handleCategoryChange(category){
     this.setState({category: category});
   }
-  handleSearch(new_state) {
+  handleSearchParams(new_state) {
     this.setState(new_state);
   }
   render() {
     return (
       <div>
         <h1>Find Whānau Services in your area</h1>
-        <SearchForm handler={this.handleSearch} />
+        <SearchForm handler={this.handleSearchParams} />
         <SearchFilters
           field='LEVEL_1_CATEGORY'
           label='Topics'
@@ -31,6 +31,8 @@ class App extends React.Component {
           handler={this.handleCategoryChange} />
         <SearchResults
           keyword={this.state.keyword}
+          address={this.state.address}
+          location={this.state.location}
           category={this.state.category}
           region={this.state.region} />
       </div>

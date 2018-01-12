@@ -12,6 +12,7 @@ class SearchResults extends React.Component {
     this.toggleShowMap = this.toggleShowMap.bind(this);
     this.state = {results: [], show_map: false};
     this.fetchResults = this.fetchResults.bind(this);
+    this.fetchLocation = this.fetchLocation.bind(this);
   }
   toggleShowMap() {
     this.setState({'show_map': !this.state.show_map});
@@ -31,6 +32,9 @@ class SearchResults extends React.Component {
   }
   queryEntered() {
     return this.props.category || this.props.keyword || this.props.region || this.props.location;
+  }
+  fetchLocation() {
+
   }
   fetchResults() {
     if (this.queryEntered()) {
@@ -57,46 +61,57 @@ class SearchResults extends React.Component {
       <Service key={'serv'+i} record={record} />
     );
   }
+  renderLoading() {
+    return (
+      <div>
+        <FontAwesome name='spinner' size='5x' spin />
+        Fetching..
+      </div>
+    );
+  }
+  renderMap() {
+    return (
+      <div>
+        <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
+        <MapResults results={this.state.results} />
+      </div>
+    );
+  }
+  renderList() {
+    return (
+      <div>
+        <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
+        {/*{this.props.location.longitude} / {this.props.location.latitude}*/}
+        {this.renderServices()}
+      </div>
+    );
+  }
+  renderNoResults(){
+    return (
+      <Alert bsStyle="warning">
+        No results
+      </Alert>
+    );
+  }
   render() {
+    // Still loading
     if(this.state.loading) {
-      return (
-        <div>
-          <FontAwesome name='spinner' size='5x' spin />
-          Fetching..
-        </div>
-      );
+      return this.renderLoading();
     }
-    else if(this.state.results.length > 0 ) {
+
+    // We have results
+    if(this.state.results.length > 0 ) {
       if (this.state.show_map) {
-        return (
-          <div>
-            <Button onClick={this.toggleShowMap}>
-              <FontAwesome name='list' />
-              List
-            </Button>
-            <MapResults results={this.state.results} />
-          </div>
-        );
+        return this.renderMap();
       }
       else {
-        return (
-          <div>
-            <Button onClick={this.toggleShowMap}>
-              <FontAwesome name='map' />
-              Map
-            </Button>
-            {this.renderServices()}
-          </div>
-        );
-
+        return this.renderList();
       }
     }
-    else if (this.queryEntered()) {
-      return (
-        <Alert bsStyle="warning">
-          No results
-        </Alert>
-      );
+
+    // No results
+    if (this.queryEntered()) {
+      return this.renderNoResults();
     }
     else {
       return '';
