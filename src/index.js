@@ -23,12 +23,12 @@ class App extends React.Component {
     return (
       <div>
         <h1>Find Whānau Services in your area</h1>
-        <SearchForm handler={this.handleSearchParams} />
         <SearchFilters
           field='LEVEL_1_CATEGORY'
           label='Topics'
           selected={this.state.category}
           handler={this.handleCategoryChange} />
+        <SearchForm handler={this.handleSearchParams} />
         <SearchResults
           keyword={this.state.keyword}
           address={this.state.address}

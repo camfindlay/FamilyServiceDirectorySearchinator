@@ -68,6 +68,7 @@ class SearchResults extends React.Component {
   renderMap() {
     return (
       <div>
+        <hr />
         <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
         <MapResults results={this.state.results}
           longitude={this.props.longitude}
@@ -78,8 +79,8 @@ class SearchResults extends React.Component {
   renderList() {
     return (
       <div>
+        <hr />
         <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
-        {/*{this.props.location.longitude} / {this.props.location.latitude}*/}
         {this.renderServices()}
       </div>
     );

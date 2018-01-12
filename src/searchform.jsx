@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import styles from './searchform.css';
 import AddressResolver from './addressresolver.jsx';
@@ -27,34 +27,32 @@ class SearchForm extends React.Component {
     this.props.handler({keyword: this.state.keyword, location: this.state.location});
     event.preventDefault();
   }
-  renderGeoLocation() {
-    if (this.state.longitude && this.state.latitude)
-      return <div>{this.state.longitude} {this.state.latitude}</div>;
-    return '';
-  }
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
         <FormGroup>
-          <ControlLabel><FontAwesome name='search' /></ControlLabel>
-          <FormControl
-            type="text"
-            value={this.state.keyword}
-            placeholder="Enter topic or organisation"
-            onChange={this.handleKeywordChange}
-          />
+          <InputGroup>
+            <InputGroup.Addon><FontAwesome name='search' /></InputGroup.Addon>
+            <FormControl
+              type="text"
+               bsSize="large"
+              value={this.state.keyword}
+              placeholder="Enter topic or organisation"
+              onChange={this.handleKeywordChange}
+            />
+          </InputGroup>
           <FormControl.Feedback />
-          <ControlLabel>
-            <FontAwesome name='location-arrow' />
-          </ControlLabel>
-          <FormControl
-            type="text"
-            value={this.state.address}
-            placeholder="Enter a Location"
-            onChange={this.handleAddress}
-          />
+          <InputGroup>
+            <InputGroup.Addon><FontAwesome name='location-arrow' /></InputGroup.Addon>
+            <FormControl
+              type="text"
+               bsSize="large"
+              value={this.state.address}
+              placeholder="Enter a Location"
+              onChange={this.handleAddress}
+            />
+          </InputGroup>
           <AddressResolver address={this.state.address} handler={this.handleAddressSelection} />
-          {this.renderGeoLocation()}
           <FormControl.Feedback />
         </FormGroup>
         <Button bsSize="large" block bsStyle="primary" onClick={this.handleSubmit}>

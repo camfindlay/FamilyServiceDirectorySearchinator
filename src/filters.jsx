@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Label, Button, Row, Col } from 'react-bootstrap';
+import { Label, Button, Well, Nav, NavItem } from 'react-bootstrap';
 
 class SearchFilters extends React.Component {
   constructor(props) {
@@ -24,10 +24,10 @@ class SearchFilters extends React.Component {
   }
   render() {
     return (
-      <Row>
-        <Col><Label>{this.props.label}</Label></Col>
-        <Col>{this.renderButtons()}</Col>
-      </Row>
+      <Well>
+        {this.props.label}
+        <Nav bsStyle="tabs" activeKey={1} >{this.renderButtons()}</Nav>
+      </Well>
     );
   }
 }
@@ -58,10 +58,10 @@ class FilterButton extends React.Component {
 
     if (this.props.record.name) {
       return (
-        <Button bsStyle={this.className()} active={! this.props.selected} onClick={this.handleSelection}>
+        <NavItem bsStyle={this.className()} active={this.props.selected} onClick={this.handleSelection}>
           {this.props.record.name}
           <sub>({this.props.record.num})</sub>
-        </Button>
+        </NavItem>
       );
     }
     else {
