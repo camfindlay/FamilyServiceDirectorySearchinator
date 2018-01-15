@@ -35,7 +35,7 @@ class SearchForm extends React.Component {
               <FontAwesome name='search' />
             </InputGroup.Addon>
             <FormControl
-              bsSize="large"
+              bssize="large"
               type="text"
               value={this.state.keyword}
               placeholder="Enter topic or organisation"
@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
             <InputGroup.Addon><FontAwesome name='location-arrow' /></InputGroup.Addon>
             <FormControl
               type="text"
-              bsSize="large"
+              bssize="large"
               value={this.state.address}
               placeholder="Enter a Location"
               onChange={this.handleAddress}
@@ -56,7 +56,7 @@ class SearchForm extends React.Component {
           <AddressResolver address={this.state.address} handler={this.handleAddressSelection} />
           <FormControl.Feedback />
         </FormGroup>
-        <Button bsSize="large" block bsStyle="primary" onClick={this.handleSubmit}>
+        <Button bssize="large" block bsStyle="primary" onClick={this.handleSubmit}>
           search
         </Button>
       </form>
