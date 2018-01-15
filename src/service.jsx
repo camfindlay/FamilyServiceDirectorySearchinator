@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Callout} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class Service extends React.Component {
