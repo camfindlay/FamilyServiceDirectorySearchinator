@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import AddressResolver from './addressresolver.jsx';
 
