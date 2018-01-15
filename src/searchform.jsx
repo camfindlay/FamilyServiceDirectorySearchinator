@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
-import styles from './searchform.css';
 import AddressResolver from './addressresolver.jsx';
 
 class SearchForm extends React.Component {
