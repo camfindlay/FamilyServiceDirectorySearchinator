@@ -31,7 +31,9 @@ class SearchForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <FormGroup>
           <InputGroup>
-            <InputGroup.Addon><FontAwesome name='search' /></InputGroup.Addon>
+            <InputGroup.Addon>
+              <FontAwesome name='search' />
+            </InputGroup.Addon>
             <FormControl
               type="text"
               bsSize="large"
