@@ -37,7 +37,7 @@ class AddressResolver extends React.Component {
       });
   }
   renderAddresses() {
-    return this.state.addresses.map((record, i) =>
+    return this.state.addresses.map((record) =>
       <Address record={record} handler={this.handleAddressSelection}/>
     );
   }
