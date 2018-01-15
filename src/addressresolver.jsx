@@ -64,7 +64,7 @@ class Address extends React.Component {
   }
   handleAddressSelection() {
     let key = 'ADDRESSFINDER_DEMO_KEY';
-    let url = "https://api.addressfinder.io/api/nz/address/info?";
+    let url = 'https://api.addressfinder.io/api/nz/address/info?';
     let query = `key=${key}&format=json&pxid=${this.props.record.pxid}`;
 
     axios.get(`${url}${query}`)
