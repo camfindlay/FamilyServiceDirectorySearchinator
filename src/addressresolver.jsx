@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Service from './service.jsx';
-import MapResults from './maps.jsx';
 import { Button, Alert, ListGroupItem, ListGroup } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
