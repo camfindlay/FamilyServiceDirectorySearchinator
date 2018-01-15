@@ -35,8 +35,8 @@ class SearchForm extends React.Component {
               <FontAwesome name='search' />
             </InputGroup.Addon>
             <FormControl
-              type="text"
               bsSize="large"
+              type="text"
               value={this.state.keyword}
               placeholder="Enter topic or organisation"
               onChange={this.handleKeywordChange}
