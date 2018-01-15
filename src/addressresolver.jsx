@@ -35,7 +35,7 @@ class AddressResolver extends React.Component {
     axios.get(`${url}${query}`)
       .then(res => {
         this.setState({ addresses: res.data.completions });
-    });
+      });
   }
   renderAddresses() {
     return this.state.addresses.map((record, i) =>
