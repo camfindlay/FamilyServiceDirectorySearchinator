@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Label, Button, Well, Nav, NavItem } from 'react-bootstrap';
+import { Well, Nav, NavItem } from 'react-bootstrap';
 
 class SearchFilters extends React.Component {
   constructor(props) {
