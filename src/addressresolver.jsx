@@ -48,7 +48,7 @@ class AddressResolver extends React.Component {
         <ListGroup>
           {this.renderAddresses()}
         </ListGroup>
-        );
+      );
     }
     else {
       return '';
@@ -70,14 +70,14 @@ class Address extends React.Component {
     axios.get(`${url}${query}`)
       .then(res => {
         this.props.handler(res.data);
-    });
+      });
   }
   render() {
     return (
       <ListGroupItem onClick={this.handleAddressSelection}>
         {this.props.record.a}
       </ListGroupItem>
-      );
+    );
   }
 }
 
