@@ -29,7 +29,7 @@ class AddressResolver extends React.Component {
     if (this.props.address.length < 2)
       return;
     let key = 'ADDRESSFINDER_DEMO_KEY';
-    let url = "https://api.addressfinder.io/api/nz/address?";
+    let url = 'https://api.addressfinder.io/api/nz/address?';
     let query = `format=json&key=${key}&q=${this.props.address}`;
 
     axios.get(`${url}${query}`)
