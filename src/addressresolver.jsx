@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Alert, ListGroupItem, ListGroup } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
+import { ListGroupItem, ListGroup } from 'react-bootstrap';
 
 class AddressResolver extends React.Component {
   constructor(props) {
