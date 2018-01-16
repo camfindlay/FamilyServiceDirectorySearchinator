@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import SearchinatorPage from '../components/SearchinatorPage';
 
 const AppRouter = () => (
   <BrowserRouter>
-    <App/>
+    <SearchinatorPage />
   </BrowserRouter>
 );
 
