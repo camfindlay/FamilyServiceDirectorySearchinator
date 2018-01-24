@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Service from './service.jsx';
-import MapResults from './maps.jsx';
+import Service from './Service';
+import MapResults from './MapResults';
 import { Button, Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 
@@ -9,11 +9,9 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
-    this.toggleShowMap = this.toggleShowMap.bind(this);
     this.state = {results: [], show_map: false};
-    this.fetchResults = this.fetchResults.bind(this);
   }
-  toggleShowMap() {
+  toggleShowMap = () => {
     this.setState({'show_map': !this.state.show_map});
   }
   fields() {
@@ -32,7 +30,7 @@ class SearchResults extends React.Component {
   queryEntered() {
     return this.props.category || this.props.keyword || this.props.region || (this.props.longitude && this.props.latitude);
   }
-  fetchResults() {
+  fetchResults = () => {
     if (this.queryEntered()) {
       this.setState({loading: true});
       let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
@@ -66,13 +64,17 @@ class SearchResults extends React.Component {
     );
   }
   renderMap() {
+    const {
+      longitude,
+      latitude
+    } = this.props;
     return (
       <div>
         <hr />
         <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
         <MapResults results={this.state.results}
-          longitude={this.props.longitude}
-          latitude={this.props.latitude} />
+          longitude={longitude}
+          latitude={latitude} />
       </div>
     );
   }
