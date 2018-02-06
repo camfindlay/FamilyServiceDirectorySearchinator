@@ -1,0 +1,35 @@
+.input-group {
+  position: relative; }
+
+.input-group-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0; }
+
+.input-group > input {
+  width: 100%;
+  font-size: 1.2em;
+  border: none;
+  height: 2.5em;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  padding-left: 1.5em; }
+
+button {
+  background-color: #fff;
+  color: #484848;
+  border-color: #c4c4c4; }
+
+form {
+  margin-bottom: 30px; }
+
+.btn {
+  background-color: #fff;
+  color: #484848;
+  border-color: #c4c4c4;
+  padding: 10px 17px;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 20px; }
+
+/*# sourceMappingURL=Form.css.map */

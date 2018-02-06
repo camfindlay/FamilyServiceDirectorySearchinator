@@ -18,7 +18,7 @@ class Service extends Component {
       SERVICE_REFERRALS
     } = this.props.record;
     return (
-      <div>
+      <div class="service">
         <Link to={FSD_ID}>
           <h3>{PROVIDER_NAME}</h3>
         </Link>

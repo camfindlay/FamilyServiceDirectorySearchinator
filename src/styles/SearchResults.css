@@ -1,0 +1,15 @@
+.service {
+  background: #fff;
+  padding: 5px 15px;
+  margin: 16px 0 10px; }
+  .service a {
+    text-decoration: none; }
+    .service a > h3 {
+      margin-top: 10px;
+      color: #39b54a; }
+
+.search-results {
+  background: #f1f2f2;
+  padding: 20px 0; }
+
+/*# sourceMappingURL=SearchResults.css.map */

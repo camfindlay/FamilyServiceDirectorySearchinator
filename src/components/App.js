@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/index.css';
+import '../styles/Form.css';
 import SearchFilters from './SearchFilters';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
@@ -18,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Find Whānau Services in your area</h1>
+        <h1 className="container-fluid">Find Whānau Services in your area</h1>
         <SearchFilters
           field='LEVEL_1_CATEGORY'
           label='Topics'

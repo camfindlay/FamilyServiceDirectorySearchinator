@@ -26,7 +26,7 @@ class FilterButton extends Component {
 
     if (this.props.record.name) {
       return (
-        <NavItem bsstyle={this.className()} active={this.props.selected} onClick={this.handleSelection}>
+        <NavItem bsstyle={this.className()} className="list-inline" active={this.props.selected} onClick={this.handleSelection}>
           {this.props.record.name}
           <sub>({this.props.record.num})</sub>
         </NavItem>

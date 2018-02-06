@@ -1,0 +1,25 @@
+@import './helpers/lists';
+$primary-text-color: #484848;
+$primary-color: #39b54a;
+
+
+.nav { width: 100%; }
+.nav > li { margin: 0 3px 7px; }
+.nav > li > a {
+  display: inline-block;
+  border: 1px solid $primary-color;
+  padding: 7px 10px 5px;
+  text-decoration: none;
+  background: #fff;
+  color: $primary-text-color;
+  &:hover {
+    background: $primary-color;
+    color: #fff;
+  }
+}
+.nav > li > a > sub {
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom:4px;
+}

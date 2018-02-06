@@ -24,7 +24,7 @@ class SearchForm extends Component {
   }
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="container-fluid">
         <FormGroup>
           <InputGroup>
             <InputGroup.Addon>
@@ -53,7 +53,7 @@ class SearchForm extends Component {
           <FormControl.Feedback />
         </FormGroup>
         <Button bssize="large" block bsStyle="primary" onClick={this.handleSubmit}>
-          search
+          Search
         </Button>
       </form>
     );

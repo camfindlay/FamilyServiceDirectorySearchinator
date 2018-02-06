@@ -4,6 +4,7 @@ import Service from './Service';
 import MapResults from './MapResults';
 import { Button, Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import '../styles/SearchResults.css';
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -58,8 +59,12 @@ class SearchResults extends React.Component {
   renderLoading() {
     return (
       <div>
-        <FontAwesome name='spinner' size='5x' spin />
-        Fetching..
+        <div className="container-fluid">
+          <div className="search-loader">
+            <FontAwesome name='spinner' size='3x' spin />
+            &nbsp; Fetching..
+          </div>
+        </div>
       </div>
     );
   }
@@ -69,21 +74,23 @@ class SearchResults extends React.Component {
       latitude
     } = this.props;
     return (
-      <div>
-        <hr />
-        <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
-        <MapResults results={this.state.results}
-          longitude={longitude}
-          latitude={latitude} />
+      <div className="search-results">
+        <div className="container-fluid">
+          <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
+          <MapResults className="container-fluid" results={this.state.results}
+            longitude={longitude}
+            latitude={latitude} />
+        </div>
       </div>
     );
   }
   renderList() {
     return (
-      <div>
-        <hr />
-        <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
-        {this.renderServices()}
+      <div className="search-results">
+        <article className="container-fluid">
+          <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
+          {this.renderServices()}
+        </article>
       </div>
     );
   }
