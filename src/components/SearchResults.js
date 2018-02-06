@@ -58,12 +58,10 @@ class SearchResults extends React.Component {
   }
   renderLoading() {
     return (
-      <div>
-        <div className="container-fluid">
-          <div className="search-loader">
-            <FontAwesome name='spinner' size='3x' spin />
-            &nbsp; Fetching..
-          </div>
+      <div className="container-fluid">
+        <div className="search-loader">
+          <FontAwesome name='spinner' size='3x' spin />
+          &nbsp; Fetching..
         </div>
       </div>
     );
@@ -96,9 +94,11 @@ class SearchResults extends React.Component {
   }
   renderNoResults(){
     return (
-      <Alert bsStyle="warning">
-        No results
-      </Alert>
+      <div className="container-fluid">
+        <Alert bsStyle="warning">
+          No results
+        </Alert>
+      </div>
     );
   }
   render() {
