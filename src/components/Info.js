@@ -1,27 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-class Service extends Component {
-  constructor() {
-		super();
-		this.state = {
-			shown: true,
-		};
-	}	
-	
-	toggle(e) {
-		this.setState({
-			shown: !this.state.shown
-		});
-    e.preventDefault();
-	}
-  urlify(str) {
-    return str.replace(/ /g,'-').replace('---','-').replace(' ', '-').toLowerCase();
-  }
+class Info extends Component {
   render() {
-		let hidden = {
-			display: this.state.shown ? "none" : "block"
-		}
     const {
       FSD_ID,
       PROVIDER_NAME,
@@ -35,14 +16,10 @@ class Service extends Component {
       DELIVERY_METHODS,
       COST_TYPE,
       SERVICE_REFERRALS
-    } = this.props.record;
+    } = this.props.location.state;
     return (
-      <div className="service">
-  <Link to={{
-  pathname: `/service/${this.urlify(PROVIDER_NAME)}`,
-  state: this.props.record}}>Test</Link>
-
-        <a href="#" onClick={this.toggle.bind(this)}><h3>{PROVIDER_NAME}</h3></a>
+      <div className="service-info">
+        {console.log(this.props.location.state)}
         <h4>{SERVICE_NAME}</h4>
         <p>{SERVICE_DETAIL}</p>
         <dt>Email</dt>
@@ -52,8 +29,7 @@ class Service extends Component {
             <a href={`tel:${PUBLISHED_PHONE_1}`}>{PUBLISHED_PHONE_1}</a>
             <p><small><em>({PROVIDER_CONTACT_AVAILABILITY})</em></small></p>
           </dd>
-				<div style={ hidden } className="service-info">
-        <dl>
+          <dl>
           <dt>Organisation purpose</dt>
           <dd>{ORGANISATION_PURPOSE}</dd>
           <dt>Physical address</dt>
@@ -65,11 +41,9 @@ class Service extends Component {
           <dt>Service referrals</dt>
           <dd>{SERVICE_REFERRALS}</dd>
         </dl>
-        </div>
-        
       </div>
     );
   }
 }
 
-export default Service;
+export default Info;

@@ -1,12 +1,25 @@
-.service {
+.service, .service-info {
   background: #fff;
   padding: 5px 15px;
-  margin: 16px 0 10px; }
-  .service a {
+  margin: 16px 0 10px;
+  overflow: auto; }
+  .service a, .service-info a {
     text-decoration: none; }
-    .service a > h3 {
+    .service a > h3, .service-info a > h3 {
       margin-top: 10px;
       color: #39b54a; }
+  .service a[href^=tel], .service-info a[href^=tel] {
+    color: #39b54a; }
+  .service dt, .service-info dt {
+    float: left;
+    clear: left;
+    font-weight: bold;
+    width: 200px; }
+  .service dt::after, .service-info dt::after {
+    content: ":"; }
+  .service dd, .service-info dd {
+    margin: 0 0 0 200px;
+    padding: 0 0 0.5em 0; }
 
 .search-results {
   background: #f1f2f2;

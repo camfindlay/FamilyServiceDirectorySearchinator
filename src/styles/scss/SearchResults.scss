@@ -1,10 +1,10 @@
-// $primary-text-color: #484848;
 $primary-color: #39b54a;
 
-.service {
+.service, .service-info {
   background: #fff;
   padding: 5px 15px;
   margin: 16px 0 10px;
+  overflow: auto;
   a {
     text-decoration: none;
     > h3 {
@@ -12,17 +12,25 @@ $primary-color: #39b54a;
       color: $primary-color;
     }
   }
+  a[href^=tel] {
+    color: $primary-color;
+  }
+  dt {
+    float: left;
+    clear: left;
+    font-weight: bold;
+    width: 200px;
+  }
+  dt::after {
+    content: ":";
+  }
+  dd {
+    margin: 0 0 0 200px;
+    padding: 0 0 0.5em 0;
+  }
 }
 
 .search-results {
   background: #f1f2f2;
   padding: 20px 0;
-}
-
-.search-loader {
-  // position: absolute;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
 }

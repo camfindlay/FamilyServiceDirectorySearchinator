@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Service from './Service';
 import MapResults from './MapResults';
+import Info from './Info';
 import { Button, Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import '../styles/SearchResults.css';
@@ -47,14 +48,26 @@ class SearchResults extends React.Component {
   }
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
+    let service = document.getElementsByClassName('service');
     if (prevProps !== this.props) {
-      this.fetchResults();
+      if(!window.location.href.includes('service')){
+        this.fetchResults();
+      } else {
+        Array.prototype.slice.call(document.getElementsByClassName('service')).forEach(
+          function(item) {
+            item.remove();
+        });
+        this.renderInfo();
+      }
     }
   }
   renderServices() {
     return this.state.results.map((record, i) =>
       <Service key={'serv'+i} record={record} />
     );
+  }
+  renderInfo() {
+    return <Info />
   }
   renderLoading() {
     return (
