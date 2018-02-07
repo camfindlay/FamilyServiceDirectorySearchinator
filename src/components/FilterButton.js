@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class FilterButton extends Component {
   constructor(props) {
@@ -26,10 +27,12 @@ class FilterButton extends Component {
 
     if (this.props.record.name) {
       return (
-        <NavItem bsstyle={this.className()} className="list-inline" active={this.props.selected} onClick={this.handleSelection}>
-          {this.props.record.name}
-          <sub>({this.props.record.num})</sub>
-        </NavItem>
+        <Link to={{ pathname: '/'}} bsstyle={this.className()} className="list-inline" active={this.props.selected}>
+          <div onClick={this.handleSelection}>
+            {this.props.record.name}
+            <sub>({this.props.record.num})</sub>
+          </div>
+        </Link>
       );
     }
     else {

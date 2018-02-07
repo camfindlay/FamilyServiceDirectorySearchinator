@@ -53,27 +53,24 @@ class SearchResults extends React.Component {
   }
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
-    let service = document.getElementsByClassName('service');
 
     if (prevProps.category !== this.props.category) {
       this.fetchResults();
     }
   }
   renderServices() {
-    console.log(this.state.results)
     return this.state.results.map((record, i) =>
-      <Service key={'serv'+i} record={record} changeResult={this.onclick.bind(this)} />
+      <Service key={'serv'+i} record={record} changeResult={this.renderServiceById.bind(this)} />
     );
   }
-  onclick(id) {
-    console.log(id)
+  renderServiceById(id) {
     var newResults = false;
     this.state.results.forEach(function(result) {
       if(result.FSD_ID === id) {
         newResults = result;
       }
     })
-    this.setState({ results: [newResults] })
+    this.setState({ results: [] })
   }
 
   renderInfo() {

@@ -39,6 +39,9 @@ class Service extends Component {
     } = this.props.record;
     return (
       <div className="service">
+        <Link to={{
+        pathname: `/service/${this.urlify(PROVIDER_NAME)}`,
+        state: this.props.record}} onClick={()=>this.props.changeResult(this.props.record.FSD_ID)}>{PROVIDER_NAME}</Link>
 
         <span onClick={()=>this.props.changeResult(this.props.record.FSD_ID)}><h3>{PROVIDER_NAME}</h3></span>
 

@@ -8,21 +8,21 @@
 .nav {
   width: 100%; }
 
-.nav > li {
+.nav a {
   margin: 0 3px 7px; }
 
-.nav > li > a {
+.nav a {
   display: inline-block;
   border: 1px solid #39b54a;
   padding: 7px 10px 5px;
   text-decoration: none;
   background: #fff;
   color: #484848; }
-  .nav > li > a:hover {
+  .nav a:hover {
     background: #39b54a;
     color: #fff; }
 
-.nav > li > a > sub {
+.nav a sub {
   vertical-align: middle;
   display: inline-block;
   margin-left: 5px;
