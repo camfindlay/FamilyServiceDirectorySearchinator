@@ -22,6 +22,7 @@ class Service extends Component {
 		let hidden = {
 			display: this.state.shown ? "none" : "block"
 		}
+    console.log(this.props.record)
     const {
       FSD_ID,
       PROVIDER_NAME,
@@ -38,11 +39,9 @@ class Service extends Component {
     } = this.props.record;
     return (
       <div className="service">
-  <Link to={{
-  pathname: `/service/${this.urlify(PROVIDER_NAME)}`,
-  state: this.props.record}}>Test</Link>
 
-        <a href="#" onClick={this.toggle.bind(this)}><h3>{PROVIDER_NAME}</h3></a>
+        <span onClick={()=>this.props.changeResult(this.props.record.FSD_ID)}><h3>{PROVIDER_NAME}</h3></span>
+
         <h4>{SERVICE_NAME}</h4>
         <p>{SERVICE_DETAIL}</p>
         <dt>Email</dt>

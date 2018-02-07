@@ -11,7 +11,11 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
-    this.state = {results: [], show_map: false};
+    this.state = {
+      results: [], 
+      show_map: false,
+      fetch_results: true
+    };
   }
   toggleShowMap = () => {
     this.setState({'show_map': !this.state.show_map});
@@ -32,6 +36,7 @@ class SearchResults extends React.Component {
   queryEntered() {
     return this.props.category || this.props.keyword || this.props.region || (this.props.longitude && this.props.latitude);
   }
+
   fetchResults = () => {
     if (this.queryEntered()) {
       this.setState({loading: true});
@@ -49,23 +54,28 @@ class SearchResults extends React.Component {
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
     let service = document.getElementsByClassName('service');
-    if (prevProps !== this.props) {
-      if(!window.location.href.includes('service')){
-        this.fetchResults();
-      } else {
-        Array.prototype.slice.call(document.getElementsByClassName('service')).forEach(
-          function(item) {
-            item.remove();
-        });
-        this.renderInfo();
-      }
+
+    if (prevProps.category !== this.props.category) {
+      this.fetchResults();
     }
   }
   renderServices() {
+    console.log(this.state.results)
     return this.state.results.map((record, i) =>
-      <Service key={'serv'+i} record={record} />
+      <Service key={'serv'+i} record={record} changeResult={this.onclick.bind(this)} />
     );
   }
+  onclick(id) {
+    console.log(id)
+    var newResults = false;
+    this.state.results.forEach(function(result) {
+      if(result.FSD_ID === id) {
+        newResults = result;
+      }
+    })
+    this.setState({ results: [newResults] })
+  }
+
   renderInfo() {
     return <Info />
   }
