@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Service from './Service';
 import MapResults from './MapResults';
-import Info from './Info';
 import { Button, Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import '../styles/SearchResults.css';
@@ -60,16 +59,10 @@ class SearchResults extends React.Component {
   }
   renderServices() {
     return this.state.results.map((record, i) =>
-      <Service key={'serv'+i} record={record} changeResult={this.renderServiceById.bind(this)} />
+      <Service key={'serv'+i} record={record} changeResult={this.renderEmptyResults.bind(this)} />
     );
   }
-  renderServiceById(id) {
-    var newResults = false;
-    this.state.results.forEach(function(result) {
-      if(result.FSD_ID === id) {
-        newResults = result;
-      }
-    })
+  renderEmptyResults(id) {
     this.setState({ results: [] })
   }
   renderLoading() {

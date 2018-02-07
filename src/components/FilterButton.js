@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter } from 'react-router-dom';
 
 class FilterButton extends Component {
   constructor(props) {
@@ -26,12 +26,14 @@ class FilterButton extends Component {
 
     if (this.props.record.name) {
       return (
-        <Link to={{ pathname: '/'}} bsstyle={this.className()} className="list-inline" active={this.props.selected}>
-          <div onClick={this.handleSelection}>
-            {this.props.record.name}
-            <sub>({this.props.record.num})</sub>
-          </div>
-        </Link>
+        <BrowserRouter>
+          <Link to={{ pathname: '/'}} className="list-inline">
+            <div onClick={this.handleSelection}>
+              {this.props.record.name}
+              <sub>({this.props.record.num})</sub>
+            </div>
+          </Link>
+        </BrowserRouter>
       );
     }
     else {
