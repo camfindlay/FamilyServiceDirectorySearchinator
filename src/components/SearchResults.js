@@ -72,10 +72,6 @@ class SearchResults extends React.Component {
     })
     this.setState({ results: [] })
   }
-
-  renderInfo() {
-    return <Info />
-  }
   renderLoading() {
     return (
       <div className="container-fluid">
