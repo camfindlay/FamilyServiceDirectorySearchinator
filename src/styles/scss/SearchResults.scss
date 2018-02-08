@@ -2,13 +2,16 @@ $primary-color: #39b54a;
 
 .service, .service-info {
   background: #fff;
-  padding: 5px 15px;
-  margin: 16px 0 10px;
+  // padding: 5px 15px;
+  // margin: 16px 0 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  width: 390px;
   overflow: auto;
   a {
     text-decoration: none;
     > h3 {
-      margin-top: 10px;
       color: $primary-color;
     }
   }
@@ -19,13 +22,13 @@ $primary-color: #39b54a;
     float: left;
     clear: left;
     font-weight: bold;
-    width: 200px;
+    width: 130px;
   }
   dt::after {
     content: ":";
   }
   dd {
-    margin: 0 0 0 200px;
+    margin: 0 0 0 130px;
     padding: 0 0 0.5em 0;
   }
 }
@@ -33,6 +36,27 @@ $primary-color: #39b54a;
   padding:0;
 }
 .search-results {
-  background: #f1f2f2;
   padding: 20px 0;
 }
+
+
+// Patterns
+
+.search-result-hero {
+  border-left: 4px solid $primary-color;
+  padding-left: 21px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+
+  // move headings into separate file
+  h3 {
+    font-size: 24px;
+    margin: 0 0 5px;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 3px;
+  }
+}
+

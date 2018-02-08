@@ -22,3 +22,10 @@ $primary-color: #39b54a;
   margin-left: 5px;
   margin-bottom:4px;
 }
+
+.list-icon {
+  > span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
