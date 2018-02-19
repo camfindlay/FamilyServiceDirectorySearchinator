@@ -22,7 +22,7 @@ class Service extends Component {
       .replace(/-+/g,'-')
       .replace(/^-*/,'')
       .replace(/-*$/,'');
-    }
+      }
   }
   render() {
     return (

@@ -11,7 +11,7 @@ class SearchResults extends React.Component {
     super(props);
     this.resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
     this.state = {
-      results: [], 
+      results: [],
       show_map: false,
       fetch_results: true
     };
@@ -127,7 +127,7 @@ class SearchResults extends React.Component {
     }
 
     // No results
-    if (this.queryEntered()) {
+    if (this.queryEntered() && !this.state.results.length === 0) {
       return this.renderNoResults();
     }
     else {
