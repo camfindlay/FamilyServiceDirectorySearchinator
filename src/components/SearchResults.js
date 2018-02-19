@@ -53,7 +53,7 @@ class SearchResults extends React.Component {
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
 
-    if (prevProps.category !== this.props.category) {
+    if (prevProps.category !== this.props.category || prevProps.keyword !== this.props.keyword || prevProps.region !== this.props.region || (prevProps.longitude && prevProps.latitude) !== (this.props.longitude && this.props.latitude)) {
       this.fetchResults();
     }
   }
