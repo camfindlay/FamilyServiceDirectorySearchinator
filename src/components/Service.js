@@ -7,22 +7,15 @@ import FaMail from 'react-icons/lib/fa/envelope-o';
 import FaClock from 'react-icons/lib/fa/clock-o';
 
 class Service extends Component {
-  constructor(props) {
-    super(props);
-  }
   urlify(url) {
     if(url !== undefined) {
       return url.toString()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'')
-      .replace(/\s+/g,'-')
       .toLowerCase()
-      .replace(/&/g,'-and-')
-      .replace(/[^a-z0-9]/g,'')
-      .replace(/-+/g,'-')
-      .replace(/^-*/,'')
-      .replace(/-*$/,'');
-      }
+      .split(/\&+/).join("-and-")
+      .split(/[^a-z0-9]/).join("-")
+      .split(/-+/).join("-")
+      .trim('-')
+    }
   }
   render() {
     return (
