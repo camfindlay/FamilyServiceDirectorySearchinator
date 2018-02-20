@@ -28,10 +28,21 @@ class Service extends Component {
       <h4>{this.props.record.SERVICE_NAME}</h4>
       <p>{this.props.record.SERVICE_DETAIL}</p>
       <ul className="list-stripped">
-        <li className="list-icon"><span><FaHand /></span> http://www.website.com</li>
-        <li className="list-icon"><span><FaPhone/></span> {this.props.record.PUBLISHED_PHONE_1}</li>
-        <li className="list-icon"><span><FaMail/></span> {this.props.record.PUBLISHED_CONTACT_EMAIL_1}</li>
-        <li className="list-icon"><span><FaClock/></span> {this.props.record.PROVIDER_CONTACT_AVAILABILITY}</li>
+        <li className="list-icon">
+          <span><FaHand /></span> http://www.website.com
+        </li>
+        <li className="list-icon">
+          <span><FaPhone/></span>
+          {this.props.record.PUBLISHED_PHONE_1}
+        </li>
+        <li className="list-icon">
+          <span><FaMail/></span>
+          {this.props.record.PUBLISHED_CONTACT_EMAIL_1}
+        </li>
+        <li className="list-icon">
+          <span><FaClock/></span>
+          {this.props.record.PROVIDER_CONTACT_AVAILABILITY}
+        </li>
       </ul>
     </div>
     );

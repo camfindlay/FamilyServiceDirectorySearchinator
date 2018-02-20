@@ -6,23 +6,23 @@ $primary-dark: #000;
 
 .input-group {
   position: relative;
+  
+  > {
+    border: 0;
+    border-bottom: 1px solid $primary-dark;
+    box-sizing: border-box;
+    display: block;
+    font-size: 1.2em;
+    height: 2.5em;
+    padding-left: 1.5em;
+    width: 100%;
+  }
 }
 
 .input-group-addon {
   position: absolute;
   top: 10px;
   z-index: 1;
-}
-
-.input-group > input {
-  box-sizing : border-box;
-  display: block;
-  width: 100%;
-  font-size: 1.2em;
-  border: none;
-  height: 2.5em;
-  border-bottom: 1px solid $primary-dark;
-  padding-left: 1.5em;
 }
 
 .list-group > button {

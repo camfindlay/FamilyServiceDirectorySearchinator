@@ -15,11 +15,9 @@ $light-color: #ccc;
     > h3 {
       color: $primary-color;
     }
-    
-    &[href^=tel] {
-      color: $primary-color;
-    }
   }
+
+  a[href^=tel] { color: $primary-color; }
 
   dt {
     clear: left;
@@ -33,14 +31,14 @@ $light-color: #ccc;
   }
 
   dd {
-    margin-top: 0;
-    margin-right: 0;
     margin-bottom: 0;
-    margin-top: 130px;
-    padding-top: 0;
-    padding-right: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-left: 130px;
     padding-bottom: 0;
-    padding-top: .5em;
+    padding-right: 0;
+    padding-top: 0;
+    padding-left: .5em;
   }
 }
 
