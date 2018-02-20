@@ -13,15 +13,15 @@
   font-size: 1.2em;
   border: none;
   height: 2.5em;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
   padding-left: 1.5em; }
 
 .list-group > button {
-  width: 100%;
-  text-align: left;
+  border-bottom: none;
   padding: 10px;
-  font-size: 1em;
-  border-bottom: none; }
+  text-align: left;
+  width: 100%;
+  font-size: 1em; }
   .list-group > button:hover {
     background: #39b54a;
     color: #fff;
@@ -34,16 +34,17 @@ button {
   color: #484848;
   border-color: #c4c4c4; }
 
-form, .form-group {
+form,
+.form-group {
   margin-bottom: 30px; }
 
 .btn {
   background-color: #fff;
-  color: #484848;
   border-color: #c4c4c4;
-  padding: 10px 17px;
+  color: #484848;
   font-size: 1em;
   font-weight: bold;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding: 10px 17px; }
 
 /*# sourceMappingURL=Form.css.map */
