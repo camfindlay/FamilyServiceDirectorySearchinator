@@ -29,20 +29,23 @@ $primary-color: #39b54a;
     padding: 0 0 0.5em 0;
   }
 }
+
 .service-info {
   padding:0;
 }
+
 .search-results {
   width: 50%;
 }
+
 .service-primary {
   position: absolute;
   right: 99999px;
 }
 
 .col {
-  width: 50%;
   float: left;
+  width: 50%;
 }
 
 
