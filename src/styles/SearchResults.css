@@ -8,18 +8,24 @@
     text-decoration: none; }
     .service a > h3, .service-info a > h3 {
       color: #39b54a; }
-  .service a[href^=tel], .service-info a[href^=tel] {
-    color: #39b54a; }
+    .service a[href^=tel], .service-info a[href^=tel] {
+      color: #39b54a; }
   .service dt, .service-info dt {
-    float: left;
     clear: left;
+    float: left;
     font-weight: bold;
     width: 130px; }
   .service dt::after, .service-info dt::after {
     content: ":"; }
   .service dd, .service-info dd {
-    margin: 0 0 0 130px;
-    padding: 0 0 0.5em 0; }
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 130px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top: .5em; }
 
 .service-info {
   padding: 0; }

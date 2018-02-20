@@ -11,18 +11,19 @@ $light-color: #ccc;
   
   a {
     text-decoration: none;
+
     > h3 {
+      color: $primary-color;
+    }
+    
+    &[href^=tel] {
       color: $primary-color;
     }
   }
 
-  a[href^=tel] {
-    color: $primary-color;
-  }
-
   dt {
-    float: left;
     clear: left;
+    float: left;
     font-weight: bold;
     width: 130px;
   }
@@ -32,8 +33,14 @@ $light-color: #ccc;
   }
 
   dd {
-    margin: 0 0 0 130px;
-    padding: 0 0 0.5em 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 130px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top: .5em;
   }
 }
 
@@ -55,8 +62,6 @@ $light-color: #ccc;
   width: 50%;
 }
 
-// Patterns
-
 .search-result-hero {
   border-left: 4px solid $primary-color;
   margin-bottom: 30px;
@@ -64,7 +69,6 @@ $light-color: #ccc;
   padding-left: 21px;
   padding-top: 5px;
 
-  // move headings into separate file
   h3 {
     font-size: 24px;
     margin: 0 0 5px;

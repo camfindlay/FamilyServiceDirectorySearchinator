@@ -26,11 +26,11 @@ $primary-dark: #000;
 }
 
 .list-group > button {
-  border-bottom: none;
+  font-size: 1em;
   padding: 10px;
   text-align: left;
+  border-bottom: none;
   width: 100%;
-  font-size: 1em;
 
   &:hover {
     background: $primary-color;
@@ -45,11 +45,11 @@ $primary-dark: #000;
 
 button {
   background-color: $primary-background;
-  color: $primary-text-color;
   border-color: $primary-color-variant;
+  color: $primary-text-color;
 }
 
-form, 
+form,
 .form-group {
   margin-bottom: 30px;
 }
