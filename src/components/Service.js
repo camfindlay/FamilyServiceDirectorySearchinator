@@ -14,8 +14,42 @@ class Service extends Component {
         .split(/\&+/).join('-and-')
         .split(/[^a-z0-9]/).join('-')
         .split(/-+/).join('-')
-        .trim('-')
+        .trim('-');
     }
+  }
+  serviceDetail(obj, icon, val) {
+    return (
+      <li className="list-icon">
+        <span>{icon}</span> {val}
+      </li>
+    );
+  }
+
+  serviceDetails() {
+    let obj = [
+      {
+        icon: <FaHand />,
+        val: 'http://www.website.com'
+      },
+      {
+        icon: <FaPhone />,
+        val: this.props.record.PUBLISHED_PHONE_1
+      },
+      {
+        icon: <FaMail />,
+        val: this.props.record.PUBLISHED_CONTACT_EMAIL_1
+      },
+      {
+        icon: <FaClock />,
+        val: this.props.record.PROVIDER_CONTACT_AVAILABILITY
+      }
+    ]
+    return obj.map((record) =>
+      <li className="list-icon">
+        <span>{record.icon}</span>
+        {record.val}
+      </li>
+    );
   }
   render() {
     return (
@@ -28,21 +62,7 @@ class Service extends Component {
       <h4>{this.props.record.SERVICE_NAME}</h4>
       <p>{this.props.record.SERVICE_DETAIL}</p>
       <ul className="list-stripped">
-        <li className="list-icon">
-          <span><FaHand /></span> http://www.website.com
-        </li>
-        <li className="list-icon">
-          <span><FaPhone/></span>
-          {this.props.record.PUBLISHED_PHONE_1}
-        </li>
-        <li className="list-icon">
-          <span><FaMail/></span>
-          {this.props.record.PUBLISHED_CONTACT_EMAIL_1}
-        </li>
-        <li className="list-icon">
-          <span><FaClock/></span>
-          {this.props.record.PROVIDER_CONTACT_AVAILABILITY}
-        </li>
+        {this.serviceDetails()}
       </ul>
     </div>
     );

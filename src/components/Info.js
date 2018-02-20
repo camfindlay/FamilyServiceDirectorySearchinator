@@ -8,17 +8,8 @@ class Info extends Component {
 
   render() {
     const {
-      PROVIDER_NAME,
-      SERVICE_NAME,
-      SERVICE_DETAIL,
-      ORGANISATION_PURPOSE,
-      PUBLISHED_CONTACT_EMAIL_1,
-      PUBLISHED_PHONE_1,
-      PROVIDER_CONTACT_AVAILABILITY,
-      PHYSICAL_ADDRESS,
-      DELIVERY_METHODS,
-      COST_TYPE,
-      SERVICE_REFERRALS
+      PROVIDER_NAME, SERVICE_NAME, SERVICE_DETAIL, ORGANISATION_PURPOSE, PUBLISHED_CONTACT_EMAIL_1,
+      PUBLISHED_PHONE_1, PROVIDER_CONTACT_AVAILABILITY, PHYSICAL_ADDRESS, DELIVERY_METHODS, COST_TYPE, SERVICE_REFERRALS
     } = this.props.location.state;
     
     return (
@@ -33,7 +24,7 @@ class Info extends Component {
             <dd>{PUBLISHED_CONTACT_EMAIL_1}</dd>
             <dt>Phone</dt>
             <dd>
-              <a href={`tel:${PUBLISHED_PHONE_1}`}>{PUBLISHED_PHONE_1}</a>
+              <a className="telephone" href={`tel:${PUBLISHED_PHONE_1}`}>{PUBLISHED_PHONE_1}</a>
               <p><small><em>({PROVIDER_CONTACT_AVAILABILITY})</em></small></p>
             </dd>
             <dl>

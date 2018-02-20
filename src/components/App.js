@@ -9,7 +9,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {keyword: '', category: '', region: '', location: '', address: ''};
-    
   }
   handleCategoryChange = category => {
     this.setState({category});
