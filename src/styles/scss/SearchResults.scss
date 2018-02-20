@@ -1,29 +1,36 @@
 $primary-color: #39b54a;
+$light-text-color: #fff;
+$light-color: #ccc;
 
 .service, .service-info {
-  background: #fff;
-  border-bottom: 1px solid #ccc;
+  background: $light-text-color;
+  border-bottom: 1px solid $light-color;
   margin-bottom: 50px;
-  padding-bottom: 30px;
   overflow: auto;
+  padding-bottom: 30px;
+  
   a {
     text-decoration: none;
     > h3 {
       color: $primary-color;
     }
   }
+
   a[href^=tel] {
     color: $primary-color;
   }
+
   dt {
     float: left;
     clear: left;
     font-weight: bold;
     width: 130px;
   }
+
   dt::after {
     content: ":";
   }
+
   dd {
     margin: 0 0 0 130px;
     padding: 0 0 0.5em 0;
@@ -47,7 +54,6 @@ $primary-color: #39b54a;
   float: left;
   width: 50%;
 }
-
 
 // Patterns
 

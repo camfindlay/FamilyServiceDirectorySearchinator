@@ -2,8 +2,8 @@
   background: #fff;
   border-bottom: 1px solid #ccc;
   margin-bottom: 50px;
-  padding-bottom: 30px;
-  overflow: auto; }
+  overflow: auto;
+  padding-bottom: 30px; }
   .service a, .service-info a {
     text-decoration: none; }
     .service a > h3, .service-info a > h3 {
