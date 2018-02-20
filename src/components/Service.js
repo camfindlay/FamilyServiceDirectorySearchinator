@@ -43,7 +43,8 @@ class Service extends Component {
         icon: <FaClock />,
         val: this.props.record.PROVIDER_CONTACT_AVAILABILITY
       }
-    ]
+    ];
+    
     return obj.map((record) =>
       <li className="list-icon">
         <span>{record.icon}</span>
