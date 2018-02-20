@@ -21,7 +21,8 @@ $light-text-color: #fff;
       vertical-align: middle;
     }
 
-    &:hover, &.primary {
+    &:hover,
+    &.primary {
       background: $primary-color;
       color: $light-text-color;
     }
@@ -31,7 +32,7 @@ $light-text-color: #fff;
 }
 
 .list-icon {
-  
+
   > span {
     display: inline-block;
     margin-right: 10px;

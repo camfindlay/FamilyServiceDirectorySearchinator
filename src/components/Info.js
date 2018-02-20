@@ -55,4 +55,4 @@ class Info extends Component {
   }
 }
 
-export default Test;
+export default Info;
