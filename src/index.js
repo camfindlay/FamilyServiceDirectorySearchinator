@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './styles/index.css';
 import App from './components/App';
 import Info from './components/Info';
 
 ReactDOM.render((
-  <BrowserRouter path='/' component={App}>
+  <BrowserRouter>
     <div>
-      <App/>
+      <Route exact path='/' component={App} />
       <Route path="/service/:id" component={Info}/>
     </div>
   </BrowserRouter>

@@ -25,7 +25,15 @@
   padding: 0; }
 
 .search-results {
-  padding: 20px 0; }
+  width: 50%; }
+
+.service-primary {
+  position: absolute;
+  right: 99999px; }
+
+.col {
+  width: 50%;
+  float: left; }
 
 .search-result-hero {
   border-left: 4px solid #39b54a;

@@ -7,12 +7,14 @@ class FilterButton extends Component {
     this.state = {};
   }
   handleSelection = () => {
+    
     let newSelection;
     if(this.props.selected) {
       newSelection = '';
     }
     else {
       newSelection = this.props.record.name;
+      
     }
     this.props.handler(newSelection);
   }
@@ -27,7 +29,7 @@ class FilterButton extends Component {
     if (this.props.record.name) {
       return (
         <BrowserRouter>
-          <Link to={{ pathname: '/'}} className="list-inline">
+          <Link to={{ pathname: '/'}} className={`list-inline ${this.className()}`}>
             <div onClick={this.handleSelection}>
               {this.props.record.name}
               <sub>({this.props.record.num})</sub>

@@ -9,18 +9,18 @@
   width: 100%; }
 
 .nav a {
-  margin: 0 3px 7px; }
-
-.nav a {
+  margin: 0 3px 7px;
   display: inline-block;
   border: 1px solid #39b54a;
-  padding: 7px 10px 5px;
   text-decoration: none;
   background: #fff;
   color: #484848; }
-  .nav a:hover {
+  .nav a:hover, .nav a.primary {
     background: #39b54a;
     color: #fff; }
+
+.nav a div {
+  padding: 7px 10px 5px; }
 
 .nav a sub {
   vertical-align: middle;

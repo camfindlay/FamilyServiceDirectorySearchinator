@@ -62,8 +62,8 @@ class SearchResults extends React.Component {
       <Service key={'serv'+i} record={record} changeResult={this.renderEmptyResults.bind(this)} />
     );
   }
-  renderEmptyResults(id) {
-    this.setState({ results: [] })
+  renderEmptyResults(record) {
+    this.setState({ results: [record]})
   }
   renderLoading() {
     return (
@@ -81,7 +81,7 @@ class SearchResults extends React.Component {
       latitude
     } = this.props;
     return (
-      <div className="search-results">
+      <div className="search-results col" style={{clear: 'right'}}>
         <div className="container-fluid">
           <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
           <MapResults className="container-fluid" results={this.state.results}
@@ -93,11 +93,14 @@ class SearchResults extends React.Component {
   }
   renderList() {
     return (
-      <div className="search-results">
-        <article className="container-fluid">
+      <div className="container-fluid">
+        <article className="col">
           <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
           {this.renderServices()}
         </article>
+      
+        {this.renderMap()}
+        
       </div>
     );
   }

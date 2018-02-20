@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Info from '../components/Info';
 import '../styles/SearchResults.css';
 import FaHand from 'react-icons/lib/fa/hand-o-up';
 import FaPhone from 'react-icons/lib/fa/phone';
@@ -23,7 +24,7 @@ class Service extends Component {
         <div className="search-result-hero">
         <Link to={{
         pathname: `/service/${this.urlify(this.props.record.PROVIDER_NAME)}`,
-        state: this.props.record}} onClick={()=>this.props.changeResult(this.props.record.FSD_ID)}><h3>{this.props.record.PROVIDER_NAME}</h3></Link>
+        state: this.props.record}} onClick={()=>this.props.changeResult(this.props.record)}><h3>{this.props.record.PROVIDER_NAME}</h3></Link>
         <p>{this.props.record.PHYSICAL_ADDRESS}</p>
         <span><u>Show on map</u></span>
         </div>

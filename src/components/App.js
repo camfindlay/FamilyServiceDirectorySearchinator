@@ -4,11 +4,12 @@ import '../styles/Form.css';
 import SearchFilters from './SearchFilters';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
-
+import { BrowserRouter, Route } from 'react-router-dom';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {keyword: '', category: '', region: '', location: '', address: ''};
+    
   }
   handleCategoryChange = category => {
     this.setState({category});

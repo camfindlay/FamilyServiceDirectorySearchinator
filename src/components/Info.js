@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 
+import App from './App';
 class Info extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const {
       PROVIDER_NAME,
@@ -16,7 +20,10 @@ class Info extends Component {
       COST_TYPE,
       SERVICE_REFERRALS
     } = this.props.location.state;
+    
     return (
+      <div>
+        <App/>
       <div className="service-info">
         <div className="container-fluid">
           <h2>{PROVIDER_NAME}</h2>
@@ -43,8 +50,9 @@ class Info extends Component {
           </dl>
         </div>
       </div>
+      </div>
     );
   }
 }
 
-export default Info;
+export default Test;
