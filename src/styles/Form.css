@@ -1,0 +1,57 @@
+input {
+  box-sizing: border-box; }
+
+.form-control {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.2em;
+  height: 2.5em;
+  margin-bottom: 10px;
+  padding-left: 2.1em;
+  width: 100%; }
+
+.input-group {
+  display: block;
+  position: relative; }
+
+.input-group-addon {
+  bottom: 0;
+  font-size: 16px;
+  left: 12px;
+  position: absolute;
+  top: 14px;
+  z-index: 1; }
+
+.list-group > button {
+  border-bottom: none;
+  font-size: 1em;
+  padding: 10px;
+  text-align: left;
+  width: 100%; }
+  .list-group > button:hover {
+    background: #39b54a;
+    color: #fff;
+    cursor: pointer; }
+  .list-group > button:last-child {
+    border-bottom: 1px solid #c4c4c4; }
+
+button {
+  background-color: #fff;
+  border-color: #c4c4c4;
+  color: #484848; }
+
+form,
+.form-group {
+  margin-bottom: 30px; }
+
+.btn {
+  background-color: #fff;
+  border-color: #c4c4c4;
+  color: #484848;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 10px 17px; }
+
+/*# sourceMappingURL=Form.css.map */
