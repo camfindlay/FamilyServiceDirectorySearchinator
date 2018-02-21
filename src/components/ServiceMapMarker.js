@@ -6,32 +6,23 @@ class ServiceMapMarker extends Component {
     super(props);
     this.state = {};
   }
-  render() {
-    const {
-      LATITUDE,
-      LONGITUDE,
-      PROVIDER_NAME,
-      SERVICE_NAME,
-      ORGANISATION_PURPOSE,
-      PHYSICAL_ADDRESS
-    } = this.props.record;
 
-    if (LATITUDE && LONGITUDE) {
-      let position = [LATITUDE, LONGITUDE];
+  render() {
+    if (this.props.record.LATITUDE && this.props.record.LONGITUDE) {
+      let position = [this.props.record.LATITUDE, this.props.record.LONGITUDE];
       return (
         <Marker position={position}>
           <Popup>
             <span>
-              <h5>{PROVIDER_NAME}</h5>
-              <h6>{SERVICE_NAME}</h6>
-              <p>{ORGANISATION_PURPOSE}</p>
-              <p>{PHYSICAL_ADDRESS}</p>
+              <h5>{this.props.record.PROVIDER_NAME}</h5>
+              <h6>{this.props.record.SERVICE_NAME}</h6>
+              <p>{this.props.record.ORGANISATION_PURPOSE}</p>
+              <p>{this.props.record.PHYSICAL_ADDRESS}</p>
             </span>
           </Popup>
         </Marker>
       );
-    }
-    else {
+    } else {
       return '';
     }
   }

@@ -1,23 +1,12 @@
-import React from "react";
-import { mount } from "enzyme";
+import React from 'react';
 import FilterButton from '../components/FilterButton';
+import { shallow } from 'enzyme';
+import { Link } from 'react-router-dom';
 
-describe("FilterButton", () => {
-  let props;
-  let mountedFilterButton;
-  const filterButton = () => {
-    if (!mountedFilterButton) {
-      mountedFilterButton = mount(
-        <FilterButton record={{ name: 'Basic Needs' }} />
-      );
-    }
-    return mountedFilterButton;
-  }
-
-  // Tests
-  it("always renders a filterButton", () => {
-    const NavItem = filterButton().find("NavItem");
-    expect(NavItem.length).toBeGreaterThan(0);
-    expect(NavItem).toBeDefined();
-  });
+const record = {
+  name: 'Addiction'
+}
+it('contains 16 <Link /> components', () => {
+  const wrapper = shallow(<FilterButton record={record} />);
+  expect(wrapper.find(Link).length).toBe(1);
 });
