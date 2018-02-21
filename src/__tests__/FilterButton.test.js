@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/FilterButton';
+import FilterButton from '../components/FilterButton';
 import { shallow } from 'enzyme';
+import { Link } from 'react-router-dom';
 
-it('shows the correct quantity of filter buttons', () => {
-  const wrapper = shallow(<FilterButton />);
-  expect(wrapper.find('.list-inline').length).toBe(16);
+const record = {
+  name: 'Addiction'
+}
+it('contains 16 <Link /> components', () => {
+  const wrapper = shallow(<FilterButton record={record} />);
+  expect(wrapper.find(Link).length).toBe(1);
 });
