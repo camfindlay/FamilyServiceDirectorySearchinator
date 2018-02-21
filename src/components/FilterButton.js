@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 
 class FilterButton extends Component {
-  constructor(props) {
-    super(props);
-  }
   handleSelection = e => {
     let newSelection;
     newSelection = this.props.record.name;
