@@ -7,14 +7,13 @@ class Info extends Component {
   }
 
   render() {
+
     const {
       PROVIDER_NAME, SERVICE_NAME, SERVICE_DETAIL, ORGANISATION_PURPOSE, PUBLISHED_CONTACT_EMAIL_1,
       PUBLISHED_PHONE_1, PROVIDER_CONTACT_AVAILABILITY, PHYSICAL_ADDRESS, DELIVERY_METHODS, COST_TYPE, SERVICE_REFERRALS
-    } = this.props.location.state;
+    } = this.props.record.location.state;
     
     return (
-      <div>
-        <App/>
       <div className="service-info">
         <div className="container-fluid">
           <h2>{PROVIDER_NAME}</h2>
@@ -40,7 +39,6 @@ class Info extends Component {
             <dd>{SERVICE_REFERRALS}</dd>
           </dl>
         </div>
-      </div>
       </div>
     );
   }

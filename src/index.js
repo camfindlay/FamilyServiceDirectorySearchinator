@@ -9,8 +9,7 @@ import Info from './components/Info';
 ReactDOM.render((
   <BrowserRouter>
     <div>
-      <Route exact path='/' component={App} />
-      <Route path="/service/:id" component={Info}/>
+      <Route path='/' component={App} />
     </div>
   </BrowserRouter>
 ), document.getElementById('root'));

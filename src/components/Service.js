@@ -45,8 +45,8 @@ class Service extends Component {
       }
     ];
     
-    return obj.map((record) =>
-      <li className="list-icon">
+    return obj.map((record, i) =>
+      <li key={i} className="list-icon">
         <span>{record.icon}</span>
         {record.val}
       </li>

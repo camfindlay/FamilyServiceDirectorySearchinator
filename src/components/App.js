@@ -4,7 +4,9 @@ import '../styles/Form.css';
 import SearchFilters from './SearchFilters';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
+import Info from './Info';
 import { BrowserRouter, Route } from 'react-router-dom';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,20 @@ class App extends Component {
   handleSearchParams = new_state => {
     this.setState(new_state);
   }
+  searchResults() {
+    if(window.location.pathname === '/') {
+      return <SearchResults
+          keyword={this.state.keyword}
+          address={this.state.address}
+          longitude={this.state.longitude}
+          latitude={this.state.latitude}
+          category={this.state.category}
+          region={this.state.region} />
+    } else {
+      return <Info record={this.props}/>
+    }
+  }
+
   render() {
     return (
       <div>
@@ -26,13 +42,7 @@ class App extends Component {
           selected={this.state.category}
           handler={this.handleCategoryChange} />
         <SearchForm handler={this.handleSearchParams} />
-        <SearchResults
-          keyword={this.state.keyword}
-          address={this.state.address}
-          longitude={this.state.longitude}
-          latitude={this.state.latitude}
-          category={this.state.category}
-          region={this.state.region} />
+        {this.searchResults()}
       </div>
     );
   }

@@ -36,7 +36,7 @@ class SearchResults extends React.Component {
     return this.props.category || this.props.keyword || this.props.region || (this.props.longitude && this.props.latitude);
   }
 
-  fetchResults = () => {
+  fetchResults = () => {                
     if (this.queryEntered()) {
       this.setState({loading: true});
       let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
@@ -45,10 +45,14 @@ class SearchResults extends React.Component {
         .then(res => {
           this.setState({ results: res.data.result.records, loading: false });
         });
-    }
-    else {
+    } else {
       this.setState({results: []});
     }
+  }
+  
+  componentDidMount(){
+    console.log('Search results ComponentDidMount')
+    this.fetchResults();
   }
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
@@ -56,6 +60,7 @@ class SearchResults extends React.Component {
     if (prevProps !== this.props) {
       this.fetchResults();
     }
+   
   }
   renderServices() {
     return this.state.results.map((record, i) =>
