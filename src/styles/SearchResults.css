@@ -8,8 +8,8 @@
     text-decoration: none; }
     .service a h3, .service-info a h3 {
       color: #39b54a; }
-  .service a.telephone, .service-info a.telephone {
-    color: #39b54a; }
+    .service a .telephone, .service-info a .telephone {
+      color: #39b54a; }
   .service dt, .service-info dt {
     clear: left;
     float: left;

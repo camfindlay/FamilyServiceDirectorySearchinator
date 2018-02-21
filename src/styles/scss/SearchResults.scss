@@ -12,9 +12,8 @@ $light-color: #ccc;
   a {
     text-decoration: none;
     h3 { color: $primary-color; }
+    .telephone { color: $primary-color; }
   }
-
-  a.telephone { color: $primary-color; }
 
   dt {
     clear: left;

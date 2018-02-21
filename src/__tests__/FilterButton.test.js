@@ -14,9 +14,8 @@ describe("FilterButton", () => {
     return mountedFilterButton;
   }
 
-  // Tests
   it("always renders a filterButton", () => {
-    const NavItem = filterButton().find("Link");
+    const NavItem = filterButton().find('Link');
     expect(NavItem.length).toBeGreaterThan(0);
     expect(NavItem).toBeDefined();
   });
