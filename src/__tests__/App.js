@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../components/App';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+it('shows the correct h1 value', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.find('h1').length).toBe(1);
+  expect(wrapper.find('h1').at(0).text()).toBe('Find Whānau Services in your area');
 });
