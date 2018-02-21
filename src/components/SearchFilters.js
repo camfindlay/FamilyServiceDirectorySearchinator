@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Well, Nav } from 'react-bootstrap';
 import FilterButton from './FilterButton';
+import '../styles/Nav.css';
 
 class SearchFilters extends Component {
   constructor(props) {
@@ -25,9 +26,9 @@ class SearchFilters extends Component {
   }
   render() {
     return (
-      <Well>
-        {this.props.label}
-        <Nav bsStyle="tabs" activeKey={1} >{this.renderButtons()}</Nav>
+      <Well className="container-fluid">
+        <span>{this.props.label}</span>
+        <Nav className="list-stripped list-inline" bsStyle="tabs" activeKey={1} >{this.renderButtons()}</Nav>
       </Well>
     );
   }

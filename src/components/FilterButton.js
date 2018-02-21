@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
-import { NavItem } from 'react-bootstrap';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 class FilterButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
-  handleSelection = () => {
+  handleSelection = e => {
     let newSelection;
-    if(this.props.selected) {
-      newSelection = '';
-    }
-    else {
-      newSelection = this.props.record.name;
-    }
+    newSelection = this.props.record.name;
     this.props.handler(newSelection);
   }
+
   className() {
     if (this.props.selected) {
       return 'primary';
     }
     return '';
   }
-  render() {
 
-    if (this.props.record.name) {
-      return (
-        <NavItem bsstyle={this.className()} active={this.props.selected} onClick={this.handleSelection}>
+  getFilters() {
+    return <BrowserRouter>
+      <Link to={{ pathname: '/'}} className={`list-inline ${this.className()}`}>
+        <div onClick={this.handleSelection}>
           {this.props.record.name}
           <sub>({this.props.record.num})</sub>
-        </NavItem>
-      );
-    }
-    else {
-      return '';
-    }
+        </div>
+      </Link>
+    </BrowserRouter>;
+  }
+  render() {
+    return this.props.record.name ? this.getFilters() : null;
   }
 }
 

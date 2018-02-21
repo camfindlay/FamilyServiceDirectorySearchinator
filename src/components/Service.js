@@ -1,48 +1,68 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/SearchResults.css';
+import FaPhone from 'react-icons/lib/fa/phone';
+import FaMail from 'react-icons/lib/fa/envelope-o';
+import FaClock from 'react-icons/lib/fa/clock-o';
 
 class Service extends Component {
-  render() {
-    const {
-      FSD_ID,
-      PROVIDER_NAME,
-      SERVICE_NAME,
-      SERVICE_DETAIL,
-      ORGANISATION_PURPOSE,
-      PUBLISHED_CONTACT_EMAIL_1,
-      PUBLISHED_PHONE_1,
-      PROVIDER_CONTACT_AVAILABILITY,
-      PHYSICAL_ADDRESS,
-      DELIVERY_METHODS,
-      COST_TYPE,
-      SERVICE_REFERRALS
-    } = this.props.record;
+  urlify(url) {
+    if(url !== undefined) {
+      return url.toString()
+        .toLowerCase()
+        .split(/&+/).join('-and-')
+        .split(/[^a-z0-9]/).join('-')
+        .split(/-+/).join('-')
+        .trim('-');
+    }
+  }
+  serviceDetail(obj, icon, val) {
     return (
-      <div>
-        <Link to={FSD_ID}>
-          <h3>{PROVIDER_NAME}</h3>
-        </Link>
-        <h4>{SERVICE_NAME}</h4>
-        <p>{SERVICE_DETAIL}</p>
-        <dl>
-          <dt>Organisation purpose</dt>
-          <dd>{ORGANISATION_PURPOSE}</dd>
-          <dt>Email</dt>
-          <dd>{PUBLISHED_CONTACT_EMAIL_1}</dd>
-          <dt>Phone</dt>
-          <dd>
-            <a href={`tel:${PUBLISHED_PHONE_1}`}>{PUBLISHED_PHONE_1}</a>
-            <p>({PROVIDER_CONTACT_AVAILABILITY})</p>
-          </dd>
-          <dt>Physical address</dt>
-          <dd>{PHYSICAL_ADDRESS}</dd>
-          <dd>{DELIVERY_METHODS}</dd>
-          <dt>Costs:</dt>
-          <dd>{COST_TYPE}</dd>
-          <dt>Service referrals</dt>
-          <dd>{SERVICE_REFERRALS}</dd>
-        </dl>
+      <li className="list-icon">
+        <span>{icon}</span> {val}
+      </li>
+    );
+  }
+
+  serviceDetails() {
+    let obj = [
+      {
+        icon: <FaPhone />,
+        val: this.props.record.PUBLISHED_PHONE_1
+      },
+      {
+        icon: <FaMail />,
+        val: this.props.record.PUBLISHED_CONTACT_EMAIL_1
+      },
+      {
+        icon: <FaClock />,
+        val: this.props.record.PROVIDER_CONTACT_AVAILABILITY
+      }
+    ];
+    
+    return obj.map((record, i) =>
+      <li key={i} className="list-icon">
+        <span>{record.icon}</span>
+        {record.val}
+      </li>
+    );
+  }
+  render() {
+    return (
+    <div className="service">
+      <div className="search-result-hero">
+        <Link to={{ pathname: `/service/${this.urlify(this.props.record.PROVIDER_NAME)}`, state: this.props.record}} onClick={()=>this.props.changeResult(this.props.record)}><h3>{this.props.record.PROVIDER_NAME}</h3></Link>
+        <p>{this.props.record.PHYSICAL_ADDRESS}</p>
+        <span><u>Show on map</u></span>
       </div>
+      <div className="service-details">
+        <h4>{this.props.record.SERVICE_NAME}</h4>
+        <p>{this.props.record.SERVICE_DETAIL}</p>
+        <ul className="list-stripped">
+          {this.serviceDetails()}
+        </ul>
+      </div>
+    </div>
     );
   }
 }

@@ -24,14 +24,13 @@ class SearchForm extends Component {
   }
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="container-fluid">
         <FormGroup>
           <InputGroup>
             <InputGroup.Addon>
               <FontAwesome name='search' />
             </InputGroup.Addon>
             <FormControl
-              bssize="large"
               type="text"
               value={this.state.keyword}
               placeholder="Enter topic or organisation"
@@ -43,7 +42,6 @@ class SearchForm extends Component {
             <InputGroup.Addon><FontAwesome name='location-arrow' /></InputGroup.Addon>
             <FormControl
               type="text"
-              bssize="large"
               value={this.state.address}
               placeholder="Enter a Location"
               onChange={this.handleAddress}
@@ -52,8 +50,8 @@ class SearchForm extends Component {
           <AddressResolver address={this.state.address} handler={this.handleAddressSelection} />
           <FormControl.Feedback />
         </FormGroup>
-        <Button bssize="large" block bsStyle="primary" onClick={this.handleSubmit}>
-          search
+        <Button block bsStyle="primary" onClick={this.handleSubmit}>
+          Search
         </Button>
       </form>
     );
