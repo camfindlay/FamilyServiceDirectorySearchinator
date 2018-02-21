@@ -5,7 +5,6 @@ import SearchFilters from './SearchFilters';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import Info from './Info';
-import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Service from './Service';
 import MapResults from './MapResults';
-import { Button, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import '../styles/SearchResults.css';
 
@@ -16,9 +16,9 @@ class SearchResults extends React.Component {
       fetch_results: true
     };
   }
-  toggleShowMap = () => {
-    this.setState({'show_map': !this.state.show_map});
-  }
+  // toggleShowMap = () => {
+  //   this.setState({'show_map': !this.state.show_map});
+  // }
   fields() {
     return 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
   }
@@ -51,25 +51,26 @@ class SearchResults extends React.Component {
   }
   
   componentDidMount(){
-    console.log('Search results ComponentDidMount')
     this.fetchResults();
   }
+
   componentDidUpdate(prevProps /*, prevState*/) {
     // only update if data has changed
-
     if (prevProps !== this.props) {
       this.fetchResults();
     }
-   
   }
+
   renderServices() {
     return this.state.results.map((record, i) =>
       <Service key={'serv'+i} record={record} changeResult={this.renderEmptyResults.bind(this)} />
     );
   }
+
   renderEmptyResults(record) {
     this.setState({ results: [record]})
   }
+
   renderLoading() {
     return (
       <div className="container-fluid">
@@ -88,7 +89,7 @@ class SearchResults extends React.Component {
     return (
       <div className="search-results col" style={{clear: 'right'}}>
         <div className="container-fluid">
-          <Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>
+          {/*<Button onClick={this.toggleShowMap}><FontAwesome name='list' />List</Button>*/}
           <MapResults className="container-fluid" results={this.state.results}
             longitude={longitude}
             latitude={latitude} />
@@ -96,11 +97,12 @@ class SearchResults extends React.Component {
       </div>
     );
   }
+
   renderList() {
     return (
       <div className="container-fluid">
         <article className="col">
-          <Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>
+          {/*<Button onClick={this.toggleShowMap}><FontAwesome name='map' /> Map</Button>*/}
           {this.renderServices()}
         </article>
       
@@ -109,6 +111,7 @@ class SearchResults extends React.Component {
       </div>
     );
   }
+
   renderNoResults(){
     return (
       <div className="container-fluid">
@@ -118,12 +121,12 @@ class SearchResults extends React.Component {
       </div>
     );
   }
+
   render() {
     // Still loading
     if(this.state.loading) {
       return this.renderLoading();
     }
-
     // We have results
     if(this.state.results.length > 0 ) {
       if (this.state.show_map) {
@@ -133,7 +136,6 @@ class SearchResults extends React.Component {
         return this.renderList();
       }
     }
-
     // No results
     if (this.queryEntered() && !this.state.results.length === 0) {
       return this.renderNoResults();

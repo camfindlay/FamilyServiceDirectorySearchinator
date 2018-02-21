@@ -1,19 +1,27 @@
+input {
+  box-sizing: border-box; }
+
+.form-control {
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1.2em;
+  height: 2.5em;
+  padding-left: 2.1em;
+  width: 100%;
+  margin-bottom: 10px; }
+
 .input-group {
+  display: block;
   position: relative; }
-  .input-group > {
-    border: 0;
-    border-bottom: 1px solid #000;
-    box-sizing: border-box;
-    display: block;
-    font-size: 1.2em;
-    height: 2.5em;
-    padding-left: 1.5em;
-    width: 100%; }
 
 .input-group-addon {
   position: absolute;
-  top: 10px;
-  z-index: 1; }
+  top: 14px;
+  bottom: 0;
+  z-index: 1;
+  left: 12px;
+  font-size: 16px; }
 
 .list-group > button {
   font-size: 1em;

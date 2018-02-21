@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/SearchResults.css';
-import FaHand from 'react-icons/lib/fa/hand-o-up';
 import FaPhone from 'react-icons/lib/fa/phone';
 import FaMail from 'react-icons/lib/fa/envelope-o';
 import FaClock from 'react-icons/lib/fa/clock-o';
@@ -11,7 +10,7 @@ class Service extends Component {
     if(url !== undefined) {
       return url.toString()
         .toLowerCase()
-        .split(/\&+/).join('-and-')
+        .split(/&+/).join('-and-')
         .split(/[^a-z0-9]/).join('-')
         .split(/-+/).join('-')
         .trim('-');
@@ -27,10 +26,6 @@ class Service extends Component {
 
   serviceDetails() {
     let obj = [
-      {
-        icon: <FaHand />,
-        val: 'http://www.website.com'
-      },
       {
         icon: <FaPhone />,
         val: this.props.record.PUBLISHED_PHONE_1
@@ -60,11 +55,13 @@ class Service extends Component {
         <p>{this.props.record.PHYSICAL_ADDRESS}</p>
         <span><u>Show on map</u></span>
       </div>
-      <h4>{this.props.record.SERVICE_NAME}</h4>
-      <p>{this.props.record.SERVICE_DETAIL}</p>
-      <ul className="list-stripped">
-        {this.serviceDetails()}
-      </ul>
+      <div className="service-details">
+        <h4>{this.props.record.SERVICE_NAME}</h4>
+        <p>{this.props.record.SERVICE_DETAIL}</p>
+        <ul className="list-stripped">
+          {this.serviceDetails()}
+        </ul>
+      </div>
     </div>
     );
   }

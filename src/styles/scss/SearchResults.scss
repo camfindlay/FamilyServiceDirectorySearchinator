@@ -20,7 +20,7 @@ $light-color: #ccc;
     clear: left;
     float: left;
     font-weight: bold;
-    width: 130px;
+    width: 160px;
   }
 
   dt::after {
@@ -29,7 +29,7 @@ $light-color: #ccc;
 
   dd {
     margin-bottom: 0;
-    margin-left: 130px;
+    margin-left: 160px;
     margin-right: 0;
     margin-top: 0;
     padding-bottom: 0;
@@ -39,12 +39,12 @@ $light-color: #ccc;
   }
 }
 
-.service-info {
-  padding: 0;
-}
-
 .search-results {
   width: 50%;
+}
+
+.service-details {
+  padding-left: 25px;
 }
 
 .service-primary {

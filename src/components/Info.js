@@ -1,42 +1,34 @@
 import React, { Component } from 'react';
 
-import App from './App';
 class Info extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
-
-    const {
-      PROVIDER_NAME, SERVICE_NAME, SERVICE_DETAIL, ORGANISATION_PURPOSE, PUBLISHED_CONTACT_EMAIL_1,
-      PUBLISHED_PHONE_1, PROVIDER_CONTACT_AVAILABILITY, PHYSICAL_ADDRESS, DELIVERY_METHODS, COST_TYPE, SERVICE_REFERRALS
-    } = this.props.record.location.state;
+    const props = this.props.record.location.state;
     
     return (
-      <div className="service-info">
-        <div className="container-fluid">
-          <h2>{PROVIDER_NAME}</h2>
-          <h4>{SERVICE_NAME}</h4>
-          <p>{SERVICE_DETAIL}</p>
+      <div className="container-fluid">
+        <div className="service-info">
+          <h2>{props.PROVIDER_NAME}</h2>
+          <h4>{props.SERVICE_NAME}</h4>
+          <p>{props.SERVICE_DETAIL}</p>
           <dt>Email</dt>
-            <dd>{PUBLISHED_CONTACT_EMAIL_1}</dd>
+            <dd>{props.PUBLISHED_CONTACT_EMAIL_1}</dd>
             <dt>Phone</dt>
             <dd>
-              <a className="telephone" href={`tel:${PUBLISHED_PHONE_1}`}>{PUBLISHED_PHONE_1}</a>
-              <p><small><em>({PROVIDER_CONTACT_AVAILABILITY})</em></small></p>
+              <a className="telephone" href={`tel:${props.PUBLISHED_PHONE_1}`}>{props.PUBLISHED_PHONE_1}</a>
+              <p><small><em>({props.PROVIDER_CONTACT_AVAILABILITY})</em></small></p>
             </dd>
             <dl>
             <dt>Organisation purpose</dt>
-            <dd>{ORGANISATION_PURPOSE}</dd>
+            <dd>{props.ORGANISATION_PURPOSE}</dd>
             <dt>Physical address</dt>
-            <dd>{PHYSICAL_ADDRESS}</dd>
+            <dd>{props.PHYSICAL_ADDRESS}</dd>
             <dt>Delivery Methods</dt>
-            <dd>{DELIVERY_METHODS}</dd>
+            <dd>{props.DELIVERY_METHODS}</dd>
             <dt>Costs</dt>
-            <dd>{COST_TYPE}</dd>
+            <dd>{props.COST_TYPE}</dd>
             <dt>Service referrals</dt>
-            <dd>{SERVICE_REFERRALS}</dd>
+            <dd>{props.SERVICE_REFERRALS}</dd>
           </dl>
         </div>
       </div>

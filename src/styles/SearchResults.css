@@ -14,12 +14,12 @@
     clear: left;
     float: left;
     font-weight: bold;
-    width: 130px; }
+    width: 160px; }
   .service dt::after, .service-info dt::after {
     content: ":"; }
   .service dd, .service-info dd {
     margin-bottom: 0;
-    margin-left: 130px;
+    margin-left: 160px;
     margin-right: 0;
     margin-top: 0;
     padding-bottom: 0;
@@ -27,11 +27,11 @@
     padding-right: 0;
     padding-top: 0; }
 
-.service-info {
-  padding: 0; }
-
 .search-results {
   width: 50%; }
+
+.service-details {
+  padding-left: 25px; }
 
 .service-primary {
   position: absolute;
