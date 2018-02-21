@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import FilterButton from '../components/FilterButton';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
