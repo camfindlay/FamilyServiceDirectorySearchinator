@@ -6,14 +6,15 @@ $light-text-color: #fff;
 .nav { 
   width: 100%;
 
-  a {
+  > a {
     background: $light-text-color;
     border: 1px solid $primary-color;
     color: $primary-text-color;
     display: inline-block;
     margin: 0 3px 7px;
     text-decoration: none;
-
+    padding: 7px;
+    
     sub {
       display: inline-block;
       margin-bottom: 4px;
@@ -22,7 +23,7 @@ $light-text-color: #fff;
     }
 
     &:hover,
-    &.primary {
+    &.selected {
       background: $primary-color;
       color: $light-text-color;
     }

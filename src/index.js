@@ -9,21 +9,21 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 import SinglePageInfo from './components/SinglePage';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 
 let store = createStore(reducers, applyMiddleware(thunk));
 
-// const Test = () => <h1> hi</h1>
 class App extends React.Component {
   render(){
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div>
+          <h1 className="container-fluid">Find Whānau Services in your area</h1>
           <Route exact path="/" component={Boxcon} />
           <Route path="/place/:category/:name" component={SinglePageInfo} />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }

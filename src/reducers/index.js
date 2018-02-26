@@ -1,6 +1,7 @@
 let defaultState = {
   filter: [],
   results: [],
+  name: '',
   map_results: []
 }
 
@@ -14,7 +15,8 @@ const mainReducer = (state = defaultState, action) => {
     case 'SHOW_RESULTS':
       return {
         ...state,
-        results: action.results
+        results: action.results,
+        name: action.name
       }
     case 'FETCH_RESULTS':
       return {

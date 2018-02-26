@@ -7,7 +7,7 @@ class ServiceInfo extends React.Component {
     let data = this.props.results;
     return (
       <div>
-        <Link to={`/place/${encodeURIComponent(this.props.filter)}/${data.FSD_ID}`}>{data.SERVICE_NAME}</Link>
+        <Link to={`/place/${encodeURIComponent(this.props.filter)}/${data.FSD_ID}`}>{data.PROVIDER_NAME}</Link>
         <p>Info here</p>
       </div>
     );

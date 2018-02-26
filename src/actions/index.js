@@ -22,7 +22,7 @@ export function loadResults(name) {
   let query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${name}"}`;
   return (dispatch) => {
     return axios.get(`${url}${query}`).then((response)=>{
-      dispatch(showResults(response.data.result.records));
+      dispatch(showResults(response.data.result.records, name));
     });
   }
 }
@@ -35,18 +35,14 @@ export function showFilters(filters){
   }
 }
 
-export function showResults(results) {
+export function showResults(results, name) {
   return {
     type: 'SHOW_RESULTS',
-    results
+    results,
+    name
   }
 }
 
-// export function showMap() {
-//   return {
-//     type: 'SHOW_MAP'
-//   }
-// }
 
 
 

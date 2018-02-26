@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/index';
-// import ServiceMapMarker from './ServiceMapMarker';
-// import {  Map, TileLayer } from 'react-leaflet';
 import MapResults from './MapResults';
 import ServiceInfo from '../components/ServiceInfo';
-
+import { Link } from 'react-router-dom';
+import '../styles/Nav.css';
 
 class SearchFilters extends Component {
 
   constructor() {
     super();
     this.state = {
-      showMap: false,
-      selectedFilter: ''
+      showMap: false
     }
   }
 
@@ -29,15 +27,19 @@ class SearchFilters extends Component {
         <button onClick={() => {
           this.setState({ showMap: !this.state.showMap})
           }}>Toggle Map</button>
-
-        {this.props.filters.map(( data ) => (<button key={data.num} onClick={()=> {
-          this.props.loadResults(data.name);
-          this.setState({ selectedFilter: data.name })
-          }}> {data.name} </button>))}
+        <nav className="nav">
+          {this.props.filters.map(( data, key ) => {
+            return (<a className={this.props.name === data.name ? 'selected'  : ''} href="#" key={data.num} 
+            onClick={()=> {
+            this.props.loadResults(data.name);
+            }}> {data.name} 
+            </a>)
+          })}
+        </nav>
 
         <div>
           { this.state.showMap && <MapResults className="container-fluid" map_results={this.props.results} />}
-          { !this.state.showMap && this.props.results.map((data, key)=> <ServiceInfo key={key} results={data} filter={this.state.selectedFilter} />)}
+          { !this.state.showMap && this.props.results.map((data, key)=> <ServiceInfo key={key} results={data} filter={this.props.name} />)}
 
         </div>
 
@@ -51,7 +53,8 @@ function mapStateToProps(state) {
     filters: state.filter,
     results: state.results,
     map_results: state.map_results,
-    showMap: state.showMap
+    showMap: state.showMap,
+    name: state.name
   }
 }
 
