@@ -17,7 +17,6 @@ const fields = ()=> {
 }
 
 export function loadResults(name) {
-  console.log('====', name)
   let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
   let query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${name}"}`;
   return (dispatch) => {

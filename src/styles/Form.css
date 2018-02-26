@@ -36,11 +36,6 @@ input {
   .list-group a:last-child {
     border-bottom: 1px solid #c4c4c4; }
 
-button {
-  background-color: #fff;
-  border-color: #c4c4c4;
-  color: #484848; }
-
 form,
 .form-group {
   margin-bottom: 30px; }

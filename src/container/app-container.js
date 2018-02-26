@@ -3,7 +3,7 @@ import SearchFilters from '../components/SearchFilters';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/index';
 
-class BoxCon extends Component {
+class AppCon extends Component {
   
   render() {
     return (
@@ -18,4 +18,4 @@ const mapStateToProps=(state)=>{
   return state;
 }
 
-export default connect (mapStateToProps, actionCreators)(BoxCon);
+export default connect (mapStateToProps, actionCreators)(AppCon);

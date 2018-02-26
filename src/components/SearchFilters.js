@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../actions/index';
 import MapResults from './MapResults';
 import ServiceInfo from '../components/ServiceInfo';
-import { Link } from 'react-router-dom';
 import '../styles/Nav.css';
 import '../styles/Form.css';
 
@@ -26,11 +25,11 @@ class SearchFilters extends Component {
       <div className="container-fluid">
         <nav className="nav">
           {this.props.filters.map(( data, key ) => {
-            return (<a className={this.props.name === data.name ? 'selected'  : ''} href="#" key={data.num} 
+            return (<button className={this.props.name === data.name ? 'selected'  : ''} key={data.num} 
             onClick={()=> {
             this.props.loadResults(data.name);
             }}> {data.name} 
-            </a>)
+            </button>)
           })}
         </nav>
 

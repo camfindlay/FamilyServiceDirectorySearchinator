@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import * as actionCreators from '../actions/index';
 import MapResults from './MapResults';
 import { Link } from 'react-router-dom';

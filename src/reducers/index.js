@@ -1,8 +1,7 @@
 let defaultState = {
   filter: [],
   results: [],
-  name: '',
-  map_results: []
+  name: ''
 }
 
 const mainReducer = (state = defaultState, action) => {
@@ -18,14 +17,6 @@ const mainReducer = (state = defaultState, action) => {
         results: action.results,
         name: action.name
       }
-    case 'FETCH_RESULTS':
-      return {
-        ...state,
-        map_results: action.map_results
-      }
-
-    case 'SHOW_MAP':
-      return true;
     default:
       return {
         ...state
