@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { SinglePageInfo } from './components/SinglePage';
+import SinglePageInfo from './components/SinglePage';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 
@@ -21,7 +21,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={Boxcon} />
-          <Route path="/place/:id" component={SinglePageInfo} />
+          <Route path="/place/:category/:name" component={SinglePageInfo} />
         </div>
       </BrowserRouter>
     )

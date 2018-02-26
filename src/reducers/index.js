@@ -24,7 +24,6 @@ const mainReducer = (state = defaultState, action) => {
 
     case 'SHOW_MAP':
       return true;
-
     default:
       return {
         ...state
