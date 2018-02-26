@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
 import './styles/index.css';
-import App from './components/App';
+import Boxcon from './container/box-container';
 
-ReactDOM.render((
-  <BrowserRouter>
-    <div>
-      <Route path='/' component={App} />
-    </div>
-  </BrowserRouter>
-), document.getElementById('root'));
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import reducers from './reducers/index';
+
+
+let store = createStore(reducers, applyMiddleware(thunk));
+
+
+class App extends React.Component {
+  render(){
+    return (
+      <Boxcon></Boxcon>
+    )
+  }
+}
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));

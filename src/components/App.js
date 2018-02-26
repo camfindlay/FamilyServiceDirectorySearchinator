@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import '../styles/index.css';
-import '../styles/Form.css';
-import SearchFilters from './SearchFilters';
-import SearchForm from './SearchForm';
-import SearchResults from './SearchResults';
-import Info from './Info';
+// import '../styles/index.css';
+// import '../styles/Form.css';
+// import SearchFilters from './SearchFilters';
+// import SearchForm from './SearchForm';
+// import SearchResults from './SearchResults';
+// import Info from './Info';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/index';
 
 class App extends Component {
   constructor(props) {
@@ -47,4 +49,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps=(state)=>{
+  return state;
+}
+
+export default connect (mapStateToProps, actionCreators)(App);
