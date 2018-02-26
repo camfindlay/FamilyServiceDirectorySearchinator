@@ -6,7 +6,6 @@ export function loadFilters(field){
   let sql = encodeURI(`SELECT "LEVEL_1_CATEGORY" as name, COUNT(*) as num FROM "${resourceId}" GROUP BY name ORDER BY name`);
   let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
   return (dispatch) => {
-    
     return axios.get(url).then((response)=>{
       dispatch(showFilters(response.data.result.records));
     });
@@ -19,18 +18,35 @@ const fields = ()=> {
 
 export function loadResults(name) {
   let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
-  let query = `resource_id=${resourceId}&q=${name}&fields=${fields()}&distinct=true&filters=LEVEL_1_CATEGORY`;
-  axios.get(`${url}${query}`)
-    .then(res => {
-      debugger;
+  let query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${name}"}`;
+  return (dispatch) => {
+    return axios.get(`${url}${query}`).then((response)=>{
+      dispatch(showResults(response.data.result.records));
     });
+  }
 }
 
 
 export function showFilters(filters){
-   debugger;
   return {
     type: 'SHOW_FILTERS',
-    filters: filters
+    filters
   }
 }
+
+export function showResults(results) {
+  return {
+    type: 'SHOW_RESULTS',
+    results
+  }
+}
+
+export function showMap() {
+  return {
+    type: 'SHOW_MAP'
+  }
+}
+
+
+
+
