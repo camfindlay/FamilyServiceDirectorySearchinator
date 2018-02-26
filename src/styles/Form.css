@@ -23,17 +23,17 @@ input {
   top: 14px;
   z-index: 1; }
 
-.list-group > button {
+.list-group a {
   border-bottom: none;
   font-size: 1em;
   padding: 10px;
   text-align: left;
   width: 100%; }
-  .list-group > button:hover {
+  .list-group a:hover {
     background: #39b54a;
     color: #fff;
     cursor: pointer; }
-  .list-group > button:last-child {
+  .list-group a:last-child {
     border-bottom: 1px solid #c4c4c4; }
 
 button {
@@ -53,5 +53,8 @@ form,
   font-weight: bold;
   margin-bottom: 20px;
   padding: 10px 17px; }
+
+.btn-toggle {
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=Form.css.map */

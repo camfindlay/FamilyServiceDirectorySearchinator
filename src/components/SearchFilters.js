@@ -5,6 +5,7 @@ import MapResults from './MapResults';
 import ServiceInfo from '../components/ServiceInfo';
 import { Link } from 'react-router-dom';
 import '../styles/Nav.css';
+import '../styles/Form.css';
 
 class SearchFilters extends Component {
 
@@ -22,11 +23,7 @@ class SearchFilters extends Component {
 
   render() {
     return (
-      <div>
-
-        <button onClick={() => {
-          this.setState({ showMap: !this.state.showMap})
-          }}>Toggle Map</button>
+      <div className="container-fluid">
         <nav className="nav">
           {this.props.filters.map(( data, key ) => {
             return (<a className={this.props.name === data.name ? 'selected'  : ''} href="#" key={data.num} 
@@ -38,9 +35,11 @@ class SearchFilters extends Component {
         </nav>
 
         <div>
+          <button className="btn-toggle" onClick={() => {
+          this.setState({ showMap: !this.state.showMap})
+          }}>Toggle Map</button>
           { this.state.showMap && <MapResults className="container-fluid" map_results={this.props.results} />}
           { !this.state.showMap && this.props.results.map((data, key)=> <ServiceInfo key={key} results={data} filter={this.props.name} />)}
-
         </div>
 
       </div>

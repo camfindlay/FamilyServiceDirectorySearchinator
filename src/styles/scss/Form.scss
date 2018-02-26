@@ -33,7 +33,7 @@ input {
   z-index: 1;
 }
 
-.list-group > button {
+.list-group a {
   border-bottom: none;
   font-size: 1em;
   padding: 10px;
@@ -70,4 +70,8 @@ form,
   font-weight: bold;
   margin-bottom: 20px;
   padding: 10px 17px;
+}
+
+.btn-toggle {
+  margin-bottom: 20px;
 }

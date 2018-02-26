@@ -23,14 +23,24 @@ export class SinglePageInfo extends React.Component {
          .filter(item => item.FSD_ID === name)
          
     return <div>
-      <Link to="/">Go back</Link>
-      <ul>
-         {filteredResults
-         .map((i, key)  => <li key={key}>{i.PROVIDER_NAME}</li>)}</ul>       
-         
-         <MapResults map_results={filteredResults} />
-
-         </div>
+        <div className="container-fluid">
+          <div className="service">
+          <Link to="/">Go back</Link>
+          <ul className="list-stripped">
+            {filteredResults
+            .map((i, key)  => (
+              <div key={key}>
+                <h2>{i.PROVIDER_NAME}</h2>
+                <p>{i.PHYSICAL_ADDRESS}</p>
+                <h4>{i.SERVICE_NAME}</h4>
+                <p>{i.SERVICE_DETAIL}</p>
+              </div>
+            ))}
+          </ul>
+        </div>
+        </div>
+        <MapResults map_results={filteredResults} />
+      </div>
   } 
 }
 
