@@ -6,7 +6,7 @@ class AddressForm extends React.Component {
     this.state = {
       address: '',
       show_addresses: false
-    }
+    };
   }
 
   selectAddress(address) {
@@ -18,12 +18,12 @@ class AddressForm extends React.Component {
     return (
       <div>
         <input type="search" name="address" className="address-finder-input" placeholder="Enter a Location" ref="address" onChange={(e)=>{
-          this.setState({address: e.target.value, show_addresses: true})
-          this.props.data.fetchAddressFinder(this.state.address)
+          this.setState({address: e.target.value, show_addresses: true});
+          this.props.data.fetchAddressFinder(this.state.address);
         }} />
         {this.state.show_addresses &&
           <ul className="address-finder list-stripped">
-            {this.props.data.addresses.map((address, key) => <li key={key} onClick={()=>{this.selectAddress(address)}}>{address.a}</li>)}
+            {this.props.data.addresses.map((address, key) => <li key={key} onClick={()=>{this.selectAddress(address);}}>{address.a}</li>)}
           </ul>
         }
       </div>

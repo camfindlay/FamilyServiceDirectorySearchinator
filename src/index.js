@@ -10,8 +10,8 @@ import ServiceInfo from './components/Service/ServiceInfo';
 import { HashRouter, Route } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
-// let store = createStore(reducers, applyMiddleware(thunk));
+// const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends React.Component {
   render(){
@@ -23,7 +23,7 @@ class App extends React.Component {
           <Route path="/service/:category/:name" component={ServiceInfo} />
         </div>
       </HashRouter>
-    )
+    );
   }
 }
 

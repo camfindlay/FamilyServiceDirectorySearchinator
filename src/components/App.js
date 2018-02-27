@@ -14,7 +14,7 @@ class App extends Component {
     super();
     this.state = {
       showMap: false
-    }
+    };
   }
 
   componentWillMount () {
@@ -37,10 +37,9 @@ class App extends Component {
         </form>
         <div>
           {this.props.results.length > 0 &&
-            <button className="btn-toggle" onClick={() => 
-              {this.setState({ showMap: !this.state.showMap})
-              }}>{this.state.showMap ? 'Show List' : 'Toggle Map'}
-            </button>
+            <button className="btn-toggle" onClick={() => {
+              this.setState({ showMap: !this.state.showMap}); }
+            }>{this.state.showMap ? 'Show List' : 'Toggle Map'}</button>
           }
           { this.state.showMap && <MapResults className="container-fluid" map_results={this.props.results} />}
           { !this.state.showMap && this.props.results.map((data, key)=> <Service key={key} results={data} filter={this.props.name} />)}
@@ -59,7 +58,7 @@ function mapStateToProps(state) {
     keyword: state.keyword,
     addresses: state.addresses,
     category: state.category
-  }
+  };
 }
 
 export default connect(mapStateToProps, actionCreators)(App);

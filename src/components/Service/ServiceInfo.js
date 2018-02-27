@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 export class ServiceInfo extends React.Component {
 
   componentDidMount() {
-    this.props.loadResults(this.props.match.params.category, this.props.match.params.name)
+    this.props.loadResults(this.props.match.params.category, this.props.match.params.name);
   }
 
   render(){ 
     const { match: { params: { name } } , results } = this.props;
     
     const filteredResults = results
-         .filter(item => item.FSD_ID === name)
+         .filter(item => item.FSD_ID === name);
          
     return <div>
         <div className="container-fluid">
@@ -34,7 +34,7 @@ export class ServiceInfo extends React.Component {
         </div>
         </div>
         <MapResults map_results={filteredResults} />
-      </div>
+      </div>;
   } 
 }
 

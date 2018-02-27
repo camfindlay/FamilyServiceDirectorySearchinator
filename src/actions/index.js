@@ -9,7 +9,7 @@ export function loadFilters(){
     return axios.get(url).then((response)=>{
       dispatch(showFilters(response.data.result.records));
     });
-  }
+  };
 }
 
 const fields = ()=> {
@@ -46,14 +46,14 @@ export function fetchAddressFinder(address, pxid) {
     return axios.get(`${url}${query}`).then((response)=>{
       dispatch(fetchAddresses(response.data.completions));
     });
-  }
+  };
 }
 
 export function showFilters(filters){
   return {
     type: 'SHOW_FILTERS',
     filters
-  }
+  };
 }
 
 export function showResults(results, category, keyword) {
@@ -62,11 +62,11 @@ export function showResults(results, category, keyword) {
     results,
     category,
     keyword
-  }
+  };
 }
 export function fetchAddresses(addresses) {
   return {
     type: 'FETCH_ADDRESSES',
     addresses
-  }
+  };
 }
