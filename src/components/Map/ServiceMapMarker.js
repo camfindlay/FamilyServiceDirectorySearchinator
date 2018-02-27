@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
 const ServiceMapMarker = ( props ) => {
@@ -18,7 +18,7 @@ const ServiceMapMarker = ( props ) => {
         </Marker>
       }
     </div>
-  )
+  );
 };
 
 export default ServiceMapMarker;

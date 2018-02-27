@@ -9,6 +9,6 @@ const Filters = ( props ) => {
       })}
     </nav>
   );
-}
+};
 
 export default Filters;

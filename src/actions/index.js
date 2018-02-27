@@ -20,11 +20,11 @@ export function loadResults(category, keyword) {
   
   let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=${resourceId}&fields=${fields()}`;
   var query;
-  if (keyword && keyword.length > 2) {
+  if (keyword.length > 2) {
     query = `&q=${keyword}}&distinct=true`;
   } else if(category) {
     query = `&q=&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
-  } else if(category && keyword && keyword.length > 2) {
+  } else if(category && keyword.length > 2) {
     query = `&q=${keyword}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
   } else {
     query = `&fields=${fields()}&distinct=true`; 
