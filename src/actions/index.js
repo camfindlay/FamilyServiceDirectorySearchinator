@@ -2,8 +2,8 @@ import axios from 'axios';
 const RESOURCE_ID = process.env.REACT_APP_API_RESOURCE_ID;
 const API_PATH = `${process.env.REACT_APP_API_PATH}`;
 
-let filters = (category) => category ? `{"LEVEL_1_CATEGORY":"${category}"}` : '';
-let q = (keyword) => keyword.length > 2 ? `${keyword}` : '';
+let filters = category => category ? `{"LEVEL_1_CATEGORY":"${category}"}` : '';
+let q = keyword => keyword.length > 2 ? `${keyword}` : '';
 const fields = () => 'LEVEL_1_CATEGORY,FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
 
 export function loadFilters(){
