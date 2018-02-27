@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
-class ServiceMapMarker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    if (this.props.record.LATITUDE && this.props.record.LONGITUDE) {
-      let position = [this.props.record.LATITUDE, this.props.record.LONGITUDE];
-      return (
+const ServiceMapMarker = ( props ) => {
+  let position = [props.record.LATITUDE, props.record.LONGITUDE];
+  return (
+    <div>
+      {props.record.LATITUDE && props.record.LONGITUDE &&
         <Marker position={position}>
           <Popup>
             <span>
-              <h5>{this.props.record.PROVIDER_NAME}</h5>
-              <h6>{this.props.record.SERVICE_NAME}</h6>
-              <p>{this.props.record.ORGANISATION_PURPOSE}</p>
-              <p>{this.props.record.PHYSICAL_ADDRESS}</p>
+              <h5>{props.record.PROVIDER_NAME}</h5>
+              <h6>{props.record.SERVICE_NAME}</h6>
+              <p>{props.record.ORGANISATION_PURPOSE}</p>
+              <p>{props.record.PHYSICAL_ADDRESS}</p>
             </span>
           </Popup>
         </Marker>
-      );
-    } else {
-      return '';
-    }
-  }
-}
+      }
+    </div>
+  )
+};
 
 export default ServiceMapMarker;
