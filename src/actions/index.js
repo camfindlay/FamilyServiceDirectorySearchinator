@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const resourceId = '35de6bf8-b254-4025-89f5-da9eb6adf9a0';
+const resourceId = process.env.REACT_APP_API_RESOURCE_ID;
+const root_url = `${process.env.REACT_APP_API}`;
 
 export function loadFilters(){
   let sql = encodeURI(`SELECT "LEVEL_1_CATEGORY" as name, COUNT(*) as num FROM "${resourceId}" GROUP BY name ORDER BY name`);
-  let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search_sql?sql=${sql}`;
+  let url = `${root_url}?sql=${sql}`;
   return (dispatch) => {
     return axios.get(url).then((response)=>{
       dispatch(showFilters(response.data.result.records));
@@ -18,7 +19,7 @@ const fields = ()=> {
 
 export function loadResults(category, keyword) {
   
-  let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=${resourceId}&fields=${fields()}`;
+  let url = `${root_url}?resource_id=${resourceId}&fields=${fields()}`;
   var query;
   if (keyword.length > 2) {
     query = `&q=${keyword}}&distinct=true`;
