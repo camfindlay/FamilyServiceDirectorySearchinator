@@ -102,9 +102,4 @@ form,
 .address-finder-input {
   margin-bottom: 0;
   position:relative;
-  &::after {
-    border:1px solid red;
-    position:absolute;
-    content: 'clear';
-  }
 }
