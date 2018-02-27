@@ -17,17 +17,17 @@ const fields = ()=> {
 };
 
 export function loadResults(category, keyword) {
-
-  let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
+  
+  let url = `https://catalogue.data.govt.nz/api/3/action/datastore_search?resource_id=${resourceId}&fields=${fields()}`;
   var query;
-  if (keyword) {
-    query = `resource_id=${resourceId}&q=${keyword}&fields=${fields()}&distinct=true`;
+  if (keyword && keyword.length > 2) {
+    query = `&q=${keyword}}&distinct=true`;
   } else if(category) {
-    query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
-  } else if(category && keyword) {
-    query = `resource_id=${resourceId}&q=${keyword}&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
+    query = `&q=&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
+  } else if(category && keyword && keyword.length > 2) {
+    query = `&q=${keyword}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
   } else {
-    query = `resource_id=${resourceId}&fields=${fields()}&distinct=true`; 
+    query = `&fields=${fields()}&distinct=true`; 
   }
 
   return (dispatch) => {
