@@ -29,7 +29,6 @@ export function fetchAddressFinder(address, pxid) {
   let key = 'ADDRESSFINDER_DEMO_KEY';
   let url = 'https://api.addressfinder.io/api/nz/address?';
   let query = `format=json&key=${key}&q=${address}&pxid=${pxid}`;
-  
   return (dispatch) => {
     return axios.get(`${url}${query}`).then((response)=>{
       dispatch(fetchAddresses(response.data.completions));
