@@ -5,7 +5,8 @@
   overflow: auto;
   padding-bottom: 30px; }
   .service a, .service-info a {
-    text-decoration: none; }
+    text-decoration: none;
+    color: #39b54a; }
     .service a h3, .service-info a h3 {
       color: #39b54a; }
     .service a .telephone, .service-info a .telephone {
@@ -18,7 +19,7 @@
   .service dt::after, .service-info dt::after {
     content: ":"; }
   .service dd, .service-info dd {
-    margin-bottom: 0;
+    margin-bottom: 7px;
     margin-left: 160px;
     margin-right: 0;
     margin-top: 0;
@@ -43,7 +44,6 @@
 
 .search-result-hero {
   border-left: 4px solid #39b54a;
-  margin-bottom: 30px;
   padding-bottom: 5px;
   padding-left: 21px;
   padding-top: 5px; }
