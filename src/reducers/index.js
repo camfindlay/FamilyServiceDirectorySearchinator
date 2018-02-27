@@ -31,6 +31,6 @@ const mainReducer = (state = defaultState, action) => {
       ...state
     };
   }
-}
+};
 
 export default mainReducer;
