@@ -4,9 +4,19 @@ $primary-color-variant: #c4c4c4;
 $primary-background: #fff;
 $primary-dark: #000;
 
+.form {
+  margin: 10px 0;
+  button { margin: 10px 3px 7px; }
+}
+
 input {
   box-sizing: border-box;
+  padding: 7px;
+  font-size: inherit;
+  width: 100%;
+  margin: 0 3px 7px;
 }
+input[type=search] { -webkit-appearance: textfield; }
 
 .form-control {
   border: 1px solid $primary-color-variant;
@@ -68,4 +78,33 @@ form,
 
 .btn-toggle {
   margin-bottom: 20px;
+}
+
+.address-finder {
+  width: 100%;
+  margin: 0 3px 7px;
+  li {
+    border: 1px solid $primary-color;
+    font-size: inherit;
+    padding: 7px;
+    border-bottom: 0;
+    &:last-child {
+      border-bottom: 1px solid $primary-color;
+    }
+    &:hover {
+      background-color: $primary-color;
+      color: $primary-background;
+      cursor: pointer;
+    }
+  }
+}
+
+.address-finder-input {
+  margin-bottom: 0;
+  position:relative;
+  &::after {
+    border:1px solid red;
+    position:absolute;
+    content: 'clear';
+  }
 }
