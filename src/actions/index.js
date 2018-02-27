@@ -26,6 +26,17 @@ export function loadResults(name) {
   }
 }
 
+export function fetchAddressFinder(address) {
+  let key = 'ADDRESSFINDER_DEMO_KEY';
+  let url = 'https://api.addressfinder.io/api/nz/address?';
+  let query = `format=json&key=${key}&q=${address}`;
+  
+  return (dispatch) => {
+    return axios.get(`${url}${query}`).then((response)=>{
+      dispatch(fetchAddresses(response.data.completions));
+    });
+  }
+}
 
 export function showFilters(filters){
   return {
@@ -34,15 +45,16 @@ export function showFilters(filters){
   }
 }
 
-export function showResults(results, name) {
+export function showResults(results, name, keyword) {
   return {
     type: 'SHOW_RESULTS',
     results,
     name
   }
 }
-
-
-
-
-
+export function fetchAddresses(addresses) {
+  return {
+    type: 'FETCH_ADDRESSES',
+    addresses
+  }
+}
