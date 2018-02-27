@@ -11,7 +11,7 @@ class ServiceInfo extends React.Component {
     let obj = [
       {
         icon: <FaPhone />,
-        val: data.PUBLISHED_PHONE_1
+        val: <a href={`tel:${data.PUBLISHED_PHONE_1}`}>{data.PUBLISHED_PHONE_1}</a>
       },
       {
         icon: <FaMail />,
@@ -39,7 +39,7 @@ class ServiceInfo extends React.Component {
       <div>
         <div className="service">
           <div className="search-result-hero">
-            <Link to={`/place/${encodeURIComponent(this.props.filter)}/${data.FSD_ID}`}><h2>{data.PROVIDER_NAME}</h2></Link>
+            <Link to={`/service/${encodeURIComponent(this.props.filter ? this.props.filter : data.LEVEL_1_CATEGORY)}/${data.FSD_ID}`}><h2>{data.PROVIDER_NAME}</h2></Link>
             <p>{data.PHYSICAL_ADDRESS}</p>
           </div>
           <div className="service-details">
