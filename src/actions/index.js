@@ -13,23 +13,34 @@ export function loadFilters(field){
 }
 
 const fields = ()=> {
-  return 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
+  return 'LEVEL_1_CATEGORY,FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
 }
 
-export function loadResults(name) {
+export function loadResults(category, keyword) {
+
   let url = 'https://catalogue.data.govt.nz/api/3/action/datastore_search?';
-  let query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${name}"}`;
+  var query;
+  if (keyword) {
+    query = `resource_id=${resourceId}&q=${keyword}&fields=${fields()}&distinct=true`;
+  } else if(category) {
+    query = `resource_id=${resourceId}&q=&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
+  } else if(category && keyword) {
+    query = `resource_id=${resourceId}&q=${keyword}&fields=${fields()}&distinct=true&filters={"LEVEL_1_CATEGORY":"${category}"}`; 
+  } else {
+    query = `resource_id=${resourceId}&fields=${fields()}&distinct=true`; 
+  }
+
   return (dispatch) => {
     return axios.get(`${url}${query}`).then((response)=>{
-      dispatch(showResults(response.data.result.records, name));
+      dispatch(showResults(response.data.result.records, category, keyword));
     });
   }
 }
 
-export function fetchAddressFinder(address) {
+export function fetchAddressFinder(address, pxid) {
   let key = 'ADDRESSFINDER_DEMO_KEY';
   let url = 'https://api.addressfinder.io/api/nz/address?';
-  let query = `format=json&key=${key}&q=${address}`;
+  let query = `format=json&key=${key}&q=${address}&pxid=${pxid}`;
   
   return (dispatch) => {
     return axios.get(`${url}${query}`).then((response)=>{
@@ -45,11 +56,12 @@ export function showFilters(filters){
   }
 }
 
-export function showResults(results, name, keyword) {
+export function showResults(results, category, keyword) {
   return {
     type: 'SHOW_RESULTS',
     results,
-    name
+    category,
+    keyword
   }
 }
 export function fetchAddresses(addresses) {

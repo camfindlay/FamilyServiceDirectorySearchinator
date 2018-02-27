@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/SearchResults.css';
+import '../../styles/SearchResults.css';
 import FaPhone from 'react-icons/lib/fa/phone';
 import FaMail from 'react-icons/lib/fa/envelope-o';
 import FaClock from 'react-icons/lib/fa/clock-o';
 
-class ServiceInfo extends React.Component {
+class Service extends React.Component {
 
   serviceDetails(data) {
     let obj = [
@@ -55,4 +55,4 @@ class ServiceInfo extends React.Component {
   }
 }
 
-export default ServiceInfo;
+export default Service;

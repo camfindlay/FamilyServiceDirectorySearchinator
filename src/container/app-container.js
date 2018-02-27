@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchFilters from '../components/SearchFilters';
+import App from '../components/App';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/index';
 
@@ -8,7 +8,7 @@ class AppCon extends Component {
   render() {
     return (
       <div>
-        <SearchFilters filters={this.props.loadFilters} />
+        <App filters={this.props.loadFilters} />
       </div>
     );
   }

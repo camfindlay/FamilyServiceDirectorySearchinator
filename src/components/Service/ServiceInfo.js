@@ -1,24 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/index';
-import MapResults from './MapResults';
+import * as actionCreators from '../../actions/index';
+import MapResults from '../Map/MapResults';
 import { Link } from 'react-router-dom';
 
-export class SinglePageInfo extends React.Component {
-
-  componentWillMount () {
-    this.props.loadFilters();
-  }
+export class ServiceInfo extends React.Component {
 
   componentDidMount() {
-    if (this.props.results.length === 0){
-      this.props.loadResults(this.props.match.params.category)
-    }
+    this.props.loadResults(this.props.match.params.category, this.props.match.params.name)
   }
 
-  render(){
+  render(){ 
     const { match: { params: { name } } , results } = this.props;
-    const filteredResults =  results
+    
+    const filteredResults = results
          .filter(item => item.FSD_ID === name)
          
     return <div>
@@ -45,6 +40,6 @@ export class SinglePageInfo extends React.Component {
 
 
 export default connect( 
-  state => ({filters: state.filter, results: state.results}),
+  state => ({keyword: state.keyword, results: state.results}),
   actionCreators
-  )(SinglePageInfo);
+  )(ServiceInfo);

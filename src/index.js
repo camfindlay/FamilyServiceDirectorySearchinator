@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import SinglePageInfo from './components/SinglePage';
+import ServiceInfo from './components/Service/ServiceInfo';
 import { HashRouter, Route } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -20,7 +20,7 @@ class App extends React.Component {
         <div>
           <h1 className="container-fluid">Find Whānau Services in your area</h1>
           <Route exact path="/" component={AppCon} />
-          <Route path="/service/:category/:name" component={SinglePageInfo} />
+          <Route path="/service/:category/:name" component={ServiceInfo} />
         </div>
       </HashRouter>
     )

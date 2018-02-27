@@ -21,23 +21,12 @@ const mainReducer = (state = defaultState, action) => {
         category: action.category,
         keyword: action.keyword
       }
-    case 'SHOW_ALL_RESULTS':
-      return {
-        ...state,
-        results: action.results
-      }
-    case 'FETCH_RESULTS':
-      return {
-        ...state,
-        map_results: action.map_results
-      }
     case 'FETCH_ADDRESSES':
       return {
         ...state,
         addresses: action.addresses
       }
-    case 'SHOW_MAP':
-      return true;
+      
     default:
       return {
         ...state
