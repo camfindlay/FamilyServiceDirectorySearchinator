@@ -9,7 +9,7 @@ import reducers from './reducers/index';
 import ServiceInfo from './components/Service/ServiceInfo';
 import { HashRouter, Route } from 'react-router-dom';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 const store = createStore(reducers, applyMiddleware(thunk));
 
