@@ -3,7 +3,6 @@ let defaultState = {
   results: [],
   category: '',
   keyword: '',
-  map_results: [],
   addresses: []
 };
 

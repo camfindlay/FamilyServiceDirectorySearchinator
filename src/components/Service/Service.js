@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/SearchResults.css';
+import '../../styles/Service.css';
 import FaPhone from 'react-icons/lib/fa/phone';
 import FaMail from 'react-icons/lib/fa/envelope-o';
 import FaClock from 'react-icons/lib/fa/clock-o';

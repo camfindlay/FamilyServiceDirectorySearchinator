@@ -1,13 +1,14 @@
 $primary-color: #35A744;
-$light-text-color: #fff;
-$light-color: #ccc;
+$secondary-color: #c4c4c4;
 
-.service, .service-info {
-  background: $light-text-color;
-  border-bottom: 1px solid $light-color;
+.service {  margin-top: 40px; }
+
+.service {
+  border-bottom: 1px solid $secondary-color;
   margin-bottom: 50px;
   overflow: auto;
   padding-bottom: 30px;
+  padding-right: 5%;
   
   a {
     text-decoration: none;
@@ -39,36 +40,19 @@ $light-color: #ccc;
   }
 }
 
-.search-results {
-  width: 50%;
-}
-
-.service-details {
-  padding-left: 25px;
-}
-
-.service-primary {
-  position: absolute;
-  right: 99999px;
-}
-
-.col {
-  float: left;
-  width: 50%;
-}
+.service-details { padding-left: 25px; }
 
 .search-result-hero {
   border-left: 4px solid $primary-color;
   padding-bottom: 5px;
   padding-left: 21px;
-  padding-top: 5px;
+  padding-top: 3px;
 
-  a {
-    color: $primary-color;
-  }
-  h3 {
+  a { color: $primary-color; }
+
+  h2 {
     font-size: 24px;
-    margin: 0 0 5px;
+    margin: 7px 0;
   }
 
   p {

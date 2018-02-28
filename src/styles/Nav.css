@@ -8,22 +8,16 @@
 .list-icon {
   margin-bottom: 7px; }
 
-button {
-  background: #fff;
-  border: 1px solid #39b54a;
-  color: #484848;
-  display: inline-block;
-  margin: 0 3px 7px;
-  text-decoration: none;
-  padding: 7px;
-  font-size: 16px; }
-
 .selected {
-  background: #39b54a;
+  background: #35A744;
   color: #fff; }
 
 .list-icon > span {
   display: inline-block;
   margin-right: 10px; }
+
+@media (max-width: 425px) {
+  .nav {
+    display: none; } }
 
 /*# sourceMappingURL=Nav.css.map */
