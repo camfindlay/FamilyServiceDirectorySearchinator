@@ -1,3 +1,16 @@
+# language: node_js
+# node_js:
+#   - "6"
+# sudo: false
+# install:
+#   - npm install
+# script:
+#   - npm test
+# deploy:
+#   - provider: script
+#     script: bash scripts/deploy.sh
+#     on:
+#       branch: master
 language: node_js
 node_js:
   - "6"
@@ -7,9 +20,9 @@ install:
 script:
   - npm test
 deploy:
-  - provider: script
-    script: bash scripts/deploy.sh
-    on:
-      branch: master
-
-      
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master
