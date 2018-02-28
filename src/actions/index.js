@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const RESOURCE_ID = process.env.REACT_APP_API_RESOURCE_ID;
-const API_PATH = `${process.env.REACT_APP_API_PATH}`;
+const API_PATH = process.env.REACT_APP_API_PATH;
 
 let filters = category => category ? `{"LEVEL_1_CATEGORY":"${category}"}` : '';
 let q = keyword => keyword.length > 2 ? keyword : '';
