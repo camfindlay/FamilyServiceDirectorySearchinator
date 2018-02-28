@@ -1,7 +1,7 @@
 @import "./variables.css";
 
 $primary-text-color: #484848;
-$primary-color: #35A744;
+$primary-color: #35a744;
 $secondary-color: #c4c4c4;
 $primary-background: #fff;
 
@@ -17,6 +17,7 @@ button {
   font-size: inherit;
   width: 100%;
   margin: 7px 7px 0 0;
+  
   @media (min-width: 426px) {
     width: auto;
   }
@@ -40,14 +41,17 @@ input[type=search] { -webkit-appearance: textfield; }
 .address-finder {
   width: 100%;
   margin: 0 3px 7px;
+
   li {
     border: 1px solid $primary-color;
     font-size: inherit;
     padding: 7px;
     border-bottom: 0;
+
     &:last-child {
       border-bottom: 1px solid $primary-color;
     }
+
     &:hover {
       background-color: $primary-color;
       color: $primary-background;

@@ -1,10 +1,9 @@
-$primary-color: #35A744;
+$primary-color: #35a744;
 $secondary-color: #c4c4c4;
-
-.service {  margin-top: 40px; }
 
 .service {
   border-bottom: 1px solid $secondary-color;
+  margin-top: 40px;
   margin-bottom: 50px;
   overflow: auto;
   padding-bottom: 30px;
@@ -13,7 +12,9 @@ $secondary-color: #c4c4c4;
   a {
     text-decoration: none;
     color: $primary-color;
+
     h3 { color: $primary-color; }
+    
     .telephone { color: $primary-color; }
   }
 

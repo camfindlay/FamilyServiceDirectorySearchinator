@@ -1,6 +1,6 @@
 @import "./helpers/lists";
 
-$primary-color: #35A744;
+$primary-color: #35a744;
 $primary-text-color: #fff;
 
 .selected {
@@ -17,6 +17,7 @@ $primary-text-color: #fff;
 }
 
 @media (max-width:425px) {
+  
   .nav {
     display: none;
   }

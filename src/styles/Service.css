@@ -1,19 +1,17 @@
 .service {
-  margin-top: 40px; }
-
-.service {
   border-bottom: 1px solid #c4c4c4;
+  margin-top: 40px;
   margin-bottom: 50px;
   overflow: auto;
   padding-bottom: 30px;
   padding-right: 5%; }
   .service a {
     text-decoration: none;
-    color: #35A744; }
+    color: #35a744; }
     .service a h3 {
-      color: #35A744; }
+      color: #35a744; }
     .service a .telephone {
-      color: #35A744; }
+      color: #35a744; }
   .service dt {
     clear: left;
     float: left;
@@ -35,12 +33,12 @@
   padding-left: 25px; }
 
 .search-result-hero {
-  border-left: 4px solid #35A744;
+  border-left: 4px solid #35a744;
   padding-bottom: 5px;
   padding-left: 21px;
   padding-top: 3px; }
   .search-result-hero a {
-    color: #35A744; }
+    color: #35a744; }
   .search-result-hero h2 {
     font-size: 24px;
     margin: 7px 0; }
