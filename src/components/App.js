@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/index';
 import MapResults from './Map/MapResults';
-import AddressField from './Forms/AddressField';
+import AddressFinder from './Forms/AddressFinder';
 import Filters from './Service/Filters';
 import Service from '../components/Service/Service';
 import '../styles/Nav.css';
@@ -32,7 +32,7 @@ class App extends Component {
           this.props.loadResults(this.state.category, e.target.keyword.value);
         }}>
           <input type="search" name="keyword" placeholder="Enter topic or organisation" />
-          <AddressField data={this.props} />
+          <AddressFinder data={this.props} />
           <button type="submit">Search</button>
         </form>
         <div>
