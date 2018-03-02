@@ -44,6 +44,7 @@ class Service extends React.Component {
           </div>
           <div className="service-details">
             <h4>{data.SERVICE_NAME}</h4>
+            <p>{data.DISTANCE}</p>
             <p>{data.SERVICE_DETAIL}</p>
             <ul className="list-stripped">
               {this.serviceDetails(data)}

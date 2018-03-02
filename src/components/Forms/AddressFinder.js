@@ -1,23 +1,29 @@
 import React from 'react';
+import '../../styles/AddressFinder.css';
 
 class AddressFinder extends React.Component {
 
-  componentWillReceiveProps() {
+  componentWillUpdate() {
+    let address_field = document.getElementById('address_field');
     let widget = new window.AddressFinder.Widget(
-      document.getElementById('address_field'),
+      address_field,
       'ADDRESSFINDER_DEMO_KEY',
       'NZ',
       {manual_style:true}
     );
-
+    
     widget.on('result:select', (value, item) => {
-      console.log('You’ve selected: '+ item.x);
+      console.log(this.props.data)
+      this.props.data.loadResults(
+        this.props.data.category ? this.props.data.category : '', '', {latitude: item.x, longitude: item.y});
     });
   }
 
+
   render() {
+    console.log(this.props)
     return (
-      <div>
+      <div className="address_finder_container">
         <input id="address_field" type="search" name="address" className="address-finder-input" placeholder="Enter a Location" />
       </div>
     );

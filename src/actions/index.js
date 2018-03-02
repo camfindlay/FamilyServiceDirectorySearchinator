@@ -1,4 +1,5 @@
 import axios from 'axios';
+import geolib from 'geolib';
 
 const RESOURCE_ID = process.env.REACT_APP_API_RESOURCE_ID;
 const API_PATH = process.env.REACT_APP_API_PATH;
@@ -17,14 +18,53 @@ export function loadFilters(){
   };
 }
 
-export function loadResults(category, keyword) {
+export function loadResults(category, keyword, addressLatLng) {
+
   let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${FIELDS}&q=${q(keyword)}&distinct=true${filters(category)}`);
   return (dispatch) => {
     return axios.get(url).then((response)=>{
-      dispatch(showResults(response.data.result.records, category, keyword));
+
+      if(addressLatLng) {
+        dispatch(showResults(findNearMe(response.data.result.records, addressLatLng), category, keyword));
+      } else {
+        dispatch(showResults(response.data.result.records, category, keyword));
+      }
+      
     });
   };
 }
+
+export function findNearMe(data, addressLatLng) {
+
+  let results = data;
+      var tempData = {};
+      for ( var index in results ) {
+        if ( results[index].LATITUDE !== "0" && results[index].LONGITUDE !== "0" && results[index].LATITUDE !== null && results[index].LONGITUDE !== null) { 
+          tempData[index] = results; 
+        } 
+      }
+      results = tempData;
+      
+      let resultsList = {};
+
+      for ( var index in results ) {
+        resultsList[results[0][index].FSD_ID] = {latitude: results[0][index].LATITUDE, longitude: results[0][index].LONGITUDE};
+      }
+
+      let distance = geolib.orderByDistance(addressLatLng, resultsList);
+
+      for ( var j in distance ) {
+        for ( var index in data ) {
+          if(data[index].FSD_ID === distance[j].key) {
+            data[index].DISTANCE = distance[j].distance;
+          }
+        }
+      }
+
+      return data.filter(record => record.DISTANCE > 13711100 && record.DISTANCE < 13714900);
+}
+
+// add distance key to array of objects from geolib
 
 export function fetchAddressFinder(address, pxid) {
   let key = 'ADDRESSFINDER_DEMO_KEY';
