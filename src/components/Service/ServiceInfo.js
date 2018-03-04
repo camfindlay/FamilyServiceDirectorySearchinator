@@ -42,4 +42,4 @@ export class ServiceInfo extends React.Component {
 export default connect(
   state => ({keyword: state.keyword, results: state.results}),
   actionCreators
-  )(ServiceInfo);
+)(ServiceInfo);
