@@ -8,7 +8,7 @@ class MapResults extends Component {
 
     this.state = {
       center: []
-    }
+    };
 
   }
   checkLatLng() {

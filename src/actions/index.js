@@ -19,7 +19,7 @@ export function loadFilters(){
 }
 
 export function loadResults(category, keyword, addressLatLng) {
-  
+
   let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${FIELDS}&q=${q(keyword)}&distinct=true${filters(category)}`);
   let addressObj = Object.keys(addressLatLng ? addressLatLng : {none: 'none'});
   return (dispatch) => {
@@ -29,19 +29,19 @@ export function loadResults(category, keyword, addressLatLng) {
         dispatch(showResults(findNearMe(response.data.result.records, addressLatLng), category, keyword, addressLatLng));
       } else {
         dispatch(showResults(checkLatLng(response.data.result.records), category, keyword, addressLatLng));
-    }
+      }
     });
   };
 }
 
 function checkLatLng(data) {
-  return data.filter(r => r.PHYSICAL_ADDRESS.match(/\d+/g) !== null && r.LATITUDE !== "0" && r.LONGITUDE !== "0" && r.LATITUDE !== null && r.LONGITUDE !== null)
+  return data.filter(r => r.PHYSICAL_ADDRESS.match(/\d+/g) !== null && r.LATITUDE !== '0' && r.LONGITUDE !== '0' && r.LATITUDE !== null && r.LONGITUDE !== null);
 }
 
 function findNearMe(data, addressLatLng) {
 
   let filteredData = checkLatLng(data);
-  
+
   for(let i in filteredData) {
     let isInside = geolib.isPointInCircle(
       {latitude: addressLatLng.latitude, longitude: addressLatLng.longitude},
@@ -62,16 +62,16 @@ export function showFilters(filters){
   return {
     type: 'SHOW_FILTERS',
     filters
-  }
+  };
 }
 
-export function showResults(results, category, keyword, addressLatLng, coords) {
+export function showResults(results, category, keyword, addressLatLng) {
   return {
     type: 'SHOW_RESULTS',
     results,
     category,
     keyword,
     addressLatLng
-  }
+  };
 }
 
