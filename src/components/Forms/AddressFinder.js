@@ -13,15 +13,13 @@ class AddressFinder extends React.Component {
     );
     
     widget.on('result:select', (value, item) => {
-      console.log(this.props.data)
       this.props.data.loadResults(
-        this.props.data.category ? this.props.data.category : '', '', {latitude: item.x, longitude: item.y});
+        this.props.data.category ? this.props.data.category : '', '', {latitude: item.y, longitude: item.x});
     });
   }
 
 
   render() {
-    console.log(this.props)
     return (
       <div className="address_finder_container">
         <input id="address_field" type="search" name="address" className="address-finder-input" placeholder="Enter a Location" />

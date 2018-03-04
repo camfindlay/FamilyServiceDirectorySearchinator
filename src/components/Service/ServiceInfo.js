@@ -11,11 +11,11 @@ export class ServiceInfo extends React.Component {
   }
 
   render(){ 
-    const { match: { params: { name } } , results } = this.props;
     
+    const { match: { params: { name } } , results } = this.props;
     const filteredResults = results
          .filter(item => item.FSD_ID === name);
-         
+    
     return <div>
         <div className="container-fluid">
           <div className="service">
