@@ -2,17 +2,21 @@
 
 .sharebar {
   padding: 0 0 2rem;
-  margin-top:1em;
+  margin-top: 1em;
 
   p,
   ul {
     display: inline-block;
     margin: 0.2em 0;
   }
-  p{margin-right: 1em;}
+  p {
+    margin-right: 1em;
+  }
 }
 
-.service .sharebar{padding-bottom:0;}
+.service .sharebar {
+  padding-bottom: 0;
+}
 
 .sharebar-share {
   margin-left: 1rem;
