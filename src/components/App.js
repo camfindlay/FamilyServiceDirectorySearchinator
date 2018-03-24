@@ -8,6 +8,7 @@ import Service from '../components/Service/Service';
 import Sharebar from '../components/Social/Sharebar';
 import '../styles/Nav.css';
 import '../styles/Form.css';
+import Proximity from './Forms/Proximity';
 
 class App extends Component {
 
@@ -19,8 +20,24 @@ class App extends Component {
     };
   }
 
+  debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
   componentWillMount () {
     this.props.loadFilters();
+    this.radiusChange = this.debounce(this.radiusChange,200);
   }
 
   resultButton () {
@@ -37,21 +54,32 @@ class App extends Component {
     }
   }
 
+  addressBlur(e){
+    /* clears location details when the field is emptied */
+    if(e.target.value === ''){
+      this.setState({latlng: {}});
+      this.props.loadResults(this.props.category,this.props.keyword,{});
+    }
+  }
+
+
+  radiusChange(value){
+    this.props.loadResults(this.props.category,this.props.keyword,this.props.addressLatLng,value*1);
+  }
+
   render() {
     return (
       <div className="container-fluid">
-        <Filters data={this.props} addressLatLng={this.props.addressLatLng} />
+        <Filters data={this.props} addressLatLng={this.props.addressLatLng} radius={this.props.radius}/>
         <form className="form" onSubmit={(e)=>{
           e.preventDefault();
           this.setState({latlng: this.props.addressLatLng});
-          this.props.loadResults(this.state.category, e.target.keyword.value, this.props.addressLatLng === undefined ? this.state.latlng : this.props.addressLatLng);
+          this.props.loadResults(this.props.category, e.target.keyword.value, this.props.addressLatLng === undefined ? this.state.latlng : this.props.addressLatLng, this.props.radius);
         }}>
           <input type="search" name="keyword" placeholder="Enter topic or organisation" />
-          <AddressFinder data={this.props} />
+          <AddressFinder data={this.props} handler={this.addressBlur.bind(this)} radius={this.props.radius}/>
+          <Proximity handler={this.radiusChange.bind(this)} addressLatLng={this.props.addressLatLng} radius={this.props.radius}/>
           <button type="submit">Search</button>
-          {this.props.itemsLoading && false &&
-            <i className="loader"><img src="loading.gif" alt="loading..." /></i>
-          }
         </form>
         <div className={'results' + (this.props.itemsLoading ? ' loading' : '')}>
           {this.resultCountButton()}
@@ -72,6 +100,7 @@ function mapStateToProps(state) {
     keyword: state.keyword,
     category: state.category,
     addressLatLng: state.addressLatLng,
+    radius: state.radius,
     itemsLoading: state.itemsLoading,
     hasSearched: state.hasSearched
   };
