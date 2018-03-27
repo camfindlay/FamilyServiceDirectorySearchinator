@@ -49,9 +49,6 @@ class App extends Component {
           <input type="search" name="keyword" placeholder="Enter topic or organisation" />
           <AddressFinder data={this.props} />
           <button type="submit">Search</button>
-          {this.props.itemsLoading && false &&
-            <i className="loader"><img src="loading.gif" alt="loading..." /></i>
-          }
         </form>
         <div className={'results' + (this.props.itemsLoading ? ' loading' : '')}>
           {this.resultCountButton()}
