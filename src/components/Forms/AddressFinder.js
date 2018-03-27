@@ -13,8 +13,12 @@ class AddressFinder extends React.Component {
     );
 
     widget.on('result:select', (value, item) => {
-      this.props.data.loadResults(
-        this.props.data.category ? this.props.data.category : '', '', {latitude: item.y, longitude: item.x}, this.props.radius);
+      this.props.data.loadResults({
+        category: this.props.data.searchVars.category ? this.props.data.searchVars.category : '',
+        keyword: this.props.data.searchVars.keyword ? this.props.data.searchVars.keyword : '',
+        addressLatLng: {latitude: item.y, longitude: item.x},
+        radius: this.props.radius
+      });
     });
   }
 

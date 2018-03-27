@@ -11,7 +11,7 @@ class Service extends React.Component {
       <div>
         <div className="service">
           <div className="search-result-hero">
-            <Link to={`/service/${encodeURIComponent(this.props.filter ? this.props.filter : data.LEVEL_1_CATEGORY)}/${data.FSD_ID}`}><h2>{data.PROVIDER_NAME}</h2></Link>
+            <Link to={`/service/${encodeURIComponent(this.props.searchVars.category ? this.props.searchVars.category : data.LEVEL_1_CATEGORY)}/${data.FSD_ID}`}><h2>{data.PROVIDER_NAME}</h2></Link>
             <p>{data.PHYSICAL_ADDRESS}</p>
           </div>
           <div className="service-details">

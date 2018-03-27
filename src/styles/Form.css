@@ -13,6 +13,11 @@ form {
   .results div,
   .results button {
     transition: opacity 2s; }
+  .results button {
+    margin-top: 0; }
+
+.resultsDesc {
+  line-height: 2.3em; }
 
 button {
   background: #fff;

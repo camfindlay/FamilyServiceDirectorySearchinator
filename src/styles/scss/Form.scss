@@ -21,6 +21,14 @@ form { margin: 25px 0 35px; }
   button {
     transition: opacity 2s;
   }
+
+  button {
+    margin-top: 0;
+  }
+}
+
+.resultsDesc {
+  line-height: 2.3em;
 }
 
 button {

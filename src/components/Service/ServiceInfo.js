@@ -9,7 +9,9 @@ import Sharebar from '../Social/Sharebar';
 export class ServiceInfo extends React.Component {
 
   componentDidMount() {
-    this.props.loadResults(this.props.match.params.category, this.props.match.params.name);
+    this.props.loadResults({
+      category: this.props.match.params.category
+    },this.props.match.params.name);
   }
 
   render(){
@@ -44,6 +46,6 @@ export class ServiceInfo extends React.Component {
 
 
 export default connect(
-  state => ({keyword: state.keyword, results: state.results}),
+  state => ({results: state.results}),
   actionCreators
 )(ServiceInfo);

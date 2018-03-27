@@ -50,41 +50,66 @@ class App extends Component {
 
   resultCountButton () {
     if(!this.props.itemsLoading && this.props.hasSearched){
-      return <p>Found {this.props.results.length} result{this.props.results.length !== 1 ? 's' : ''} {this.resultButton()} </p>;
+      if(this.props.noSearchVars){
+        return <p className="resultsDesc">No search parameters supplied</p>;
+      }else{
+        return <p className="resultsDesc">Found {this.props.results.length} result{this.props.results.length !== 1 ? 's' : ''} {this.resultButton()} </p>;
+      }
     }
+  }
+
+  keywordBlur(e){
+    const clone = {...this.props.searchVars};
+    clone.keyword = (e.target.value === '') ? null : e.target.value;
+    clone.addressLatLng = (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
+    this.props.loadResults(clone);
   }
 
   addressBlur(e){
     /* clears location details when the field is emptied */
     if(e.target.value === ''){
       this.setState({latlng: {}});
-      this.props.loadResults(this.props.category,this.props.keyword,{});
+      this.props.loadResults({
+        category: this.props.searchVars.category,
+        keyword: this.props.searchVars.keyword,
+        addressLatLng: {},
+        radius: 25000
+      });
     }
   }
 
-
   radiusChange(value){
-    this.props.loadResults(this.props.category,this.props.keyword,this.props.addressLatLng,value*1);
+    const clone = {...this.props.searchVars};
+    const callback = this.props.loadResults;
+    clone.radius = value*1;
+    setImmediate(function() {
+      callback(clone);
+    });
   }
 
   render() {
     return (
       <div className="container-fluid">
-        <Filters data={this.props} addressLatLng={this.props.addressLatLng} radius={this.props.radius}/>
+        <Filters data={this.props} searchVars={this.props.searchVars} />
         <form className="form" onSubmit={(e)=>{
           e.preventDefault();
-          this.setState({latlng: this.props.addressLatLng});
-          this.props.loadResults(this.props.category, e.target.keyword.value, this.props.addressLatLng === undefined ? this.state.latlng : this.props.addressLatLng, this.props.radius);
+          this.setState({latlng: this.props.searchVars.addressLatLng});
+          const clone = {...this.props.searchVars};
+          clone.addressLatLng = (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
+          clone.keyword = e.target.keyword.value;
+          this.props.loadResults(clone);
         }}>
-          <input type="search" name="keyword" placeholder="Enter topic or organisation" />
-          <AddressFinder data={this.props} handler={this.addressBlur.bind(this)} radius={this.props.radius}/>
-          <Proximity handler={this.radiusChange.bind(this)} addressLatLng={this.props.addressLatLng} radius={this.props.radius}/>
+          <input type="search" name="keyword" onBlur={this.keywordBlur.bind(this)} placeholder="Enter topic or organisation" />
+          <AddressFinder data={this.props} handler={this.addressBlur.bind(this)} radius={this.props.searchVars.radius}/>
+          {this.props.searchVars.addressLatLng && Object.keys(this.props.searchVars.addressLatLng).length !== 0 &&
+            <Proximity handler={this.radiusChange.bind(this)} radius={this.props.searchVars.radius}/>
+          }
           <button type="submit">Search</button>
         </form>
         <div className={'results' + (this.props.itemsLoading ? ' loading' : '')}>
           {this.resultCountButton()}
-          { !this.props.itemsLoading && this.state.showMap && <MapResults className="container-fluid" LatLng={this.props.addressLatLng} map_results={this.props.results} />}
-          { !this.props.itemsLoading && !this.state.showMap && this.props.results.map((data, key)=> <Service key={key} results={data} filter={this.props.name} />)}
+          { !this.props.itemsLoading && this.state.showMap && <MapResults className="container-fluid" LatLng={this.props.searchVars.addressLatLng} map_results={this.props.results} />}
+          { !this.props.itemsLoading && !this.state.showMap && this.props.results.map((data)=> <Service results={data} searchVars={this.props.searchVars}  key={data.FSD_ID+data.LEVEL_1_CATEGORY+data.SERVICE_NAME} />)}
         </div>
         <Sharebar/>
       </div>
@@ -97,10 +122,8 @@ function mapStateToProps(state) {
     filters: state.filter,
     results: state.results,
     showMap: state.showMap,
-    keyword: state.keyword,
-    category: state.category,
-    addressLatLng: state.addressLatLng,
-    radius: state.radius,
+    searchVars: state.searchVars,
+    noSearchVars: state.noSearchVars,
     itemsLoading: state.itemsLoading,
     hasSearched: state.hasSearched
   };
