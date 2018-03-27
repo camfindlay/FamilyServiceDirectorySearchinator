@@ -4,6 +4,7 @@ let defaultState = {
   category: '',
   keyword: '',
   addressLatLng: {},
+  radius: 25000,
   itemsLoading: false,
   hasSearched: false
 };
@@ -27,6 +28,7 @@ const mainReducer = (state = defaultState, action) => {
       category: action.category,
       keyword: action.keyword,
       addressLatLng: action.addressLatLng,
+      radius: action.radius,
       hasSearched: true
     };
 
