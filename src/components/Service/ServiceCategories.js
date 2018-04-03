@@ -15,10 +15,8 @@ class ServiceCategories extends React.Component {
               <li className={data === decodeURIComponent(this.props.category) ? 'selected'  : ''}>
                 <Link title={data} to={`/service/${this.props.serviceId+'/'+encodeURIComponent(data)}`} onClick={()=> {
                   history.push('/service/'+this.props.serviceId+'/'+encodeURIComponent(data));
-                  const clone = {...this.props.searchVars};
-                  clone.category = data;
                   window.scrollTo(0,0);
-                  this.props.displayServiceDetails(clone);
+                  this.props.displayServiceDetails(data);
                 }} >{data}</Link>
               </li>)} />
             )}

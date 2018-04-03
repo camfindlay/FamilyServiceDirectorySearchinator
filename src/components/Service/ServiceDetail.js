@@ -25,20 +25,20 @@ class ServiceDetail extends Component {
     return category ? `&filters={"LEVEL_1_CATEGORY":"${category}"}` : '';
   }
 
-  loadServiceDetails(searchVars,serviceId){
+  loadServiceDetails(serviceId){
     if(!this.state.recordsLoaded){
-      this.setState({loading: true, category: searchVars.category});
+      this.setState({loading: true, category: this.props.searchVars.category});
       const FIELDS = 'LEVEL_1_CATEGORY,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS';
       let urldetails = encodeURI(`${process.env.REACT_APP_API_PATH}datastore_search?resource_id=${process.env.REACT_APP_API_RESOURCE_ID}&fields=${FIELDS}&q=${serviceId}&distinct=true`);
       return axios.get(urldetails).then((response)=>{
         if (this.refs.myRef) this.setState({records: response.data.result.records, recordsLoaded: true});
-        this.displayServiceDetails(searchVars);
+        this.displayServiceDetails(this.props.searchVars.category);
       });
     }
   }
 
-  displayServiceDetails(searchVars){
-    let currentCategory = searchVars.category;
+  displayServiceDetails(category){
+    let currentCategory = category;
     if(this.state.records.length > 0){
       let uniqueServices = [],unique = {},uniquecategories = [];
       this.state.records.forEach(function(item) {
@@ -51,14 +51,15 @@ class ServiceDetail extends Component {
           unique[item.SERVICE_NAME] = item;
         }
       });
-
-      if(this.props.changeCategory)  this.props.changeCategory(searchVars);
+      const clone = {...this.props.searchVars};
+      clone.category = currentCategory;
+      this.props.changeCategory(clone);
       this.setState({services:uniqueServices, loading: false, categories :uniquecategories, category: currentCategory});
     }
   }
 
   componentDidMount () {
-    if(this.props.serviceId) this.loadServiceDetails(this.props.searchVars, this.props.serviceId);
+    if(this.props.serviceId) this.loadServiceDetails(this.props.serviceId);
   }
 
   render() {

@@ -37,7 +37,7 @@ export class ServiceInfo extends React.Component {
                     <h2>{i.PROVIDER_NAME}</h2>
                     <p>{i.PHYSICAL_ADDRESS}</p>
                   </div>
-                  <ServiceDetail results={i} changeCategory={this.props.changeCategory} searchVars={{category: this.props.match.params.category}} serviceId={i.FSD_ID} loadimmediately={true} preview={false} />
+                  <ServiceDetail results={i} changeCategory={this.props.changeCategory} searchVars={this.props.searchVars} serviceId={i.FSD_ID} loadimmediately={true} preview={false} />
                   <Sharebar subject={i.PROVIDER_NAME}/>
                 </div>
               ))}
@@ -51,6 +51,6 @@ export class ServiceInfo extends React.Component {
 
 
 export default connect(
-  state => ({results: state.results}),
+  state => ({results: state.results,searchVars: state.searchVars}),
   actionCreators
 )(ServiceInfo);

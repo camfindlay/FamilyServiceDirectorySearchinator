@@ -61,8 +61,10 @@ class App extends Component {
     if(!this.props.itemsLoading && this.props.hasSearched){
       if(this.props.noSearchVars){
         return <p className="resultsDesc">No search parameters supplied</p>;
-      }else{
+      }else if(this.props.totalResults && this.props.results.length == 100 && this.props.totalResults*1 > 100){
         return <p className="resultsDesc">Found {this.props.results.length} of {this.props.totalResults*1} result{this.props.totalResults*1 !== 1 ? 's' : ''} {this.resultButton()} </p>;
+      }else{
+        return <p className="resultsDesc">Found {this.props.results.length} result{this.props.totalResults*1 !== 1 ? 's' : ''} {this.resultButton()} </p>;
       }
     }
   }
@@ -115,6 +117,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.searchVars);
+    console.log(this.state.keyword);
     return (
       <div className="container-fluid">
         <Filters filters={this.props.filters} searchVars={this.props.searchVars} loadResults={this.props.loadResults} />
