@@ -22,7 +22,7 @@ export class ServiceInfo extends React.Component {
 
     return <div>
       <div className="container-fluid">
-        <div className={'service' + (filteredResults.length === 0 ? ' loading':'')}>
+        <div className={'service-info' + (filteredResults.length === 0 ? ' loading':'')}>
           <Route render={() => (
             <Link to={'/'+(this.props.match.params.category ? 'category/'+encodeURIComponent(decodeURIComponent(this.props.match.params.category)):'')} onClick={()=> { window.scrollTo(0,0);}} >Go back</Link>
           )} />

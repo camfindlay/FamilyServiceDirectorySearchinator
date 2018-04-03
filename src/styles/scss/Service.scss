@@ -2,7 +2,7 @@ $primary-color: #35a744;
 $secondary-color: #c4c4c4;
 
 .leaflet-container {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 a {
@@ -12,8 +12,12 @@ a {
 .service {
   border-bottom: 1px solid $secondary-color;
   margin-bottom: 50px;
-  overflow: auto;
   padding-bottom: 30px;
+}
+
+.service,
+.service-info {
+  overflow: auto;
   padding-right: 5%;
 
   a {

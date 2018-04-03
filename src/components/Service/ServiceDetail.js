@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../styles/ServiceDetail.css';
 import ServiceContactDetail from './ServiceContactDetail';
 import ServiceCategories from './ServiceCategories';
+import ServiceDetailDesc from './ServiceDetailDesc';
 
 class ServiceDetail extends Component {
 
@@ -65,19 +66,11 @@ class ServiceDetail extends Component {
     return (
       <div className="service-details" ref="myRef">
         <ServiceContactDetail phone={this.props.results.PUBLISHED_PHONE_1} email={this.props.results.PUBLISHED_CONTACT_EMAIL_1} hours={this.props.results.PROVIDER_CONTACT_AVAILABILITY} website={this.props.results.PROVIDER_WEBSITE_1}/>
-        <div className={(this.props.loadimmediately ? 'full-desc': 'short-desc')+(this.props.itemsLoading ? ' loading' : '') + (!(this.props.loadimmediately || !this.props.searchVars.category) ? ' limit' : '')}>
-          {(this.props.loadimmediately || !this.props.searchVars.category) && <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} />}
-          {!(this.props.loadimmediately || !this.props.searchVars.category) && <div className="fade-down"></div>}
-          {(this.state.services.length > 0) && this.state.services.map((data,index)=>
-            <div key={index}>
-              <h4>{data.SERVICE_NAME}</h4>
-              {(data.SERVICE_NAME !== data.SERVICE_DETAIL) && <p>{data.SERVICE_DETAIL}</p>}
-            </div>
-          )}
-          {(this.state.services.length === 0 && this.props.loadimmediately) && <h4>No further information</h4>}
+        <div className={(this.props.itemsLoading ? ' loading' : '')}>
+          <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} />
+          {this.props.loadimmediately && <ServiceDetailDesc loadimmediately={this.props.loadimmediately} searchVars={this.props.searchVars} services={this.state.services} />}
         </div>
         {!this.props.loadimmediately && <Link className="more-detail" title="more detail" to={`/service/${this.props.results.FSD_ID}/${encodeURIComponent(this.state.category)}`}>more details...</Link>}
-        {!(this.props.loadimmediately || !this.props.searchVars.category) && <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} preview={!this.props.loadimmediately} />}
       </div>
     );
 

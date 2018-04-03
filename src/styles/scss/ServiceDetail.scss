@@ -22,42 +22,6 @@
   }
 }
 
-.short-desc {
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 0.3em;
-}
-
-.full-desc {
-  padding-bottom: 1em;
-  border-bottom: dotted 1px $secondary-color;
-}
-
-
-
-.limit {
-  max-height: 8em;
-  border-bottom: dotted 2px $secondary-color;
-}
-
-.other-services {
-  border-top: dotted 2px $secondary-color;
-
-  .limit {
-    max-height: 0;
-    border-bottom: 0;
-  }
-}
-
-.fade-down {
-  background: linear-gradient(to bottom, $transparent, $white);
-  position: absolute;
-  height: 50%;
-  width: 100%;
-  z-index: 1;
-  bottom: 0;
-}
-
 .more-detail {
   display: inline-block;
   width: 100%;

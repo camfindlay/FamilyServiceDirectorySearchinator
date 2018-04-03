@@ -61,17 +61,21 @@ class App extends Component {
 
   resultCountButton () {
     if(!this.props.itemsLoading && this.props.hasSearched){
-      if(this.props.noSearchVars){
-        return <p className="results-desc">No search parameters supplied</p>;
-      }else{
-        let desc = 'Found '+this.props.results.length+' ';
-        if(this.props.totalResults && this.props.results.length === 100 && this.props.totalResults*1 > 100){
-          desc += 'of '+this.props.totalResults*1+' ';
-        }
-        desc += 'result'+(this.props.totalResults*1 !== 1 ? 's' : '');
-        return <p className="results-desc">{desc} {this.resultButton()}</p>;
-      }
+      return <p className="results-desc">
+        {this.props.noSearchVars && <span>No search parameters supplied</span>}
+        {!this.props.noSearchVars && this.resultCountButtonText()}
+        {!this.props.noSearchVars && this.resultButton()}
+      </p>;
     }
+  }
+
+  resultCountButtonText (){
+    let desc = 'Found '+this.props.results.length+' ';
+    if(this.props.totalResults && this.props.results.length === 100 && this.props.totalResults*1 > 100){
+      desc += 'of '+this.props.totalResults*1+' ';
+    }
+    desc += 'result'+(this.props.totalResults*1 !== 1 ? 's' : '');
+    return desc;
   }
 
   keywordBlur(e){
