@@ -26,6 +26,8 @@ class App extends Component {
     this.resultCountButton = this.resultCountButton.bind(this);
     this.keywordBlur = this.keywordBlur.bind(this);
     this.onKeywordChange = this.onKeywordChange.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+    this.correctLatLng = this.correctLatLng.bind(this);
   }
 
   debounce(func, wait, immediate) {
@@ -60,11 +62,14 @@ class App extends Component {
   resultCountButton () {
     if(!this.props.itemsLoading && this.props.hasSearched){
       if(this.props.noSearchVars){
-        return <p className="resultsDesc">No search parameters supplied</p>;
-      }else if(this.props.totalResults && this.props.results.length === 100 && this.props.totalResults*1 > 100){
-        return <p className="resultsDesc">Found {this.props.results.length} of {this.props.totalResults*1} result{this.props.totalResults*1 !== 1 ? 's' : ''} {this.resultButton()} </p>;
+        return <p className="results-desc">No search parameters supplied</p>;
       }else{
-        return <p className="resultsDesc">Found {this.props.results.length} result{this.props.totalResults*1 !== 1 ? 's' : ''} {this.resultButton()} </p>;
+        let desc = 'Found '+this.props.results.length+' ';
+        if(this.props.totalResults && this.props.results.length === 100 && this.props.totalResults*1 > 100){
+          desc += 'of '+this.props.totalResults*1+' ';
+        }
+        desc += 'result'+(this.props.totalResults*1 !== 1 ? 's' : '');
+        return <p className="results-desc">{desc} {this.resultButton()}</p>;
       }
     }
   }
@@ -73,7 +78,7 @@ class App extends Component {
     if(inputchanged){
       const clone = {...this.props.searchVars};
       clone.keyword = e.target.value;
-      clone.addressLatLng = (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
+      clone.addressLatLng = this.correctLatLng();
       this.props.loadResults(clone);
     }
   }
@@ -89,7 +94,7 @@ class App extends Component {
       inputchanged = false;
       const clone = {...this.props.searchVars};
       clone.keyword = (e.target.value === '') ? null : e.target.value;
-      clone.addressLatLng = (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
+      clone.addressLatLng = this.correctLatLng();
       this.props.loadResults(clone);
     }
   }
@@ -116,18 +121,24 @@ class App extends Component {
     });
   }
 
+  formSubmit(e) {
+    e.preventDefault();
+    this.setState({latlng: this.props.searchVars.addressLatLng});
+    const clone = {...this.props.searchVars};
+    clone.addressLatLng = this.correctLatLng();
+    clone.keyword = e.target.keyword.value;
+    this.props.loadResults(clone);
+  }
+
+  correctLatLng(){
+    return (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <Filters filters={this.props.filters} searchVars={this.props.searchVars} loadResults={this.props.loadResults} />
-        <form className="form" onSubmit={(e)=>{
-          e.preventDefault();
-          this.setState({latlng: this.props.searchVars.addressLatLng});
-          const clone = {...this.props.searchVars};
-          clone.addressLatLng = (this.props.searchVars.addressLatLng === undefined ? this.state.latlng : this.props.searchVars.addressLatLng);
-          clone.keyword = e.target.keyword.value;
-          this.props.loadResults(clone);
-        }}>
+        <form className="form" onSubmit={e => this.formSubmit(e)}>
           <input value={this.state.keyword} type="search" name="keyword" onBlur={this.keywordBlur.bind(this)} onKeyPress={this.enterPressed.bind(this)} onChange={e => this.onKeywordChange(e.target.value)} placeholder="Enter topic or organisation" />
           <AddressFinder data={this.props} handler={this.addressBlur.bind(this)} radius={this.props.searchVars.radius}/>
           {this.props.searchVars.addressLatLng && Object.keys(this.props.searchVars.addressLatLng).length !== 0 &&

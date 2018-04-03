@@ -1,6 +1,8 @@
 .service-details {
   transition: opacity 2s; }
-  .service-details > div, .service-details > ul, .service-details > a {
+  .service-details > div,
+  .service-details > ul,
+  .service-details > a {
     margin-left: 25px; }
   .service-details > .service-categories {
     margin-left: 0; }

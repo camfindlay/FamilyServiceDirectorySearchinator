@@ -19,9 +19,6 @@ export function loadFilters(){
 
 /* category, keyword, addressLatLng, radius = 50000 */
 export function loadResults(searchVars) {
-  let theq = (searchVars.keyword && searchVars.keyword.length > 2) ? '&q='+searchVars.keyword : '';
-  let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${STATICFIELDS}${theq}&distinct=true${filters(searchVars.category)}`);
-  if(searchVars.addressLatLng.latitude) url += '&limit=5000';
   let addressObj = Object.keys(searchVars.addressLatLng ? searchVars.addressLatLng : {});
   if(!searchVars.category && !searchVars.keyword && (!searchVars.addressLatLng || !searchVars.addressLatLng.latitude)){
     return (dispatch) => {
@@ -30,8 +27,7 @@ export function loadResults(searchVars) {
   }else{
     return (dispatch) => {
       dispatch(loadingResults(true));
-
-      return axios.get(url).then((response)=>{
+      return axios.get(requestBuilder(searchVars)).then((response)=>{
         if(addressObj.length === 2 && searchVars.addressLatLng !== undefined) {
           //greater than 50000 means 100000 of within 50000
           dispatch(showResults(findNearMe(response.data.result.records, searchVars.addressLatLng, ((searchVars.radius > 50000)?100000:searchVars.radius)), searchVars, response.data.result.total));
@@ -63,6 +59,12 @@ export function loadService(searchVars,serviceId){
   }
 }
 
+function requestBuilder(searchVars){
+  let theq = (searchVars.keyword && searchVars.keyword.length > 2) ? '&q='+searchVars.keyword : '';
+  let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${STATICFIELDS}${theq}&distinct=true${filters(searchVars.category)}`);
+  if(searchVars.addressLatLng.latitude) url += '&limit=5000';
+  return url;
+}
 
 function checkLatLng(data) {
   return data.filter(r => r.PHYSICAL_ADDRESS.match(/\d+/g) !== null && r.LATITUDE !== '0' && r.LONGITUDE !== '0' && r.LATITUDE !== null && r.LONGITUDE !== null);

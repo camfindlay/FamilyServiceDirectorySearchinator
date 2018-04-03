@@ -3,7 +3,9 @@
 .service-details {
   transition: opacity 2s;
 
-  > div, > ul, > a {
+  > div,
+  > ul,
+  > a {
     margin-left: 25px;
   }
 
@@ -78,5 +80,5 @@
 }
 
 .selected a {
-  color: #fff;
+  color: $white;
 }
