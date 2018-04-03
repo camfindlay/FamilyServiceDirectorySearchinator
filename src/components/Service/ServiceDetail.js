@@ -75,7 +75,7 @@ class ServiceDetail extends Component {
               {(data.SERVICE_NAME !== data.SERVICE_DETAIL) && <p>{data.SERVICE_DETAIL}</p>}
             </div>
           )}
-          {(this.state.services.length === 0) && <h4>No futher information</h4>}
+          {(this.state.services.length === 0 && this.props.loadimmediately) && <h4>No further information</h4>}
         </div>
         {!this.props.loadimmediately && <Link className="more-detail" title="more detail" to={`/service/${this.props.results.FSD_ID}/${encodeURIComponent(this.state.category)}`}>more details...</Link>}
         {!(this.props.loadimmediately || !this.props.searchVars.category) && <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} preview={!this.props.loadimmediately} />}

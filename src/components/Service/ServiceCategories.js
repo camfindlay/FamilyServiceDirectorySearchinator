@@ -14,7 +14,6 @@ class ServiceCategories extends React.Component {
             {this.props.categories.map((data,index) => <Route key={index} render={({ history}) => (
               <li className={data === decodeURIComponent(this.props.category) ? 'selected'  : ''}>
                 <Link title={data} to={`/service/${this.props.serviceId+'/'+encodeURIComponent(data)}`} onClick={()=> {
-                  history.push('/service/'+this.props.serviceId+'/'+encodeURIComponent(data));
                   window.scrollTo(0,0);
                   this.props.displayServiceDetails(data);
                 }} >{data}</Link>
