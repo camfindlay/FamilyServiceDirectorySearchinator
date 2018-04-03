@@ -69,12 +69,13 @@ class ServiceDetail extends Component {
         <div className={(this.props.loadimmediately ? 'full-desc': 'short-desc')+(this.props.itemsLoading ? ' loading' : '') + (!(this.props.loadimmediately || !this.props.searchVars.category) ? ' limit' : '')}>
           {(this.props.loadimmediately || !this.props.searchVars.category) && <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} />}
           {!(this.props.loadimmediately || !this.props.searchVars.category) && <div className="fade-down"></div>}
-          {this.state.services.map((data,index)=>
+          {(this.state.services.length > 0) && this.state.services.map((data,index)=>
             <div key={index}>
               <h4>{data.SERVICE_NAME}</h4>
               {(data.SERVICE_NAME !== data.SERVICE_DETAIL) && <p>{data.SERVICE_DETAIL}</p>}
             </div>
           )}
+          {(this.state.services.length === 0) && <h4>No futher information</h4>}
         </div>
         {!this.props.loadimmediately && <Link className="more-detail" title="more detail" to={`/service/${this.props.results.FSD_ID}/${encodeURIComponent(this.state.category)}`}>more details...</Link>}
         {!(this.props.loadimmediately || !this.props.searchVars.category) && <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} preview={!this.props.loadimmediately} />}
