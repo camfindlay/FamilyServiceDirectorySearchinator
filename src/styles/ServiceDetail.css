@@ -31,7 +31,7 @@
     border-bottom: 0; }
 
 .fade-down {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff);
   position: absolute;
   height: 50%;
   width: 100%;
