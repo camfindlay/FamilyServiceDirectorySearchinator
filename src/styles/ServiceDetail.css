@@ -25,7 +25,7 @@
 .other-services {
   border-top: dotted 2px #c4c4c4; }
   .other-services .limit {
-    max-height: 0em;
+    max-height: 0;
     border-bottom: 0; }
 
 .fade-down {
@@ -34,7 +34,7 @@
   height: 50%;
   width: 100%;
   z-index: 1;
-  bottom: 0px; }
+  bottom: 0; }
 
 .more-detail {
   display: inline-block;

@@ -8,7 +8,7 @@
   }
 
   > .service-categories {
-    margin-left:0;
+    margin-left: 0;
   }
 
   h4 {
@@ -42,7 +42,7 @@
   border-top: dotted 2px $secondary-color;
 
   .limit {
-    max-height: 0em;
+    max-height: 0;
     border-bottom: 0;
   }
 }
@@ -53,7 +53,7 @@
   height: 50%;
   width: 100%;
   z-index: 1;
-  bottom: 0px;
+  bottom: 0;
 }
 
 .more-detail {
