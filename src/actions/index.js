@@ -43,8 +43,6 @@ export function loadResults(searchVars) {
 }
 
 export function changeCategory(searchVars){
-  console.log('z');
-  console.log(searchVars);
   return (dispatch) => {
     dispatch(changeCategories(searchVars));
   };

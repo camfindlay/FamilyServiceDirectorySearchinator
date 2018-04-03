@@ -6,7 +6,7 @@ let defaultState = {
     keyword: '',
     address: '',
     addressLatLng: {},
-    radius: 25000
+    radius: 50000
   },
   serviceDetails: [],
   noSearchVars: false,

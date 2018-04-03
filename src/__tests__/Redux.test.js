@@ -18,14 +18,17 @@ describe('actions', () => {
       addressLatLng: null,
       radius: null
     };
+    const totalResults = 1;
+    const noSearchVars = false;
     const expectedAction = {
       type: 'SHOW_RESULTS',
       results,
       searchVars,
-      totalResults
+      totalResults,
+      noSearchVars
     };
 
-    expect(actions.showResults(results, searchVars, 0)).toEqual(expectedAction);
+    expect(actions.showResults(results, searchVars, 1)).toEqual(expectedAction);
   });
 
 });
