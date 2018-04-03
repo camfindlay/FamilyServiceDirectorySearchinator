@@ -46,7 +46,6 @@ class ServiceDetail extends Component {
           uniquecategories.push(item.LEVEL_1_CATEGORY);
         }
         if (!unique[item.SERVICE_NAME]) {
-          //if(!currentCategory)  currentCategory = item.LEVEL_1_CATEGORY;
           if(item.LEVEL_1_CATEGORY === currentCategory)  uniqueServices.push(item);
           unique[item.SERVICE_NAME] = item;
         }
