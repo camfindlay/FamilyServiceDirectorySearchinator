@@ -7,6 +7,7 @@ form { margin: 25px 0 35px; }
 .loading {
   background: transparent url("loading.gif") no-repeat center top;
   background-size: 33px 33px;
+  min-height: 33px;
 
   div,
   button {

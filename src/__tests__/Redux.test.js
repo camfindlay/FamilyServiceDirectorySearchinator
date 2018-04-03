@@ -21,10 +21,11 @@ describe('actions', () => {
     const expectedAction = {
       type: 'SHOW_RESULTS',
       results,
-      searchVars
+      searchVars,
+      totalResults
     };
 
-    expect(actions.showResults(results, searchVars)).toEqual(expectedAction);
+    expect(actions.showResults(results, searchVars, 0)).toEqual(expectedAction);
   });
 
 });

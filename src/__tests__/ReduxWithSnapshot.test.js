@@ -14,7 +14,7 @@ describe('actions', () => {
       addressLatLng: null,
       radius: null
     };
-    expect(actions.showResults(results, searchVars)).toMatchSnapshot();
+    expect(actions.showResults(results, searchVars, 0)).toMatchSnapshot();
   });
 
 });

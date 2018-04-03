@@ -1,16 +1,17 @@
 .leaflet-container {
   margin-top: 40px; }
 
+a {
+  color: #35a744; }
+
 .service {
   border-bottom: 1px solid #c4c4c4;
-  margin-top: 40px;
   margin-bottom: 50px;
   overflow: auto;
   padding-bottom: 30px;
   padding-right: 5%; }
   .service a {
-    text-decoration: none;
-    color: #35a744; }
+    text-decoration: none; }
     .service a h3 {
       color: #35a744; }
     .service a .telephone {
@@ -31,9 +32,6 @@
     padding-left: 0.5em;
     padding-right: 0;
     padding-top: 0; }
-
-.service-details {
-  padding-left: 25px; }
 
 .search-result-hero {
   border-left: 4px solid #35a744;

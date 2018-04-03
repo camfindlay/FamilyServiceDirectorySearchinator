@@ -4,10 +4,13 @@ let defaultState = {
   searchVars: {
     category: '',
     keyword: '',
+    address: '',
     addressLatLng: {},
     radius: 25000
   },
+  serviceDetails: [],
   noSearchVars: false,
+  totalResults: 0,
   itemsLoading: false,
   hasSearched: false
 };
@@ -30,12 +33,24 @@ const mainReducer = (state = defaultState, action) => {
       results: action.results,
       searchVars: action.searchVars,
       noSearchVars: action.noSearchVars,
-      hasSearched: true
+      totalResults: action.totalResults,
+      hasSearched: true,
+      itemsLoading: false
     };
   case 'SHOW_SERVICE':
     return {
       ...state,
       results: action.results,
+      itemsLoading: false
+    };
+  case 'SHOW_SERVICE_DETAILS':
+    return {
+      ...state,
+      serviceDetails: action.serviceDetails
+    };
+  case 'CHANGE_CATEGORIES':
+    return {
+      ...state,
       searchVars: action.searchVars
     };
   default:

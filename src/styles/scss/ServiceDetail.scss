@@ -1,0 +1,82 @@
+@import "./variables";
+
+.service-details {
+  transition: opacity 2s;
+
+  > div, > ul, > a {
+    margin-left: 25px;
+  }
+
+  > .service-categories {
+    margin-left:0;
+  }
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0.2em;
+  }
+}
+
+.short-desc {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.3em;
+}
+
+.full-desc {
+  padding-bottom: 1em;
+  border-bottom: dotted 1px $secondary-color;
+}
+
+
+
+.limit {
+  max-height: 8em;
+  border-bottom: dotted 2px $secondary-color;
+}
+
+.other-services {
+  border-top: dotted 2px $secondary-color;
+
+  .limit {
+    max-height: 0em;
+    border-bottom: 0;
+  }
+}
+
+.fade-down {
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+  bottom: 0px;
+}
+
+.more-detail {
+  display: inline-block;
+  width: 100%;
+}
+
+.service-categories {
+  margin-top: 1.5em;
+
+  ul {
+    margin-top: 0.6em;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
+    border: solid 1px $primary-color;
+    padding: 0.2em 0.6em;
+  }
+}
+
+.selected a {
+  color: #fff;
+}

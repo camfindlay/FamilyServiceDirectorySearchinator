@@ -5,11 +5,7 @@ const RESOURCE_ID = process.env.REACT_APP_API_RESOURCE_ID;
 const API_PATH = process.env.REACT_APP_API_PATH;
 
 let filters = category => category ? `&filters={"LEVEL_1_CATEGORY":"${category}"}` : '';
-function q(keyword,serviceid){
-  if(serviceid && serviceid.length > 0)return serviceid;
-  return (keyword && keyword.length > 2) ? keyword : '';
-}
-const FIELDS = 'LEVEL_1_CATEGORY,FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,SERVICE_NAME,SERVICE_DETAIL,DELIVERY_METHODS,COST_TYPE,SERVICE_REFERRALS,PROVIDER_WEBSITE_1';
+const STATICFIELDS = 'FSD_ID,LONGITUDE,LATITUDE,PROVIDER_NAME,PUBLISHED_CONTACT_EMAIL_1,PUBLISHED_PHONE_1,PROVIDER_CONTACT_AVAILABILITY,ORGANISATION_PURPOSE,PHYSICAL_ADDRESS,PROVIDER_WEBSITE_1';
 
 export function loadFilters(){
   let sql = encodeURI(`SELECT "LEVEL_1_CATEGORY" as name, COUNT(*) as num FROM "${RESOURCE_ID}" GROUP BY name ORDER BY name`);
@@ -22,27 +18,44 @@ export function loadFilters(){
 }
 
 /* category, keyword, addressLatLng, radius = 50000 */
-export function loadResults(searchVars,serviceId) {
-  let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${FIELDS}&q=${q(searchVars.keyword,serviceId)}&distinct=true${filters(searchVars.category)}`);
+export function loadResults(searchVars) {
+  let theq = (searchVars.keyword && searchVars.keyword.length > 2) ? '&q='+searchVars.keyword : '';
+  let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${STATICFIELDS}${theq}&distinct=true${filters(searchVars.category)}`);
   let addressObj = Object.keys(searchVars.addressLatLng ? searchVars.addressLatLng : {});
-  if(!serviceId && !searchVars.category && !searchVars.keyword && (!searchVars.addressLatLng || !searchVars.addressLatLng.latitude)){
+  if(!searchVars.category && !searchVars.keyword && (!searchVars.addressLatLng || !searchVars.addressLatLng.latitude)){
     return (dispatch) => {
-      dispatch(showResults([], searchVars, true));
+      dispatch(showResults([], searchVars, 0, true));
     };
   }else{
     return (dispatch) => {
       dispatch(loadingResults(true));
 
       return axios.get(url).then((response)=>{
-        dispatch(loadingResults(false));
-        if(serviceId){
-          dispatch(showService(response.data.result.records));
-        }
         if(addressObj.length === 2 && searchVars.addressLatLng !== undefined) {
           //greater than 50000 means 100000 of within 50000
-          dispatch(showResults(findNearMe(response.data.result.records, searchVars.addressLatLng, ((searchVars.radius > 50000)?100000:searchVars.radius)), searchVars));
+          dispatch(showResults(findNearMe(response.data.result.records, searchVars.addressLatLng, ((searchVars.radius > 50000)?100000:searchVars.radius)), searchVars, response.data.result.total));
         } else {
-          dispatch(showResults(checkLatLng(response.data.result.records), searchVars));
+          dispatch(showResults(response.data.result.records, searchVars, response.data.result.total));
+        }
+      });
+    };
+  }
+}
+
+export function changeCategory(searchVars){
+  return (dispatch) => {
+    dispatch(changeCategories(searchVars));
+  };
+}
+
+export function loadService(searchVars,serviceId){
+  let url = encodeURI(`${API_PATH}datastore_search?resource_id=${RESOURCE_ID}&fields=${STATICFIELDS}&q=${serviceId}&distinct=true`);
+  if(serviceId){
+    return (dispatch) => {
+      dispatch(loadingResults(true));
+      return axios.get(url).then((response)=>{
+        if(response.data.result.records.length > 0){
+          dispatch(showService(response.data.result.records));
         }
       });
     };
@@ -69,8 +82,19 @@ function findNearMe(data, addressLatLng, radius) {
     filteredData[i].NEARME = isInside;
     filteredData[i].DISTANCE = distance;
   }
-  return filteredData.filter(r => r.NEARME === true);
+  return sortByDistance(filteredData.filter(r => r.NEARME === true));
 }
+
+function sortByDistance(data){
+  return data.sort(function(a,b){
+    if (a.DISTANCE < b.DISTANCE)
+      return -1;
+    if (a.DISTANCE > b.DISTANCE)
+      return 1;
+    return 0;
+  });
+}
+
 
 export function showFilters(filters){
   return {
@@ -79,11 +103,12 @@ export function showFilters(filters){
   };
 }
 
-export function showResults(results, searchVars, noSearchVars = false) {
+export function showResults(results, searchVars, totalResults, noSearchVars = false) {
   return {
     type: 'SHOW_RESULTS',
     results,
     searchVars,
+    totalResults,
     noSearchVars
   };
 }
@@ -95,11 +120,26 @@ export function showService(results) {
   };
 }
 
+export function showServiceDetails(serviceDetails) {
+  return {
+    type: 'SHOW_SERVICE_DETAILS',
+    serviceDetails
+  };
+}
+
 export function loadingResults(bool) {
   return {
     type: 'LOAD_RESULTS',
     loading: bool
   };
+}
+
+export function changeCategories(searchVars) {
+  return {
+    type: 'CHANGE_CATEGORIES',
+    searchVars
+  };
+
 }
 
 

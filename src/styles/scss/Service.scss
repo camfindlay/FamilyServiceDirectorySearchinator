@@ -5,9 +5,12 @@ $secondary-color: #c4c4c4;
   margin-top: 40px;
 }
 
+a {
+  color: $primary-color;
+}
+
 .service {
   border-bottom: 1px solid $secondary-color;
-  margin-top: 40px;
   margin-bottom: 50px;
   overflow: auto;
   padding-bottom: 30px;
@@ -15,7 +18,6 @@ $secondary-color: #c4c4c4;
 
   a {
     text-decoration: none;
-    color: $primary-color;
 
     h3 { color: $primary-color; }
 
@@ -44,8 +46,6 @@ $secondary-color: #c4c4c4;
     padding-top: 0;
   }
 }
-
-.service-details { padding-left: 25px; }
 
 .search-result-hero {
   border-left: 4px solid $primary-color;
