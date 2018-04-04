@@ -22,8 +22,8 @@ class Filters extends React.Component {
     this.categoryChange(this.props.searchVars.category === event.target.value ? '' : event.target.value);
   }
 
-  categoryChange(category){
-    //this.setState({value: category});
+  categoryChange(history,category){
+    history.push((this.props.searchVars.category === category ? '' : '/category/'+encodeURIComponent(category)));
     const clone = {...this.props.searchVars};
     clone.category = category;
     this.props.loadResults(clone);
@@ -37,8 +37,7 @@ class Filters extends React.Component {
             return (<Route key={index} render={({ history}) => (
               <button className={this.props.searchVars.category === data.name ? 'selected'  : ''} key={data.num}
                 onClick={()=> {
-                  history.push((this.props.searchVars.category === data.name ? '' : '/category/'+encodeURIComponent(data.name)));
-                  this.categoryChange((this.props.searchVars.category === data.name ? '' : data.name));
+                  this.categoryChange(history,(this.props.searchVars.category === data.name ? '' : data.name));
                 }}>
                 {data.name}
               </button>)} />
@@ -47,8 +46,7 @@ class Filters extends React.Component {
         </nav>
         <Route render={({history}) => (
           <select value={this.props.searchVars.category} onChange={(event)=> {
-            history.push((this.props.searchVars.category === event.target.value ? '' : '/category/'+encodeURIComponent(event.target.value)));
-            this.categoryChange(this.props.searchVars.category === event.target.value ? '' : event.target.value);
+            this.categoryChange(history,this.props.searchVars.category === event.target.value ? '' : event.target.value);
           }}>
             <option name="filters" defaultValue>-- Select Category --</option>
             {this.props.filters.map(data => {

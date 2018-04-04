@@ -6,7 +6,8 @@ form {
   background-size: 33px 33px;
   min-height: 33px; }
   .loading div,
-  .loading button {
+  .loading button,
+  .loading select {
     opacity: 0; }
 
 .results {
