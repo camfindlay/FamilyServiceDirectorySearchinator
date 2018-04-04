@@ -28,7 +28,7 @@ class AddressFinder extends React.Component {
           category: this.props.data.searchVars.category ? this.props.data.searchVars.category : '',
           keyword: this.props.data.searchVars.keyword ? this.props.data.searchVars.keyword : '',
           address: value,
-          addressLatLng: {latitude: item.y, longitude: item.x},
+          addressLatLng: (value)?{latitude: item.y, longitude: item.x}:{},
           radius: this.props.radius
         });
       });
@@ -39,15 +39,23 @@ class AddressFinder extends React.Component {
     this.setState({address: value});
   }
 
-  onAddressBlur(input){
-    this.setState({address: input.value});
-    this.props.handler.bind(input);
+  onAddressBlur(value){
+    this.setState({address: value});
+    if(!value){
+      this.props.data.loadResults({
+        category: this.props.data.searchVars.category ? this.props.data.searchVars.category : '',
+        keyword: this.props.data.searchVars.keyword ? this.props.data.searchVars.keyword : '',
+        address: '',
+        addressLatLng: {},
+        radius: this.props.radius
+      });
+    }
   }
 
   render() {
     return (
       <div className="address_finder_container">
-        <input value={this.state.address} id="address_field" type="search" onBlur={e =>this.onAddressBlur(e.target)} onChange={e => {this.onAddressChange(e.target.value);}} name="address" className="address-finder-input" placeholder="Enter a Location" />
+        <input value={this.state.address} id="address_field" type="search" onBlur={e =>this.onAddressBlur(e.target.value)} onChange={e => {this.onAddressChange(e.target.value);}} name="address" className="address-finder-input" placeholder="Enter a Location" />
       </div>
     );
   }

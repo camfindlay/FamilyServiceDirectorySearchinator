@@ -103,19 +103,6 @@ class App extends Component {
     }
   }
 
-  addressBlur(e){
-    /* clears location details when the field is emptied */
-    if(e.target.value === ''){
-      this.setState({latlng: {}});
-      this.props.loadResults({
-        category: this.props.searchVars.category,
-        keyword: this.props.searchVars.keyword,
-        addressLatLng: {},
-        radius: 25000
-      });
-    }
-  }
-
   radiusChange(value){
     const clone = {...this.props.searchVars};
     const callback = this.props.loadResults;
@@ -144,7 +131,7 @@ class App extends Component {
         <Filters filters={this.props.filters} searchVars={this.props.searchVars} loadResults={this.props.loadResults} />
         <form className="form" onSubmit={e => this.formSubmit(e)}>
           <input value={this.state.keyword} type="search" name="keyword" onBlur={this.keywordBlur.bind(this)} onKeyPress={this.enterPressed.bind(this)} onChange={e => this.onKeywordChange(e.target.value)} placeholder="Enter topic or organisation" />
-          <AddressFinder data={this.props} handler={this.addressBlur.bind(this)} radius={this.props.searchVars.radius}/>
+          <AddressFinder data={this.props} radius={this.props.searchVars.radius}/>
           {this.props.searchVars.addressLatLng && Object.keys(this.props.searchVars.addressLatLng).length !== 0 &&
             <Proximity handler={this.radiusChange.bind(this)} radius={this.props.searchVars.radius}/>
           }

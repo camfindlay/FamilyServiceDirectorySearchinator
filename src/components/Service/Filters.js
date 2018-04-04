@@ -45,12 +45,16 @@ class Filters extends React.Component {
             );
           })}
         </nav>
-        <select value={this.props.searchVars.category} onChange={this.handleChange.bind(this)}>
-          <option name="filters" defaultValue>-- Select Category --</option>
-          {this.props.filters.map(data => {
-            return (<option key={data.num} name="filters">{data.name}</option>);
-          })}
-        </select>
+        <Route render={({history}) => (
+          <select value={this.props.searchVars.category} onChange={(event)=> {
+            history.push((this.props.searchVars.category === event.target.value ? '' : '/category/'+encodeURIComponent(event.target.value)));
+            this.categoryChange(this.props.searchVars.category === event.target.value ? '' : event.target.value);
+          }}>
+            <option name="filters" defaultValue>-- Select Category --</option>
+            {this.props.filters.map(data => {
+              return (<option key={data.num} name="filters">{data.name}</option>);
+            })}
+          </select>)} />
       </div>
     );
   }

@@ -68,7 +68,7 @@ class ServiceDetail extends Component {
         <ServiceContactDetail phone={this.props.results.PUBLISHED_PHONE_1} email={this.props.results.PUBLISHED_CONTACT_EMAIL_1} hours={this.props.results.PROVIDER_CONTACT_AVAILABILITY} website={this.props.results.PROVIDER_WEBSITE_1}/>
         <div className={(this.props.itemsLoading ? ' loading' : '')}>
           <ServiceCategories displayServiceDetails={this.displayServiceDetails} category={this.state.category} categories={this.state.categories} serviceId={this.props.results.FSD_ID} />
-          {this.props.loadimmediately && <ServiceDetailDesc loadimmediately={this.props.loadimmediately} searchVars={this.props.searchVars} services={this.state.services} />}
+          {this.props.loadimmediately && <ServiceDetailDesc services={this.state.services} />}
         </div>
         {!this.props.loadimmediately && <Link className="more-detail" title="more detail" to={`/service/${this.props.results.FSD_ID}/${encodeURIComponent(this.state.category)}`}>more details...</Link>}
       </div>
